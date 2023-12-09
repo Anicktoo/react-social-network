@@ -1,22 +1,12 @@
-import './App.css';
+import Header from './components/Header';
+import InnerWrapper from './components/InnerWrapper';
+import './styles/App.css';
 
 const App = () => {
   return (
-    <div>
-      <header>
-        <img src='https://static.vecteezy.com/system/resources/previews/001/192/061/original/circle-logo-sun-png.png'></img>
-      </header>
-      <nav>
-        <div>
-          Profile
-        </div>
-        <div>
-          Message
-        </div>
-      </nav>
-      <main>
-        Main content
-      </main>
+    <div className='app-wrapper'>
+      <Header />
+      <InnerWrapper />
     </div>
   )
 };
