@@ -1,0 +1,13 @@
+.mainButton {
+    cursor: pointer;
+    padding: 6px 20px;
+    width: fit-content;
+    color: white;
+    background-color: var(--main-color);
+    border-radius: 5px;
+    border: none;
+}
+
+.mainButton:hover {
+    background-color: var(--secondary-color);
+}

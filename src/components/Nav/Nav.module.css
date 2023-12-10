@@ -1,0 +1,25 @@
+.nav {
+    grid-area: n;
+    padding-left: 10px;
+    height: 100%;
+}
+
+.item {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.item:hover {
+    background-color: var(--daker-grey-color);
+}
+
+.item_devided {
+    margin-top: 20px;
+}
+
+.link {
+    color: var(--text-color);
+}

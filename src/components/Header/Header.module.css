@@ -1,0 +1,21 @@
+.header {
+    background-color: var(--foreground-color);
+    padding: 10px;
+    border-bottom: 1px solid var(--daker-grey-color);
+}
+
+.logo {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    height: 100%;
+}
+
+.text {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.logo img {
+    width: 40px;
+}

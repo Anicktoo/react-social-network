@@ -1,8 +1,9 @@
 import React from 'react';
+import c from './MainButton.module.css';
 
 const MainButton = () => {
     return (
-        <button className='new-post__submit main-button' type='submit'>Send</button>
+        <button className={c.mainButton}>Send</button>
     );
 }
 
