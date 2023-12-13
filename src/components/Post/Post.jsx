@@ -2,15 +2,14 @@ import React from 'react';
 import c from './Post.module.css';
 
 
-const Post = () => {
+const Post = (props) => {
     return (
         <article className={c.post}>
-            <div className={c.imageСontainer}>
-                {/* img */}
+            <div className={c.imageContainer}>
+                <img src={props.avatarImgSrc} alt="profile avatar" />
             </div>
             <div className={c.content}>
-                <p className={c.text}>Hey, React seems cool!</p>
-                <p className={c.text}>I love it!</p>
+                <p className={c.text}>{props.message}</p>
             </div>
         </article>
     );

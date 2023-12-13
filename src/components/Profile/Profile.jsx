@@ -6,7 +6,7 @@ import classLister from 'css-module-class-lister';
 
 const c = classLister(styles);
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <main className={c('profile')}>
             <section className={c('account-data')}>
@@ -16,7 +16,7 @@ const Profile = () => {
                 </div>
                 <div className={c('info-container')}>
                     <div className={c('avatar')}>
-                        <img src="https://cs6.pikabu.ru/post_img/big/2015/03/14/9/1426346098_1794791727.jpg"
+                        <img src={props.avatarImgSrc}
                             alt="user's avatar"></img>
                     </div>
                     <div className={c('info')}>
@@ -41,7 +41,8 @@ const Profile = () => {
             <div className={c('feed')}>
                 <NewPost />
                 <div className={c('posts')}>
-                    <Post />
+                    <Post avatarImgSrc={props.avatarImgSrc} message='Hey, React seems cool! I love it!' />
+                    <Post avatarImgSrc={props.avatarImgSrc} message='My first post!' />
                 </div>
             </div>
         </main >
