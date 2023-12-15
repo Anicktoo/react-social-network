@@ -3,10 +3,16 @@
 :root {
     --background-color: #eee;
     --foreground-color: #fff;
+    --light-grey-color: #f6f6f6;
     --daker-grey-color: #e1e1e1;
     --text-color: #464646;
-    --main-color: #9582da;
-    --secondary-color: #b5a1fc;
+    --main-color: #8e00cc;
+    --secondary-color: #b431f5;
+    --layout-width: 1000px;
+    --gap-size: 15px;
+    --header-height: 51px;
+    --inner-wrapper-height: calc(100vh - var(--header-height) - var(--gap-size));
+    --content-height: calc(var(--inner-wrapper-height) - var(--gap-size));
 }
 
 * {
@@ -22,27 +28,30 @@ body {
     background-color: var(--background-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin-right: calc(-100vw + 100%);
+    overflow-x: hidden;
 }
 
 .app-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--gap-size);
     height: 100vh;
 }
 
 .inner-wrapper {
     margin: 0 auto;
-    width: 1000px;
-    overflow: hidden;
+    width: var(--layout-width);
     display: grid;
     grid-template-areas:
         "n c";
     grid-template-columns: 2fr 10fr;
-    gap: 10px;
-    height: 100%;
+    gap: var(--gap-size);
+    height: var(--inner-wrapper-height);
 }
 
 .content {
     grid-area: c;
+    padding-bottom: var(--gap-size);
+    height: 100%;
 }

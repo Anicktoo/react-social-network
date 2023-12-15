@@ -9,15 +9,16 @@ const c = classLister(styles);
 const Profile = (props) => {
     return (
         <main className={c('profile')}>
-            <section className={c('account-data')}>
+            <div className={c('account-data')}>
                 <div className={c('wallpaper')}>
-                    <img src="https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-preview.jpg"
-                        alt="user's background wallpaper" />
+                    <img
+                        src="https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-preview.jpg"
+                        alt="user's background wallpaper"/>
                 </div>
                 <div className={c('info-container')}>
                     <div className={c('avatar')}>
                         <img src={props.avatarImgSrc}
-                            alt="user's avatar"></img>
+                             alt="user's avatar"></img>
                     </div>
                     <div className={c('info')}>
                         <span className={c('info-header name')}>
@@ -37,15 +38,17 @@ const Profile = (props) => {
                         </span>
                     </div>
                 </div>
-            </section>
-            <div className={c('feed')}>
-                <NewPost />
-                <div className={c('posts')}>
-                    <Post avatarImgSrc={props.avatarImgSrc} message='Hey, React seems cool! I love it!' />
-                    <Post avatarImgSrc={props.avatarImgSrc} message='My first post!' />
-                </div>
             </div>
-        </main >
+            <NewPost/>
+            <div className={c('posts')}>
+                <Post avatarImgSrc={props.avatarImgSrc} message='Hey, React seems cool! I love it!'/>
+                <Post avatarImgSrc={props.avatarImgSrc} message='My first post1!'/>
+                <Post avatarImgSrc={props.avatarImgSrc} message='My first post2!'/>
+                <Post avatarImgSrc={props.avatarImgSrc} message='My first post3!'/>
+                <Post avatarImgSrc={props.avatarImgSrc} message='My first post4!'/>
+            </div>
+            {/*<div className={c('empty')}></div>*/}
+        </main>
     );
 }
 

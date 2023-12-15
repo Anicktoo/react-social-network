@@ -1,27 +1,30 @@
 import React from "react";
 import styles from './Nav.module.css'
 import classLister from 'css-module-class-lister';
+import {NavLink} from "react-router-dom";
 
 const c = classLister(styles);
+
+const isActiveItem = (dataNav) => dataNav.isActive ? styles.active : '';
 
 const Nav = () => {
     return (
         <nav className={c('nav')}>
-            <a href='/profile' className={c('item')}>
+            <NavLink to='/profile' className={(isActive) => c('item', isActiveItem(isActive))}>
                 <span className={c('link')}>Profile</span>
-            </a>
-            <a href='/dialogs' className={c('item')}>
+            </NavLink>
+            <NavLink to='/dialogs' className={(isActive) => c('item', isActiveItem(isActive))}>
                 <span className={c('link')}>Messages</span>
-            </a>
-            <a href='#n' className={c('item')}>
+            </NavLink>
+            <NavLink to='/news' className={(isActive) => c('item', isActiveItem(isActive))}>
                 <span className={c('link')}>News</span>
-            </a>
-            <a href='#mu' className={c('item')}>
+            </NavLink>
+            <NavLink to='/music' className={(isActive) => c('item', isActiveItem(isActive))}>
                 <span className={c('link')}>Music</span>
-            </a>
-            <a href='#s' className={c('item', 'item_divided')}>
+            </NavLink>
+            <NavLink to='/settings' className={(isActive) => c('item', 'item_divided', isActiveItem(isActive))}>
                 <span className={c('link')}>Settings</span>
-            </a>
+            </NavLink>
         </nav>
     );
 }
