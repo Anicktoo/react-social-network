@@ -1,7 +1,5 @@
-.profile {
+.posts {
     display: flex;
     flex-direction: column;
     gap: var(--gap-size);
-    height: 100%;
 }
-

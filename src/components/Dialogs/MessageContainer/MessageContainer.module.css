@@ -3,25 +3,40 @@
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    flex: 1 0;
+    flex: 1;
+    overflow: hidden;
 }
 
 .messageHeader {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 5px 15px;
     align-items: center;
     flex: 0 0 50px;
+    max-height: 50px;
     width: 100%;
     border-bottom: 1px solid var(--daker-grey-color);
+}
+
+.messageHeaderText {
+    font-weight: bold;
+}
+
+.userImg {
+    border-radius: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .messageItems {
     flex: 1 0;
     width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     overflow: auto;
-    padding: 50px 5px;
+    padding: 40px 5px;
     gap: 5px;
 }
 

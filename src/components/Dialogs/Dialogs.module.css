@@ -2,6 +2,7 @@
     --writing-panel-height: 70px;
     --writing-panel-padding: 15px;
     --input-warpper-height: calc(var(--writing-panel-height) - var(--writing-panel-padding) * 2);
+    --dialog-container-padding: 10px;
 }
 
 .dialogs {
@@ -21,25 +22,31 @@
     display: flex;
     flex-direction: column;
     flex: 0 0 300px;
+    max-width: 300px;
     border-right: 1px solid var(--daker-grey-color);
 }
 
 .dialogHeader {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: var(--dialog-container-padding);
     align-items: center;
     flex: 0 0 50px;
     width: 100%;
     border-bottom: 1px solid var(--daker-grey-color);
 }
 
+.dialogHeaderText {
+    font-weight: bold;
+}
+
 .dialogItems {
-    padding-top: 1px;
     flex: 1 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     overflow: auto;
+    margin-top: -1px;
 }
 
 

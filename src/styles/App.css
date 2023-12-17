@@ -8,8 +8,10 @@
     --text-color: #464646;
     --main-color: #8e1fc0;
     --secondary-color: #b431f5;
+    --invisible-color: rgb(1 1 1 / 0%);
     --layout-width: 1000px;
     --gap-size: 15px;
+    --block-padding: 20px;
     --header-height: 51px;
     --inner-wrapper-height: calc(100vh - var(--header-height) - var(--gap-size));
     --content-height: calc(var(--inner-wrapper-height) - var(--gap-size));
@@ -18,7 +20,7 @@
 * {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
     color: var(--text-color);
     box-sizing: border-box;
@@ -28,30 +30,25 @@ body {
     background-color: var(--background-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    margin-right: calc(-100vw + 100%);
-    overflow-x: hidden;
 }
 
 .app-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-size);
-    height: 100vh;
+    position: relative;
+    right: calc((100% - 100vw) / 2);
+    margin: calc(var(--header-height) + var(--gap-size)) auto 0;
+    width: var(--layout-width);
+    max-width: var(--layout-width);
 }
 
 .inner-wrapper {
-    margin: 0 auto;
-    width: var(--layout-width);
-    display: grid;
-    grid-template-areas:
-        "n c";
-    grid-template-columns: 2fr 10fr;
+    display: flex;
     gap: var(--gap-size);
     height: var(--inner-wrapper-height);
 }
 
 .content {
-    grid-area: c;
+    flex: 0 0 80%;
+    max-width: 80%;
     padding-bottom: var(--gap-size);
     height: 100%;
 }

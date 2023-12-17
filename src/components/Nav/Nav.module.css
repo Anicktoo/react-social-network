@@ -1,5 +1,6 @@
 .nav {
-    grid-area: n;
+    flex: 0 0 20%;
+    max-width: 20%;
     height: 100%;
 }
 
@@ -25,5 +26,5 @@
 }
 
 .link {
-    color: var(--text-color);
+    font-weight: 500;
 }

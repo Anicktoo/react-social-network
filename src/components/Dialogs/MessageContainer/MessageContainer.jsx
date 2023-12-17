@@ -7,6 +7,7 @@ const MessageContainer = (props) => {
         <div className={s.messageContainer}>
             <header className={s.messageHeader}>
                 <span className={s.messageHeaderText}>{props.userName}</span>
+                <img className={s.userImg} src={props.userImg} alt="user's image"/>
             </header>
             <div className={s.messageItems}>
                 {props.messages.map((m) =>

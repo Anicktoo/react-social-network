@@ -1,6 +1,11 @@
+:root {
+    --avatar-size: 150px;
+}
+
 .account-data {
     border: 1px solid var(--daker-grey-color);
     border-radius: 15px;
+    flex: 1 0 max-content;
     overflow: hidden;
 }
 
@@ -26,17 +31,16 @@
     z-index: 2;
     background-color: var(--foreground-color);
     display: flex;
-    padding-left: 20px;
-    gap: 10px;
+    padding: var(--block-padding);
+    gap: var(--gap-size);
     width: 100%;
     border-radius: inherit;
 }
 
 .avatar {
-    position: relative;
-    bottom: 50px;
-    width: 150px;
-    height: 150px;
+    margin-top: calc(-1 / 2 * var(--avatar-size) - var(--block-padding));
+    width: var(--avatar-size);
+    height: var(--avatar-size);
     outline: 5px solid var(--foreground-color);
     border-radius: 100%;
 }
@@ -49,15 +53,24 @@
 }
 
 .info {
-    padding: 10px;
-    grid-area: i;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.info-data a:hover {
+    text-decoration: underline;
 }
 
 
 .info-header {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 16px;
+}
+
+.info-data-additional {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }

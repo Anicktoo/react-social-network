@@ -17,21 +17,23 @@ const AccountData = (props) => {
                          alt="user's avatar"></img>
                 </div>
                 <div className={cName(['info'])}>
-                        <span className={cName(['info-header', 'name'])}>
-                            Nikita T.
-                        </span>
-                    <span className={cName(['info-data', 'date-of-birth'])}>
+                    <span className={cName(['info-header', 'name'])}>
+                        Nikita T.
+                    </span>
+                    <div className={cName(['info-data-additional'])}>
+                        <span className={cName(['info-data', 'date-of-birth'])}>
                             Date of Birth: 10 February
                         </span>
-                    <span className={cName(['info-data', 'city'])}>
+                        <span className={cName(['info-data', 'city'])}>
                             City: Saint-Petersburg
                         </span>
-                    <span className={cName(['info-data', 'education'])}>
+                        <span className={cName(['info-data', 'education'])}>
                             Education: ITMO University
                         </span>
-                    <span className={cName(['info-data', 'web-site'])}>
+                        <span className={cName(['info-data', 'web-site'])}>
                             Web Site: <a href='https://github.com/Anicktoo'>https://github.com/Anicktoo</a>
                         </span>
+                    </div>
                 </div>
             </div>
         </div>

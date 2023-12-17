@@ -11,7 +11,17 @@ const DialogItem = (props) => {
     return (
         <NavLink to={path}
                  className={(nd) => cName(['dialog'], nd)}>
-            <span className={s.dialogText}>{props.name}</span>
+            <div className={s.imgContainer}>
+                <img className={s.userImg} src={props.userImg} alt="User's avatar"/>
+            </div>
+            <div className={s.dialogText}>
+                <div className={s.preview}>
+                    <span className={s.userName}>{props.userName}</span>
+                </div>
+                <div className={s.preview}>
+                    <span className={s.lastMessage}>{props.messages[0]}</span>
+                </div>
+            </div>
         </NavLink>
     );
 }
