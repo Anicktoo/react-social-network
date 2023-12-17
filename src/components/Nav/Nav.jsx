@@ -1,29 +1,26 @@
 import React from "react";
-import styles from './Nav.module.css'
-import classLister from 'css-module-class-lister';
+import s from './Nav.module.css'
 import {NavLink} from "react-router-dom";
+import {classNameFunction} from "../../tools/classNameCompiler";
 
-const c = classLister(styles);
-
-const isActiveItem = (dataNav) => dataNav.isActive ? styles.active : '';
-
+const cName = classNameFunction(s);
 const Nav = () => {
     return (
-        <nav className={c('nav')}>
-            <NavLink to='/profile' className={(isActive) => c('item', isActiveItem(isActive))}>
-                <span className={c('link')}>Profile</span>
+        <nav className={cName(['nav'])}>
+            <NavLink to='/profile' className={(nd) => cName(['item'], nd)}>
+                <span className={cName(['link'])}>Profile</span>
             </NavLink>
-            <NavLink to='/dialogs' className={(isActive) => c('item', isActiveItem(isActive))}>
-                <span className={c('link')}>Messages</span>
+            <NavLink to='/dialogs' className={(nd) => cName(['item'], nd)}>
+                <span className={cName(['link'])}>Messages</span>
             </NavLink>
-            <NavLink to='/news' className={(isActive) => c('item', isActiveItem(isActive))}>
-                <span className={c('link')}>News</span>
+            <NavLink to='/' className={(nd) => cName(['item'], nd)}>
+                <span className={cName(['link'])}>News</span>
             </NavLink>
-            <NavLink to='/music' className={(isActive) => c('item', isActiveItem(isActive))}>
-                <span className={c('link')}>Music</span>
+            <NavLink to='/' className={(nd) => cName(['item'], nd)}>
+                <span className={cName(['link'])}>Music</span>
             </NavLink>
-            <NavLink to='/settings' className={(isActive) => c('item', 'item_divided', isActiveItem(isActive))}>
-                <span className={c('link')}>Settings</span>
+            <NavLink to='/' className={(nd) => cName(['item', 'item_divided'], nd)}>
+                <span className={cName(['link'])}>Settings</span>
             </NavLink>
         </nav>
     );

@@ -1,0 +1,37 @@
+.dialog {
+    position: relative;
+    flex: 0 0 51px;
+}
+
+.dialog::before {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    content: "";
+    height: 1px;
+    width: 80%;
+    background-color: var(--daker-grey-color);
+}
+
+.dialog:first-child::before {
+    width: 0;
+}
+
+.dialog:hover:not(.active) {
+    cursor: pointer;
+    background-color: var(--light-grey-color);
+    border-bottom: 1px solid var(--daker-grey-color);
+}
+
+.dialog:hover:not(.active)::before {
+    width: 100%;
+}
+
+.active {
+    background-color: var(--main-color);
+    border-bottom: 1px solid var(--daker-grey-color);
+}
+
+.active > .dialogText {
+    color: var(--foreground-color);
+}

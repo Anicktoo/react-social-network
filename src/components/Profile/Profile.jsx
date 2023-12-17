@@ -1,53 +1,25 @@
 import React from 'react';
 import Post from '../Post/Post';
-import styles from './Profile.module.css';
+import s from './Profile.module.css';
 import NewPost from './NewPost/NewPost';
-import classLister from 'css-module-class-lister';
+import {classNameFunction} from "../../tools/classNameCompiler";
+import AccountData from "./AccountData/AccountData";
 
-const c = classLister(styles);
-
+const cName = classNameFunction(s);
+const avatarSrc = 'https://assets1.ignimgs.com/2019/05/30/revan-galaxy-of-heroes-tall-1536x864-1559249534297.jpg';
+const wallpaperSrc = "https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-preview.jpg";
 const Profile = (props) => {
     return (
-        <main className={c('profile')}>
-            <div className={c('account-data')}>
-                <div className={c('wallpaper')}>
-                    <img
-                        src="https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-preview.jpg"
-                        alt="user's background wallpaper"/>
-                </div>
-                <div className={c('info-container')}>
-                    <div className={c('avatar')}>
-                        <img src={props.avatarImgSrc}
-                             alt="user's avatar"></img>
-                    </div>
-                    <div className={c('info')}>
-                        <span className={c('info-header name')}>
-                            Nikita T.
-                        </span>
-                        <span className={c('info-data date-of-birth')}>
-                            Date of Birth: 10 February
-                        </span>
-                        <span className={c('info-data city')}>
-                            City: Saint-Petersburg
-                        </span>
-                        <span className={c('info-data education')}>
-                            Education: ITMO University
-                        </span>
-                        <span className={c('info-data web-site')}>
-                            Web Site: <a href='https://github.com/Anicktoo'>https://github.com/Anicktoo</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+        <main className={cName(['profile'])}>
+            <AccountData avatarImgSrc={avatarSrc} wallpaperImgScr={wallpaperSrc}/>
             <NewPost/>
-            <div className={c('posts')}>
-                <Post avatarImgSrc={props.avatarImgSrc} message='Hey, React seems cool! I love it!'/>
-                <Post avatarImgSrc={props.avatarImgSrc} message='My first post1!'/>
-                <Post avatarImgSrc={props.avatarImgSrc} message='My first post2!'/>
-                <Post avatarImgSrc={props.avatarImgSrc} message='My first post3!'/>
-                <Post avatarImgSrc={props.avatarImgSrc} message='My first post4!'/>
+            <div className={cName(['posts'])}>
+                <Post avatarImgSrc={avatarSrc} message='Hey, React seems cool! I love it!'/>
+                <Post avatarImgSrc={avatarSrc} message='My first post1!'/>
+                <Post avatarImgSrc={avatarSrc} message='My first post2!'/>
+                <Post avatarImgSrc={avatarSrc} message='My first post3!'/>
+                <Post avatarImgSrc={avatarSrc} message='My first post4!'/>
             </div>
-            {/*<div className={c('empty')}></div>*/}
         </main>
     );
 }

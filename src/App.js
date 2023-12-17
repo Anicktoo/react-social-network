@@ -17,9 +17,8 @@ const App = (props) => {
                     <div className='content'>
                         <Routes>
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
-                            <Route path="profile" element={<Profile
-                                avatarImgSrc='https://cs6.pikabu.ru/post_img/big/2015/03/14/9/1426346098_1794791727.jpg'/>}/>
-                            <Route path="dialogs" element={<Dialogs/>}/>
+                            <Route path="profile" element={<Profile/>}/>
+                            <Route path="dialogs/*" element={<Dialogs/>}/>
                         </Routes>
                     </div>
                 </div>
