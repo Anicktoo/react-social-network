@@ -17,8 +17,8 @@ const App = (props) => {
                     <div className='content'>
                         <Routes>
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
-                            <Route path="profile" element={<Profile/>}/>
-                            <Route path="dialogs/*" element={<Dialogs/>}/>
+                            <Route path="profile" element={<Profile {...props.profileData}/>}/>
+                            <Route path="dialogs/*" element={<Dialogs dialogsData={props.dialogsData}/>}/>
                         </Routes>
                     </div>
                 </div>

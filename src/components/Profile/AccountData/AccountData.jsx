@@ -1,4 +1,4 @@
-import React from "react";
+import React, {createElement} from "react";
 import s from './AccountData.module.css'
 import {classNameFunction} from "../../../tools/classNameCompiler";
 
@@ -8,7 +8,7 @@ const AccountData = (props) => {
         <div className={cName(['account-data'])}>
             <div className={cName(['wallpaper'])}>
                 <img
-                    src={props.wallpaperImgScr}
+                    src={props.wallpaperImgSrc}
                     alt="user's background wallpaper"/>
             </div>
             <div className={cName(['info-container'])}>
@@ -18,21 +18,19 @@ const AccountData = (props) => {
                 </div>
                 <div className={cName(['info'])}>
                     <span className={cName(['info-header', 'name'])}>
-                        Nikita T.
+                        {props.name}
                     </span>
                     <div className={cName(['info-data-additional'])}>
-                        <span className={cName(['info-data', 'date-of-birth'])}>
-                            Date of Birth: 10 February
-                        </span>
-                        <span className={cName(['info-data', 'city'])}>
-                            City: Saint-Petersburg
-                        </span>
-                        <span className={cName(['info-data', 'education'])}>
-                            Education: ITMO University
-                        </span>
-                        <span className={cName(['info-data', 'web-site'])}>
-                            Web Site: <a href='https://github.com/Anicktoo'>https://github.com/Anicktoo</a>
-                        </span>
+                        {props.additionalData.map((field, index) => {
+                                let value = `${field.value}`;
+                                if (field.link) {
+                                    value = createElement('a', {href: field.link}, value);
+                                }
+                                return (<span key={index} className={cName(['info-data'])}>
+                                       {`${field.fieldName}: `}{value}
+                                        </span>);
+                            }
+                        )}
                     </div>
                 </div>
             </div>

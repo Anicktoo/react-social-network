@@ -13,9 +13,9 @@ const NewPost = () => {
             </div>
             <div className={c('new-post-input')} id="newPost">
                 <div className={c('text-area')} aria-label='your text...'
-                    contentEditable="true" role="textbox" aria-multiline="true">
+                     contentEditable="true" role="textbox" aria-multiline="true">
                 </div>
-                <MainButton />
+                <MainButton text='Send'/>
             </div>
         </div>);
 }

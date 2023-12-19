@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './MainButton.module.css';
 
-const MainButton = () => {
+const MainButton = (props) => {
     return (
-        <button className={s.mainButton}>Send</button>
+        <button className={s.mainButton}>{props.text}</button>
     );
 }
 
