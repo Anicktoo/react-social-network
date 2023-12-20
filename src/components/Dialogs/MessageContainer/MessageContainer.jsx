@@ -1,8 +1,16 @@
 import s from "./MessageContainer.module.css";
 import React from "react";
+import {ReactComponent as SendIcon} from '../../../img/send.svg';
+
 import Message from "./Message/Message";
 
 const MessageContainer = (props) => {
+    const messageInput = React.createRef();
+    const sendMessage = () => {
+        const text = messageInput.current.innerText;
+        alert(text);
+    }
+
     return (
         <div className={s.messageContainer}>
             <header className={s.messageHeader}>
@@ -16,15 +24,13 @@ const MessageContainer = (props) => {
             </div>
             <div className={s.writingPanel}>
                 <div className={s.inputWrapper}>
-                    <div className={s.textInput} aria-label='your message...'
+                    <div ref={messageInput} className={s.textInput} aria-label='your message...'
                          contentEditable="true" role="textbox" aria-multiline="true">
                     </div>
                 </div>
-                <div className={s.sendButtonContainer}>
-                    <img
-                        src='https://static-00.iconduck.com/assets.00/send-icon-2048x1993-sijmumqa.png'
-                        alt="send button"/>
-                </div>
+                <button onClick={sendMessage} className={s.sendButtonContainer}>
+                    <SendIcon/>
+                </button>
             </div>
         </div>
     );

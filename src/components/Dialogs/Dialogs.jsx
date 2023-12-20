@@ -10,8 +10,8 @@ const Dialogs = (props) => {
     const dialogItems = [];
     const messageContainers = [];
     props.dialogs.forEach((el) => {
-        dialogItems.push(<DialogItem {...el} />);
-        messageContainers.push(<Route path={'/' + el.id} element={<MessageContainer {...el}/>}/>);
+        dialogItems.push(<DialogItem key={el.id}{...el} />);
+        messageContainers.push(<Route key={el.id} path={'/' + el.id} element={<MessageContainer {...el}/>}/>);
     });
 
     return (

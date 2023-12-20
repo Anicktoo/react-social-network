@@ -101,6 +101,9 @@ button,
 [type="reset"],
 [type="submit"] {
     appearance: none;
+    border: none;
+    background: none;
+    outline: none;
 }
 
 button::-moz-focus-inner,
