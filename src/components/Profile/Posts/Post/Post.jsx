@@ -1,10 +1,12 @@
 import React from 'react';
 import s from './Post.module.css';
+import {classNameFunction} from "../../../../tools/classNameCompiler";
 
+const cName = classNameFunction(s);
 
 const Post = (props) => {
     return (
-        <article className={s.post}>
+        <article className={cName(['post', 'stdBlock'])}>
             <div className={s.imageContainer}>
                 <img src={props.avatarImgSrc} alt="profile avatar"/>
             </div>

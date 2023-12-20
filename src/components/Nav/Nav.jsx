@@ -7,6 +7,7 @@ const Nav = () => {
         <nav className={s.nav}>
             <NavButton to='/profile' text='Profile'/>
             <NavButton to='/dialogs' text='Messages'/>
+            <NavButton to='/friends' text='Friends'/>
             <NavButton to='/' text='News'/>
             <NavButton to='/' text='Music'/>
             <NavButton to='/' text='Settings' divided={true}/>

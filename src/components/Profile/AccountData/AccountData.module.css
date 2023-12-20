@@ -3,8 +3,8 @@
 }
 
 .account-data {
-    border: 1px solid var(--daker-grey-color);
-    border-radius: 15px;
+    border: var(--block-border);
+    border-radius: var(--block-border-radius);
     flex: 1 0 max-content;
     overflow: hidden;
 }

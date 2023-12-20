@@ -12,6 +12,8 @@
     --layout-width: 1000px;
     --gap-size: 15px;
     --block-padding: 20px;
+    --block-border-radius: 15px;
+    --block-border: 1px solid var(--daker-grey-color);
     --header-height: 51px;
     --inner-wrapper-height: calc(100vh - var(--header-height) - var(--gap-size));
     --content-height: calc(var(--inner-wrapper-height) - var(--gap-size));
@@ -51,4 +53,11 @@ body {
     max-width: 80%;
     padding-bottom: var(--gap-size);
     height: 100%;
+}
+
+.stdBlock {
+    padding: var(--block-padding);
+    background-color: var(--foreground-color);
+    border: var(--block-border);
+    border-radius: var(--block-border-radius);
 }

@@ -1,0 +1,23 @@
+.friends {
+
+}
+
+.friendsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.friendList {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+    width: 100%;
+    padding-bottom: var(--block-padding);
+}
+
+.header > span {
+    font-weight: bold;
+}

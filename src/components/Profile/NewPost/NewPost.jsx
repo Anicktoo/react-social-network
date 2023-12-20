@@ -1,18 +1,18 @@
 import React from 'react';
 import MainButton from '../../MainButton/MainButton';
-import styles from './NewPost.module.css';
-import classLister from 'css-module-class-lister';
+import s from './NewPost.module.css';
+import {classNameFunction} from "../../../tools/classNameCompiler";
 
-const c = classLister(styles);
+const cName = classNameFunction(s);
 
 const NewPost = () => {
     return (
-        <div className={c('new-post')}>
-            <div className={c('label-container')}>
-                <span className={c('label-text')}>New Post</span>
+        <div className={cName(['new-post', 'stdBlock'])}>
+            <div className={cName('label-container')}>
+                <span className={cName('label-text')}>New Post</span>
             </div>
-            <div className={c('new-post-input')} id="newPost">
-                <div className={c('text-area')} aria-label='your text...'
+            <div className={cName('new-post-input')} id="newPost">
+                <div className={cName('text-area')} aria-label='your text...'
                      contentEditable="true" role="textbox" aria-multiline="true">
                 </div>
                 <MainButton text='Send'/>

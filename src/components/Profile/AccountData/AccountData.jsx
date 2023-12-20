@@ -1,4 +1,4 @@
-import React, {createElement} from "react";
+import React from "react";
 import s from './AccountData.module.css'
 import {classNameFunction} from "../../../tools/classNameCompiler";
 
@@ -21,15 +21,11 @@ const AccountData = (props) => {
                         {props.name}
                     </span>
                     <div className={cName(['info-data-additional'])}>
-                        {props.additionalData.map((field, index) => {
-                                let value = `${field.value}`;
-                                if (field.link) {
-                                    value = createElement('a', {href: field.link}, value);
-                                }
-                                return (<span key={index} className={cName(['info-data'])}>
-                                       {`${field.fieldName}: `}{value}
-                                        </span>);
-                            }
+                        {props.additionalData.map((field, index) =>
+                            <span key={index} className={cName(['info-data'])}>
+                                {`${field.fieldName}: `}{field.link ?
+                                <a href={field.link}>{field.value}</a> : field.value}
+                            </span>
                         )}
                     </div>
                 </div>

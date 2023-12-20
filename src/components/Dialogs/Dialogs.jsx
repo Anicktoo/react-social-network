@@ -7,12 +7,12 @@ import {Route, Routes} from "react-router-dom";
 
 const Dialogs = (props) => {
 
-    const dialogItems = props.dialogsData.map((el) =>
-        <DialogItem {...el} />
-    );
-    const messageContainers = props.dialogsData.map((el) =>
-        <Route path={'/' + el.id} element={<MessageContainer {...el}/>}/>
-    );
+    const dialogItems = [];
+    const messageContainers = [];
+    props.dialogs.forEach((el) => {
+        dialogItems.push(<DialogItem {...el} />);
+        messageContainers.push(<Route path={'/' + el.id} element={<MessageContainer {...el}/>}/>);
+    });
 
     return (
         <main className={s.dialogs}>
