@@ -53,7 +53,7 @@ body {
     flex: 0 0 80%;
     max-width: 80%;
     padding-bottom: var(--gap-size);
-    height: 100%;
+    height: max-content;
 }
 
 .stdBlock {

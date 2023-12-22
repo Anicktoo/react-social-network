@@ -5,8 +5,8 @@
 
 .imageContainer {
     overflow: hidden;
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
     border-radius: 50%;
     background-color: var(--default-grey-color);
@@ -31,15 +31,11 @@
     width: 100%;
     padding: 5px 0;
     overflow: hidden;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .text-area:focus-visible {
     outline: none;
-}
-
-.text-area:focus-visible + .placeholder {
-    color: var(--default-grey-color);
 }
 
 .placeholder {
@@ -50,4 +46,9 @@
     padding: 5px 1px;
     color: var(--dark-grey-color);
 }
+
+.text-area:focus-visible + .placeholder {
+    color: var(--default-grey-color);
+}
+
 
