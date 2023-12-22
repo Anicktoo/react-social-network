@@ -9,7 +9,7 @@
     height: 36px;
     flex-shrink: 0;
     border-radius: 50%;
-    background-color: var(--daker-grey-color);
+    background-color: var(--default-grey-color);
 }
 
 .imageContainer img {
@@ -26,6 +26,8 @@
 }
 
 .text {
+    word-break: break-all;
+    white-space: pre-wrap;
     font-size: 14px;
     font-weight: 500;
 }

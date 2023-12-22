@@ -18,7 +18,10 @@ const App = (props) => {
                     <div className='content'>
                         <Routes>
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
-                            <Route path="profile/*" element={<Profile {...props.profileData}/>}/>
+                            <Route path="profile/*"
+                                   element={<Profile {...props.profileData}
+                                                     addPost={props.addPost}
+                                                     changeTemplate={props.changeNewPostTemplateText}/>}/>
                             <Route path="dialogs/*" element={<Dialogs {...props.dialogsData}/>}/>
                             <Route path="friends/*" element={<Friends {...props.friendsData}/>}/>
                         </Routes>
@@ -26,7 +29,7 @@ const App = (props) => {
                 </div>
             </div>
         </BrowserRouter>
-    )
+    );
 };
 
 export default App;

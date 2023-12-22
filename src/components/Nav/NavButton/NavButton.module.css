@@ -8,7 +8,7 @@
 }
 
 .item:hover {
-    background-color: var(--daker-grey-color);
+    background-color: var(--default-grey-color);
 }
 
 .item_divided {
@@ -16,7 +16,7 @@
 }
 
 .active {
-    background-color: var(--daker-grey-color);
+    background-color: var(--default-grey-color);
 }
 
 .link {

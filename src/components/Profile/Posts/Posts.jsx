@@ -4,8 +4,10 @@ import Post from "./Post/Post";
 
 const Posts = (props) => {
 
-    const postItems = props.posts.map(post =>
-        <Post key={post.id} avatarImgSrc={props.avatarImgSrc} {...post}/>
+    let postsLen = props.posts.length;
+    const postItems = new Array(postsLen);
+    props.posts.forEach((post, ind) =>
+        postItems[postsLen - ind - 1] = <Post key={post.id} avatarImgSrc={props.avatarImgSrc} {...post}/>
     );
 
     return (

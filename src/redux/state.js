@@ -1,3 +1,5 @@
+import {render} from "../render";
+
 const state = {
     dialogsData: {
         dialogs: [
@@ -60,6 +62,9 @@ const state = {
             avatarImgSrc: 'https://assets1.ignimgs.com/2019/05/30/revan-galaxy-of-heroes-tall-1536x864-1559249534297.jpg',
             wallpaperImgSrc: 'https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-preview.jpg',
         },
+        newPostTemplate: {
+            text: '123',
+        },
         posts: [
             {
                 id: 0,
@@ -108,4 +113,26 @@ const state = {
         ],
     }
 };
+
+export const rerender = () => {
+    render({state, addPost, changeNewPostTemplateText});
+}
+
+export const addPost = () => {
+    const postText = state.profileData.newPostTemplate.text;
+    const posts = state.profileData.posts;
+    const len = posts.length;
+    posts.push({
+        id: len,
+        text: postText,
+        likes: 0
+    });
+    state.profileData.newPostTemplate.text = '';
+    rerender();
+};
+
+export const changeNewPostTemplateText = (text) => {
+    state.profileData.newPostTemplate.text = text;
+}
+
 export default state;

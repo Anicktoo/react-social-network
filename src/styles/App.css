@@ -4,7 +4,8 @@
     --background-color: #eee;
     --foreground-color: #fff;
     --light-grey-color: #f6f6f6;
-    --daker-grey-color: #e1e1e1;
+    --default-grey-color: #e1e1e1;
+    --dark-grey-color: #a2a2a2;
     --text-color: #464646;
     --main-color: #8e1fc0;
     --secondary-color: #b431f5;
@@ -13,7 +14,7 @@
     --gap-size: 15px;
     --block-padding: 20px;
     --block-border-radius: 15px;
-    --block-border: 1px solid var(--daker-grey-color);
+    --block-border: 1px solid var(--default-grey-color);
     --header-height: 51px;
     --inner-wrapper-height: calc(100vh - var(--header-height) - var(--gap-size));
     --content-height: calc(var(--inner-wrapper-height) - var(--gap-size));

@@ -4,27 +4,48 @@ import {classNameFunction} from "../../../tools/classNameCompiler";
 
 const cName = classNameFunction(s);
 
-const NewPost = () => {
+const NewPost = (props) => {
 
-    const newPostInput = React.createRef();
+    const contentRef = React.createRef();
+    const placeholderRef = React.createRef();
+
     const addPost = () => {
-        const text = newPostInput.current.innerText;
-        alert(text)
+        props.addPost();
+        contentRef.current.innerHTML = '';
+        switchPlaceholderVisibility();
     };
 
+    const changeTextInput = () => {
+        props.changeTemplate(contentRef.current.innerText);
+        switchPlaceholderVisibility();
+    };
+
+    const switchPlaceholderVisibility = () => {
+        const cur = contentRef.current;
+        if (cur.innerText && cur.innerHTML !== '<br>') {
+            placeholderRef.current.style.display = 'none';
+        } else {
+            placeholderRef.current.style.display = 'inline';
+        }
+    }
+
     return (
-        <div className={cName(['new-post', 'stdBlock'])}>
-            <div className={cName('label-container')}>
-                <span className={cName('label-text')}>New Post</span>
+        <article onLoad={switchPlaceholderVisibility} className={cName(['new-post', 'stdBlock'])}>
+            <div className={s.imageContainer}>
+                <img src={props.avatarImgSrc} alt="profile avatar"/>
             </div>
-            <div className={cName('new-post-input')} id="newPost">
-                <div ref={newPostInput} className={cName('text-area')} aria-label='your text...'
-                     contentEditable="true" role="textbox" aria-multiline="true">
-                </div>
+            <div className={cName('new-post-wrapper')}>
+                <span ref={contentRef} className={cName('text-area')} aria-label='your text...'
+                      contentEditable="true" role="textbox" aria-multiline="true"
+                      onInput={changeTextInput}
+                      suppressContentEditableWarning={true}
+                >{props.text}</span>
+                <span ref={placeholderRef} className={s.placeholder}>Write your post...</span>
                 <button onClick={addPost} className={cName('mainButton')}>Send
                 </button>
             </div>
-        </div>);
+        </article>
+    );
 }
 
 export default NewPost;

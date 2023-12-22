@@ -23,7 +23,7 @@
     flex-direction: column;
     flex: 0 0 300px;
     max-width: 300px;
-    border-right: 1px solid var(--daker-grey-color);
+    border-right: 1px solid var(--default-grey-color);
 }
 
 .dialogHeader {
@@ -33,7 +33,7 @@
     align-items: center;
     flex: 0 0 50px;
     width: 100%;
-    border-bottom: 1px solid var(--daker-grey-color);
+    border-bottom: 1px solid var(--default-grey-color);
 }
 
 .dialogHeaderText {

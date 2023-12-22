@@ -5,7 +5,7 @@
 .account-data {
     border: var(--block-border);
     border-radius: var(--block-border-radius);
-    flex: 1 0 max-content;
+    flex: 0 0 max-content;
     overflow: hidden;
 }
 
