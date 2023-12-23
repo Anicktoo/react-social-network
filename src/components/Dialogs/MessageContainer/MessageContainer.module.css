@@ -30,6 +30,7 @@
 }
 
 .messageItems {
+    position: relative;
     flex: 1 0;
     width: 100%;
     max-width: 100%;
@@ -40,12 +41,14 @@
     gap: 5px;
 }
 
+.messagesEnd {
+    position: relative;
+    bottom: -40px;
+}
 
 .writingPanel {
     display: flex;
     align-items: flex-end;
-    min-height: var(--writing-panel-height);
-    max-height: 25%;
     background-color: var(--light-grey-color);
     border-top: 1px solid var(--default-grey-color);
     padding: var(--writing-panel-padding);
@@ -53,28 +56,45 @@
 }
 
 .inputWrapper {
+    position: relative;
     display: flex;
     flex: 1 0;
-    min-height: var(--input-warpper-height);
-    max-height: 100%;
     width: 100%;
     background-color: var(--foreground-color);
     border: 1px solid var(--default-grey-color);
     border-radius: 10px;
     padding: 10px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .textInput {
+    resize: none;
     width: 100%;
     height: min-content;
     word-break: break-word;
+    border: none;
+    padding: 0;
 }
 
 .textInput:focus-visible {
-    border: none;
     outline: none;
 }
+
+.placeholder {
+    box-sizing: content-box;
+    pointer-events: none;
+    position: absolute;
+    height: var(--line-height);
+    top: -1px;
+    left: 0;
+    padding: 10px;
+    color: var(--dark-grey-color);
+}
+
+.textInput:focus-visible + .placeholder {
+    opacity: 0.6;
+}
+
 
 .sendButtonContainer {
     cursor: pointer;

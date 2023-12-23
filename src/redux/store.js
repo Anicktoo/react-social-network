@@ -22,7 +22,9 @@ class Store {
                             your: false,
                         },
                     ],
-                    template: ''
+                    template: {
+                        text: ''
+                    }
                 },
                 {
                     id: 2,
@@ -34,7 +36,9 @@ class Store {
                             your: false
                         }
                     ],
-                    template: ''
+                    template: {
+                        text: ''
+                    }
                 },
                 {
                     id: 3,
@@ -46,7 +50,9 @@ class Store {
                             your: false
                         },
                     ],
-                    template: ''
+                    template: {
+                        text: ''
+                    }
                 },
             ],
         },
@@ -162,7 +168,7 @@ class Store {
 
     #sendMessage(dialogId) {
         const dialogObj = this.#state.dialogsData.dialogs.find((el) => el.id === dialogId);
-        const trimmedMessage = dialogObj.template.trim();
+        const trimmedMessage = dialogObj.template.text.trim();
         if (trimmedMessage === '') {
             return;
         }
@@ -173,7 +179,7 @@ class Store {
             text: trimmedMessage,
             your: true
         });
-        dialogObj.template = '';
+        dialogObj.template.text = '';
         this.#callSubscriber();
     }
 
@@ -182,7 +188,8 @@ class Store {
         if (!dialogObj) {
             throw Error('Invalid dialog ID');
         }
-        dialogObj.template = text;
+        dialogObj.template.text = text;
+        this.#callSubscriber();
     }
 
     #addPost() {
@@ -215,6 +222,7 @@ class Store {
 
     #changeNewPostTemplateText(text) {
         this.#state.profileData.newPostTemplate.text = text;
+        this.#callSubscriber();
     }
 
     #dispatch(action) {

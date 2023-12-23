@@ -1,6 +1,7 @@
 @import url('./Reset.css');
 
 :root {
+    --line-height: 1.36em;
     --background-color: #eee;
     --foreground-color: #fff;
     --light-grey-color: #f6f6f6;
@@ -24,7 +25,7 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    line-height: normal;
+    line-height: var(--line-height);
     color: var(--text-color);
     box-sizing: border-box;
 }
