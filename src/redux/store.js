@@ -1,5 +1,11 @@
-const store = {
-    _state: {
+class Store {
+    constructor() {
+        this.#callSubscriber = () => {
+            throw Error('No observer subscribed');
+        }
+    }
+
+    #state = {
         dialogsData: {
             dialogs: [
                 {
@@ -7,30 +13,40 @@ const store = {
                     userName: 'Anakin Skywalker',
                     userImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0l0Iq-GecvCFzfHtm1t9oqOIMLkSQzK81Ew&usqp=CAU',
                     messages: [
-                        'Hello',
-                        'How are you?',
-                        'May the force be with you!'
+                        {
+                            text: 'Hello',
+                            your: true,
+                        },
+                        {
+                            text: 'Hello!',
+                            your: false,
+                        },
                     ],
+                    template: ''
                 },
                 {
                     id: 2,
                     userName: 'Obi-Wan Kenobi',
                     userImg: 'https://images.hellomagazine.com/horizon/square/991a4758f0ae-star-wars-ep-3-t.jpg',
-                    messages: ['Hello there'],
+                    messages: [
+                        {
+                            text: 'Hello there',
+                            your: false
+                        }
+                    ],
+                    template: ''
                 },
                 {
                     id: 3,
                     userName: 'General Grievous',
                     userImg: 'https://pm1.aminoapps.com/5820/03c3bb7f7be9a36f82f61d0d6952a0a2ef674ee8_00.jpg',
                     messages: [
-                        'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
-                        'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
-                        'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
-                        'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
-                        'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
-                        'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
-                        'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
+                        {
+                            text: 'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
+                            your: false
+                        },
                     ],
+                    template: ''
                 },
             ],
         },
@@ -113,31 +129,128 @@ const store = {
                 },
             ],
         }
-    },
+    }
+    #action = {
+        'ADD_POST': this.#addPost,
+        'CHANGE_NEW_POST_TEMPLATE_TEXT': this.#changeNewPostTemplateText,
+        'SEND_MESSAGE': this.#sendMessage,
+        'CHANGE_NEW_MESSAGE_TEMPLATE_TEXT': this.#changeNewMessageTemplateText,
+    }
+    #actionType = {
+        ADD_POST: 'ADD_POST',
+        CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT',
+        SEND_MESSAGE: 'SEND_MESSAGE',
+        CHANGE_NEW_MESSAGE_TEMPLATE_TEXT: 'CHANGE_NEW_MESSAGE_TEMPLATE_TEXT',
+    }
+    #callSubscriber;
+
+    get actionType() {
+        return this.#actionType;
+    }
+
     get state() {
-        return this._state;
-    },
-    render: function () {
-        throw Error('no observer was added');
-    },
-    subscribe: function (observer) {
-        this.render = observer;
-    },
-    addPost: function () {
-        const postText = this._state.profileData.newPostTemplate.text;
-        const posts = this._state.profileData.posts;
+        return this.#state;
+    }
+
+    get dispatch() {
+        return this.#dispatch.bind(this);
+    }
+
+    subscribe(observer) {
+        this.#callSubscriber = observer;
+    }
+
+    #sendMessage(dialogId) {
+        const dialogObj = this.#state.dialogsData.dialogs.find((el) => el.id === dialogId);
+        const trimmedMessage = dialogObj.template.trim();
+        if (trimmedMessage === '') {
+            return;
+        }
+        if (!dialogObj) {
+            throw Error('Invalid dialog ID');
+        }
+        dialogObj.messages.push({
+            text: trimmedMessage,
+            your: true
+        });
+        dialogObj.template = '';
+        this.#callSubscriber();
+    }
+
+    #changeNewMessageTemplateText(dialogId, text) {
+        const dialogObj = this.#state.dialogsData.dialogs.find((el) => el.id === dialogId);
+        if (!dialogObj) {
+            throw Error('Invalid dialog ID');
+        }
+        dialogObj.template = text;
+    }
+
+    #addPost() {
+        const postTemp = this.#state.profileData.newPostTemplate
+        if (!this.#isNewPostValid(postTemp)) {
+            return;
+        }
+        const posts = this.#state.profileData.posts;
         const len = posts.length;
         posts.push({
             id: len,
-            text: postText,
+            text: postTemp.text,
             likes: 0
         });
-        this._state.profileData.newPostTemplate.text = '';
-        this.render();
-    },
-    changeNewPostTemplateText: function (text) {
-        this._state.profileData.newPostTemplate.text = text;
+        postTemp.text = '';
+        this.#callSubscriber();
+    }
+
+    #isNewPostValid(postTemplate) {
+        if (!postTemplate || !postTemplate.text) {
+            return false;
+        }
+        const trimmedText = postTemplate.text.trim();
+        if (trimmedText === '') {
+            return false;
+        }
+
+        return true;
+    }
+
+    #changeNewPostTemplateText(text) {
+        this.#state.profileData.newPostTemplate.text = text;
+    }
+
+    #dispatch(action) {
+        const {type, ...keys} = action;
+        const funcToCall = this.#action[type];
+        if (!funcToCall) {
+            throw Error('Unknown action');
+        }
+        funcToCall.apply(this, Object.values(keys));
     }
 }
 
+const store = new Store();
+
+export const addPostActionCreator = () => {
+    return {
+        type: store.actionType.ADD_POST
+    }
+}
+export const changeNewPostTemplateTextActionCreator = (text) => {
+    return {
+        type: store.actionType.CHANGE_NEW_POST_TEMPLATE_TEXT,
+        text: text,
+    }
+}
+export const sendMessageActionCreator = (id) => {
+    return {
+        type: store.actionType.SEND_MESSAGE,
+        id: id
+    }
+}
+export const changeNewMessageTemplateTextActionCreator = (id, text) => {
+    return {
+        type: store.actionType.CHANGE_NEW_MESSAGE_TEMPLATE_TEXT,
+        id: id,
+        text: text,
+    }
+}
 export default store;

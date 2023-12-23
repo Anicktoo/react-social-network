@@ -11,7 +11,9 @@ const Dialogs = (props) => {
     const messageContainers = [];
     props.dialogs.forEach((el) => {
         dialogItems.push(<DialogItem key={el.id}{...el} />);
-        messageContainers.push(<Route key={el.id} path={'/' + el.id} element={<MessageContainer {...el}/>}/>);
+        messageContainers.push(<Route key={el.id} path={'/' + el.id}
+                                      element={<MessageContainer {...el} profileData={props.profileData}
+                                                                 dispatch={props.dispatch}/>}/>);
     });
 
     return (

@@ -3,7 +3,6 @@ import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import Nav from './components/Nav/Nav';
-
 import './styles/App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
@@ -19,11 +18,28 @@ const App = (props) => {
                         <Routes>
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
                             <Route path="profile/*"
-                                   element={<Profile {...props.profileData}
-                                                     addPost={props.addPost}
-                                                     changeTemplate={props.changeNewPostTemplateText}/>}/>
-                            <Route path="dialogs/*" element={<Dialogs {...props.dialogsData}/>}/>
-                            <Route path="friends/*" element={<Friends {...props.friendsData}/>}/>
+                                   element={
+                                       <Profile {...props.profileData}
+                                                dispatch={props.dispatch}
+                                       />
+                                   }
+                            />
+                            <Route path="dialogs/*"
+                                   element={
+                                       <Dialogs {...props.dialogsData}
+                                                profileData={{
+                                                    userName: props.profileData.accountInfo.name,
+                                                    userAvatarSrc: props.profileData.accountInfo.avatarImgSrc
+                                                }}
+                                                dispatch={props.dispatch}
+                                       />
+                                   }
+                            />
+                            <Route path="friends/*"
+                                   element={
+                                       <Friends {...props.friendsData}/>
+                                   }
+                            />
                         </Routes>
                     </div>
                 </div>

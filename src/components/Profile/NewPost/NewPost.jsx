@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './NewPost.module.css';
 import {classNameFunction} from "../../../tools/classNameCompiler";
+import {addPostActionCreator, changeNewPostTemplateTextActionCreator} from "../../../redux/store";
 
 const cName = classNameFunction(s);
 
@@ -10,13 +11,13 @@ const NewPost = (props) => {
     const placeholderRef = React.createRef();
 
     const addPost = () => {
-        props.addPost();
+        props.dispatch(addPostActionCreator());
         contentRef.current.innerHTML = '';
         switchPlaceholderVisibility();
     };
 
     const changeTextInput = () => {
-        props.changeTemplate(contentRef.current.innerText);
+        props.dispatch(changeNewPostTemplateTextActionCreator(contentRef.current.innerText));
         switchPlaceholderVisibility();
     };
 

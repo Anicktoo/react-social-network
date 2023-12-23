@@ -48,7 +48,7 @@
 }
 
 .text-area:focus-visible + .placeholder {
-    color: var(--default-grey-color);
+    opacity: 0.6;
 }
 
 

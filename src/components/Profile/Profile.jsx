@@ -10,8 +10,7 @@ const Profile = (props) => {
     return (
         <main className={cName(['profile'])}>
             <AccountData {...props.accountInfo}/>
-            <NewPost addPost={props.addPost} changeTemplate={props.changeTemplate} {...props.newPostTemplate}
-                     avatarImgSrc={props.accountInfo.avatarImgSrc}/>
+            <NewPost dispatch={props.dispatch}{...props.newPostTemplate} avatarImgSrc={props.accountInfo.avatarImgSrc}/>
             <Posts posts={props.posts} avatarImgSrc={props.accountInfo.avatarImgSrc}/>
         </main>
     );
