@@ -2,8 +2,9 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom/client";
 import React from "react";
 import App from "./App";
-import store from "./redux/store";
+import Store from "./redux/store";
 
+const store = new Store();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export const render = () => {
     root.render(

@@ -1,10 +1,10 @@
 import s from "./MessageContainer.module.css";
 import React from "react";
 import {ReactComponent as SendIcon} from '../../../img/send.svg';
-import {sendMessageActionCreator, changeNewMessageTemplateTextActionCreator} from "../../../redux/store";
 
 import Message from "./Message/Message";
 import TextareaAutosize from "react-textarea-autosize";
+import {changeNewMessageTemplateTextActionCreator, sendMessageActionCreator} from "../../../redux/dialogsReducer";
 
 const MessageContainer = (props) => {
     const messageInput = React.createRef();

@@ -1,4 +1,8 @@
-class Store {
+import profilesReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import friendsReducer from "./friendsReducer";
+
+export default class Store {
     constructor() {
         this.#callSubscriber = () => {
             throw Error('No observer subscribed');
@@ -136,23 +140,7 @@ class Store {
             ],
         }
     }
-    #action = {
-        'ADD_POST': this.#addPost,
-        'CHANGE_NEW_POST_TEMPLATE_TEXT': this.#changeNewPostTemplateText,
-        'SEND_MESSAGE': this.#sendMessage,
-        'CHANGE_NEW_MESSAGE_TEMPLATE_TEXT': this.#changeNewMessageTemplateText,
-    }
-    #actionType = {
-        ADD_POST: 'ADD_POST',
-        CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT',
-        SEND_MESSAGE: 'SEND_MESSAGE',
-        CHANGE_NEW_MESSAGE_TEMPLATE_TEXT: 'CHANGE_NEW_MESSAGE_TEMPLATE_TEXT',
-    }
     #callSubscriber;
-
-    get actionType() {
-        return this.#actionType;
-    }
 
     get state() {
         return this.#state;
@@ -166,99 +154,10 @@ class Store {
         this.#callSubscriber = observer;
     }
 
-    #sendMessage(dialogId) {
-        const dialogObj = this.#state.dialogsData.dialogs.find((el) => el.id === dialogId);
-        const trimmedMessage = dialogObj.template.text.trim();
-        if (trimmedMessage === '') {
-            return;
-        }
-        if (!dialogObj) {
-            throw Error('Invalid dialog ID');
-        }
-        dialogObj.messages.push({
-            text: trimmedMessage,
-            your: true
-        });
-        dialogObj.template.text = '';
-        this.#callSubscriber();
-    }
-
-    #changeNewMessageTemplateText(dialogId, text) {
-        const dialogObj = this.#state.dialogsData.dialogs.find((el) => el.id === dialogId);
-        if (!dialogObj) {
-            throw Error('Invalid dialog ID');
-        }
-        dialogObj.template.text = text;
-        this.#callSubscriber();
-    }
-
-    #addPost() {
-        const postTemp = this.#state.profileData.newPostTemplate
-        if (!this.#isNewPostValid(postTemp)) {
-            return;
-        }
-        const posts = this.#state.profileData.posts;
-        const len = posts.length;
-        posts.push({
-            id: len,
-            text: postTemp.text,
-            likes: 0
-        });
-        postTemp.text = '';
-        this.#callSubscriber();
-    }
-
-    #isNewPostValid(postTemplate) {
-        if (!postTemplate || !postTemplate.text) {
-            return false;
-        }
-        const trimmedText = postTemplate.text.trim();
-        if (trimmedText === '') {
-            return false;
-        }
-
-        return true;
-    }
-
-    #changeNewPostTemplateText(text) {
-        this.#state.profileData.newPostTemplate.text = text;
-        this.#callSubscriber();
-    }
-
     #dispatch(action) {
-        const {type, ...keys} = action;
-        const funcToCall = this.#action[type];
-        if (!funcToCall) {
-            throw Error('Unknown action');
-        }
-        funcToCall.apply(this, Object.values(keys));
+        this.#state.profileData = profilesReducer(this.#state.profileData, action);
+        this.#state.dialogsData = dialogsReducer(this.#state.dialogsData, action);
+        this.#state.friendsData = friendsReducer(this.#state.friendsData, action);
+        this.#callSubscriber();
     }
 }
-
-const store = new Store();
-
-export const addPostActionCreator = () => {
-    return {
-        type: store.actionType.ADD_POST
-    }
-}
-export const changeNewPostTemplateTextActionCreator = (text) => {
-    return {
-        type: store.actionType.CHANGE_NEW_POST_TEMPLATE_TEXT,
-        text: text,
-    }
-}
-export const sendMessageActionCreator = (id) => {
-    return {
-        type: store.actionType.SEND_MESSAGE,
-        id: id
-    }
-}
-export const changeNewMessageTemplateTextActionCreator = (id, text) => {
-    return {
-        type: store.actionType.CHANGE_NEW_MESSAGE_TEMPLATE_TEXT,
-        id: id,
-        text: text,
-    }
-}
-export default store;

@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './NewPost.module.css';
 import {classNameFunction} from "../../../tools/classNameCompiler";
-import {addPostActionCreator, changeNewPostTemplateTextActionCreator} from "../../../redux/store";
 import TextareaAutosize from 'react-textarea-autosize';
+import {addPostActionCreator, changeNewPostTemplateTextActionCreator} from "../../../redux/profileReducer";
 
 const cName = classNameFunction(s);
 
