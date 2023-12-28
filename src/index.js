@@ -2,14 +2,13 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom/client";
 import React from "react";
 import App from "./App";
-import Store from "./redux/store";
+import store from "./redux/reduxStore";
 
-const store = new Store();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 export const render = () => {
     root.render(
         <React.StrictMode>
-            <App {...store.state} dispatch={store.dispatch}/>
+            <App {...store.getState()} dispatch={store.dispatch}/>
         </React.StrictMode>
     );
 };
