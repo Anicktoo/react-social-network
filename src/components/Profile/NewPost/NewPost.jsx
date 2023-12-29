@@ -2,7 +2,6 @@ import React from 'react';
 import s from './NewPost.module.css';
 import {classNameFunction} from "../../../tools/classNameCompiler";
 import TextareaAutosize from 'react-textarea-autosize';
-import {addPostActionCreator, changeNewPostTemplateTextActionCreator} from "../../../redux/profileReducer";
 
 const cName = classNameFunction(s);
 
@@ -10,12 +9,12 @@ const NewPost = (props) => {
 
     const contentRef = React.createRef();
 
-    const addPost = () => {
-        props.dispatch(addPostActionCreator());
+    const onPostAdd = () => {
+        props.addPost();
     };
 
-    const changeTextInput = () => {
-        props.dispatch(changeNewPostTemplateTextActionCreator(contentRef.current.value));
+    const onTextInput = () => {
+        props.changeTextInput(contentRef.current.value);
     };
 
     return (
@@ -27,12 +26,12 @@ const NewPost = (props) => {
                 <TextareaAutosize
                     ref={contentRef}
                     className={cName('text-area')}
-                    onInput={changeTextInput}
+                    onInput={onTextInput}
                     value={props.text}
                 />
                 <span className={s.placeholder}
                       hidden={props.text}>Write your post...</span>
-                <button onClick={addPost} className={cName('mainButton')}>Send
+                <button onClick={onPostAdd} className={cName('mainButton')}>Send
                 </button>
             </div>
         </article>

@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 export const render = () => {
     root.render(
         <React.StrictMode>
-            <App {...store.getState()} dispatch={store.dispatch}/>
+            <App store={store} {...store.getState()} dispatch={store.dispatch}/>
         </React.StrictMode>
     );
 };

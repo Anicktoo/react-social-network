@@ -1,39 +1,37 @@
-import s from "./MessageContainer.module.css";
+import s from "./MessagesPanel.module.css";
 import React from "react";
 import {ReactComponent as SendIcon} from '../../../img/send.svg';
-
 import Message from "./Message/Message";
 import TextareaAutosize from "react-textarea-autosize";
-import {changeNewMessageTemplateTextActionCreator, sendMessageActionCreator} from "../../../redux/dialogsReducer";
 
-const MessageContainer = (props) => {
+const MessagesPanel = (props) => {
     const messageInput = React.createRef();
     const messagesEnd = React.createRef();
-    const sendMessage = () => {
-        props.dispatch(sendMessageActionCreator(props.id));
+    const onSendMessage = () => {
+        props.sendMessage(props.id);
+    }
+
+    const onMessageInput = () => {
+        props.changeNewMessageTemplateText(props.id, messageInput.current.value);
+    }
+
+    const keyDown = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            onSendMessage();
+        }
     }
 
     const scrollToBottom = () => {
         messagesEnd.current.scrollIntoView({block: "end"});
     }
 
-    const changeNewMessageTemplateText = () => {
-        props.dispatch(changeNewMessageTemplateTextActionCreator(props.id, messageInput.current.value));
-    }
-
-    const keyDown = (event) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            event.preventDefault();
-            sendMessage();
-        }
-    }
-
     const messages = props.messages.map((m) =>
         m.your ?
             <Message
                 message={m.text}
-                userImg={props.profileData.userAvatarSrc}
-                userName={props.profileData.userName}
+                userImg={props.myImage}
+                userName={props.myName}
             /> :
             <Message
                 message={m.text}
@@ -59,14 +57,14 @@ const MessageContainer = (props) => {
                     <TextareaAutosize
                         ref={messageInput}
                         className={s.textInput}
-                        onInput={changeNewMessageTemplateText}
-                        value={props.template.text}
+                        onInput={onMessageInput}
+                        value={props.messageText}
                         maxRows={12}
                     />
                     <span className={s.placeholder}
-                          hidden={props.template.text}>Write your message...</span>
+                          hidden={props.messageText}>Write your message...</span>
                 </div>
-                <button onClick={sendMessage} className={s.sendButtonContainer}>
+                <button onClick={onSendMessage} className={s.sendButtonContainer}>
                     <SendIcon/>
                 </button>
             </div>
@@ -74,5 +72,5 @@ const MessageContainer = (props) => {
     );
 }
 
-export default MessageContainer;
+export default MessagesPanel;
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import MessageContainer from "./MessageContainer/MessageContainer";
 import DialogItem from "./DialogItem/DialogItem";
 import {Route, Routes} from "react-router-dom";
+import MessagesPanelContainer from "./MessageContainer/MessagesPanelContainer";
 
 
 const Dialogs = (props) => {
@@ -12,8 +12,7 @@ const Dialogs = (props) => {
     props.dialogs.forEach((el) => {
         dialogItems.push(<DialogItem key={el.id}{...el} />);
         messageContainers.push(<Route key={el.id} path={'/' + el.id}
-                                      element={<MessageContainer {...el} profileData={props.profileData}
-                                                                 dispatch={props.dispatch}/>}/>);
+                                      element={<MessagesPanelContainer {...el} store={props.store}/>}/>);
     });
 
     return (

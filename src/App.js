@@ -19,18 +19,16 @@ const App = (props) => {
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
                             <Route path="profile/*"
                                    element={
-                                       <Profile {...props.profileData}
-                                                dispatch={props.dispatch}
+                                       <Profile
+                                           store={props.store}
+                                           {...props.profileData}
                                        />
                                    }
                             />
                             <Route path="dialogs/*"
                                    element={
                                        <Dialogs {...props.dialogsData}
-                                                profileData={{
-                                                    userName: props.profileData.accountInfo.name,
-                                                    userAvatarSrc: props.profileData.accountInfo.avatarImgSrc
-                                                }}
+                                                store={props.store}
                                                 dispatch={props.dispatch}
                                        />
                                    }
