@@ -10,7 +10,7 @@ const Profile = (props) => {
     return (
         <main className={cName(['profile'])}>
             <AccountData {...props.accountInfo}/>
-            <NewPostContainer store={props.store}/>
+            <NewPostContainer/>
             <Posts posts={props.posts} avatarImgSrc={props.accountInfo.avatarImgSrc}/>
         </main>
     );

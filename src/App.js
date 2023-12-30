@@ -19,18 +19,12 @@ const App = (props) => {
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
                             <Route path="profile/*"
                                    element={
-                                       <Profile
-                                           store={props.store}
-                                           {...props.profileData}
-                                       />
+                                       <Profile {...props.profileData}/>
                                    }
                             />
                             <Route path="dialogs/*"
                                    element={
-                                       <Dialogs {...props.dialogsData}
-                                                store={props.store}
-                                                dispatch={props.dispatch}
-                                       />
+                                       <Dialogs {...props.dialogsData}/>
                                    }
                             />
                             <Route path="friends/*"

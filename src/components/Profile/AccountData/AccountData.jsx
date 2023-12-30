@@ -21,7 +21,7 @@ const AccountData = (props) => {
                         {props.name}
                     </span>
                     <div className={cName(['info-data-additional'])}>
-                        {props.additionalData.map((field, index) =>
+                        {props.additionalData?.map((field, index) =>
                             <span key={index} className={cName(['info-data'])}>
                                 {`${field.fieldName}: `}{field.link ?
                                 <a href={field.link}>{field.value}</a> : field.value}
