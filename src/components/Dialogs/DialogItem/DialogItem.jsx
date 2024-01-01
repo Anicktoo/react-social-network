@@ -19,7 +19,7 @@ const DialogItem = (props) => {
                     <span className={s.userName}>{props.userName}</span>
                 </div>
                 <div className={s.preview}>
-                    <span className={s.lastMessage}>{props.messages[0].text}</span>
+                    <span className={s.lastMessage}>{props.messagePreview}</span>
                 </div>
             </div>
         </NavLink>

@@ -1,11 +1,11 @@
 import React from "react";
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
-import Dialogs from "./components/Dialogs/Dialogs";
 import Nav from './components/Nav/Nav';
 import './styles/App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import Friends from "./components/Friends/Friends";
+import FriendsContainer from "./components/Friends/FriendsContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = (props) => {
     return (
@@ -19,17 +19,17 @@ const App = (props) => {
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
                             <Route path="profile/*"
                                    element={
-                                       <Profile {...props.profileData}/>
+                                       <Profile/>
                                    }
                             />
                             <Route path="dialogs/*"
                                    element={
-                                       <Dialogs {...props.dialogsData}/>
+                                       <DialogsContainer/>
                                    }
                             />
                             <Route path="friends/*"
                                    element={
-                                       <Friends {...props.friendsData}/>
+                                       <FriendsContainer/>
                                    }
                             />
                         </Routes>

@@ -1,41 +1,33 @@
-import React from "react";
-import {changeNewMessageTemplateTextActionCreator, sendMessageActionCreator} from "../../../redux/dialogsReducer";
 import MessagesPanel from "./MessagesPanel";
-import StoreContext from "../../../StoreContext";
+import {changeNewMessageTemplateTextActionCreator, sendMessageActionCreator} from "../../../redux/dialogsReducer";
+import {connect} from "react-redux";
 
-const MessagesPanelContainer = (props) => {
+const mapStateToProps = (state, props) => {
 
+    const dialogInfo = state.dialogsData.dialogs.find(el => el.id === props.id);
 
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    const state = store.getState();
-                    const sendMessage = (id) => {
-                        store.dispatch(sendMessageActionCreator(id));
-                    }
-
-                    const changeNewMessageTemplateText = (id, value) => {
-                        store.dispatch(changeNewMessageTemplateTextActionCreator(id, value));
-                    }
-                    return (
-                        <MessagesPanel
-                            sendMessage={sendMessage}
-                            changeNewMessageTemplateText={changeNewMessageTemplateText}
-                            id={props.id}
-                            messages={props.messages}
-                            myImage={state.profileData.accountInfo.avatarImgSrc}
-                            myName={state.profileData.accountInfo.name}
-                            userImg={props.userImg}
-                            userName={props.userName}
-                            messageText={props.template.text}
-                        />);
-                }
-            }
-        </StoreContext.Consumer>
-
-    );
+    return {
+        id: dialogInfo.id,
+        messageText: dialogInfo.template.text,
+        messages: dialogInfo.messages,
+        userName: dialogInfo.userName,
+        userImg: dialogInfo.userImg,
+        myImage: state.profileData.accountInfo.avatarImgSrc,
+        myName: state.profileData.accountInfo.name,
+    };
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        sendMessage: (id) => {
+            dispatch(sendMessageActionCreator(id));
+        },
+        changeNewMessageTemplateText: (id, value) => {
+            dispatch(changeNewMessageTemplateTextActionCreator(id, value));
+        },
+    }
+}
+
+const MessagesPanelContainer = connect(mapStateToProps, mapDispatchToProps)(MessagesPanel);
 
 export default MessagesPanelContainer;
 

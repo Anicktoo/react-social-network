@@ -1,8 +1,8 @@
 import s from "./MessagesPanel.module.css";
 import React from "react";
 import {ReactComponent as SendIcon} from '../../../img/send.svg';
-import Message from "./Message/Message";
 import TextareaAutosize from "react-textarea-autosize";
+import MessageContainer from "./Message/MessageContainer";
 
 const MessagesPanel = (props) => {
     const messageInput = React.createRef();
@@ -26,22 +26,13 @@ const MessagesPanel = (props) => {
         messagesEnd.current.scrollIntoView({block: "end"});
     }
 
+    //FIXME: sending whole messages info to each message is wierd
     const messages = props.messages.map((m) =>
-        m.your ?
-            <Message
-                message={m.text}
-                userImg={props.myImage}
-                userName={props.myName}
-            /> :
-            <Message
-                message={m.text}
-                userImg={props.userImg}
-                userName={props.userName}
-            />
+        <MessageContainer key={m.id} id={m.id} userName={props.userName} userImg={props.userImg}
+                          messages={props.messages}/>
     );
 
-    //REFACTOR ONLOAD LATER
-
+    //FIXME: fix onload later
     return (
         <div onKeyDown={keyDown} onLoad={scrollToBottom} className={s.messageContainer}>
             <header className={s.messageHeader}>

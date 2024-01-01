@@ -13,10 +13,12 @@ const defaultState = {
             userImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0l0Iq-GecvCFzfHtm1t9oqOIMLkSQzK81Ew&usqp=CAU',
             messages: [
                 {
+                    id: 0,
                     text: 'Hello',
                     your: true,
                 },
                 {
+                    id: 1,
                     text: 'Hello!',
                     your: false,
                 },
@@ -31,6 +33,7 @@ const defaultState = {
             userImg: 'https://images.hellomagazine.com/horizon/square/991a4758f0ae-star-wars-ep-3-t.jpg',
             messages: [
                 {
+                    id: 0,
                     text: 'Hello there',
                     your: false
                 }
@@ -45,6 +48,7 @@ const defaultState = {
             userImg: 'https://pm1.aminoapps.com/5820/03c3bb7f7be9a36f82f61d0d6952a0a2ef674ee8_00.jpg',
             messages: [
                 {
+                    id: 0,
                     text: 'General! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tortor velit, lobortis eget laoreet fermentum, fermentum a magna. Proin orci elit, accumsan a posuere in, aliquam consectetur nisl. Phasellus malesuada elit eget metus pharetra gravida. Praesent sit amet elementum odio. Morbi vestibulum elit metus, quis bibendum nisl dictum a.',
                     your: false
                 },
