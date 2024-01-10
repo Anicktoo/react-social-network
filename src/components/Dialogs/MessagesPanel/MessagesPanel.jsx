@@ -27,9 +27,10 @@ const MessagesPanel = (props) => {
     }
 
     //FIXME: sending whole messages info to each message is wierd
-    const messages = props.messages.map((m) =>
-        <MessageContainer key={m.id} id={m.id} userName={props.userName} userImg={props.userImg}
-                          messages={props.messages}/>
+    const messages = props.messages.map((m) => {
+            return <MessageContainer key={m.id} id={m.id} userName={props.userName} userImg={props.userImg}
+                                     messages={props.messages}/>
+        }
     );
 
     //FIXME: fix onload later

@@ -1,5 +1,3 @@
-import deepcopy from "deepcopy";
-
 const defaultState = {
     friends: [
         {
@@ -26,7 +24,7 @@ const defaultState = {
 }
 
 const friendsReducer = (state = defaultState, action) => {
-    const stateCopy = deepcopy(state);
+    const stateCopy = {...state};
 
     return stateCopy;
 }

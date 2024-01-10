@@ -1,5 +1,3 @@
-import deepcopy from "deepcopy";
-
 export const actions = Object.freeze({
     SEND_MESSAGE: 'SEND_MESSAGE',
     CHANGE_NEW_MESSAGE_TEMPLATE_TEXT: 'CHANGE_NEW_MESSAGE_TEMPLATE_TEXT'
@@ -60,40 +58,54 @@ const defaultState = {
     ],
 }
 
-const dialogsReducer = (dialogsData = defaultState, action) => {
-    const dialogsDataCopy = deepcopy(dialogsData);
-
+const dialogsReducer = (state = defaultState, action) => {
     switch (action.type) {
         case actions.CHANGE_NEW_MESSAGE_TEMPLATE_TEXT: {
-            const dialogObj = findDialogById(dialogsDataCopy.dialogs, action.id);
-            dialogObj.template.text = action.text;
-            return dialogsDataCopy;
+            return {
+                ...state,
+                dialogs: state.dialogs.map(dialog => {
+                    if (dialog.id !== action.id) return dialog;
+                    return {
+                        ...dialog,
+                        template: {
+                            ...dialog.template,
+                            text: action.text
+                        }
+                    }
+                }),
+            }
         }
         case actions.SEND_MESSAGE: {
-            const dialogObj = findDialogById(dialogsDataCopy.dialogs, action.id);
-            const trimmedMessage = dialogObj.template.text.trim();
-            if (trimmedMessage === '') {
-                return dialogsDataCopy;
-            }
-            dialogObj.messages.push({
-                text: trimmedMessage,
-                your: true
-            });
-            dialogObj.template.text = '';
-            return dialogsDataCopy;
+            return {
+                ...state,
+                dialogs: state.dialogs.map(dialog => {
+                    if (dialog.id !== action.id) return dialog;
+                    const trimmedMessage = dialog.template.text.trim();
+                    if (trimmedMessage === '') return dialog;
+                    return {
+                        ...dialog,
+                        messages: [...dialog.messages, {
+                            id: nextItemId(dialog.messages),
+                            text: trimmedMessage,
+                            your: true
+                        }],
+                        template: {
+                            ...dialog.template,
+                            text: ''
+                        }
+                    }
+                })
+            };
         }
         default: {
-            return dialogsDataCopy;
+            return state;
         }
     }
 }
 
-const findDialogById = (dialogs, id) => {
-    const dialogObj = dialogs.find((el) => el.id === id);
-    if (!dialogObj) {
-        throw Error('Invalid dialog ID: ' + id);
-    }
-    return dialogObj;
+function nextItemId(items) {
+    const maxId = items.reduce((maxId, item) => Math.max(item.id, maxId), -1);
+    return maxId + 1;
 }
 
 export const sendMessageActionCreator = (id) => ({

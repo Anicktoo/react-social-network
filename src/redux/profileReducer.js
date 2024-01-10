@@ -1,5 +1,3 @@
-import deepcopy from "deepcopy";
-
 export const actions = Object.freeze({
     ADD_POST: 'ADD_POST',
     CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT'
@@ -60,35 +58,47 @@ const defaultState = {
         },
     ],
 }
-const profilesReducer = (profileData = defaultState, action) => {
-
-    const profileDataCopy = deepcopy(profileData);
-
+const profilesReducer = (state = defaultState, action) => {
     switch (action.type) {
         case actions.CHANGE_NEW_POST_TEMPLATE_TEXT: {
-            profileDataCopy.newPostTemplate.text = action.text;
-            return profileDataCopy;
+            return {
+                ...state,
+                newPostTemplate: {
+                    ...state.newPostTemplate,
+                    text: action.text
+                }
+            };
         }
         case actions.ADD_POST: {
-            const postTemp = profileDataCopy.newPostTemplate
-            const trimmedText = postTemp.text.trim();
+            const trimmedText = state.newPostTemplate.text.trim();
             if (trimmedText === '') {
-                return profileDataCopy;
+                return state;
             }
-            const posts = profileDataCopy.posts;
-            const len = posts.length;
-            posts.push({
-                id: len,
-                text: trimmedText,
-                likes: 0
-            });
-            postTemp.text = '';
-            return profileDataCopy;
+            return {
+                ...state,
+                newPostTemplate: {
+                    ...state.newPostTemplate,
+                    text: ''
+                },
+                posts: [
+                    ...state.posts,
+                    {
+                        id: nextItemId(state.posts),
+                        text: trimmedText,
+                        likes: 0,
+                    }
+                ]
+            }
         }
         default: {
-            return profileDataCopy;
+            return state;
         }
     }
+}
+
+function nextItemId(items) {
+    const maxId = items.reduce((maxId, item) => Math.max(item.id, maxId), -1)
+    return maxId + 1
 }
 
 export const addPostActionCreator = () => ({
