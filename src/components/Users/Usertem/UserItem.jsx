@@ -1,17 +1,18 @@
 import React from 'react';
 import s from './UserItem.module.css';
+import defaultAvatar from '../../../img/defaultAvatar.png';
 
 const UserItem = (props) => {
-
     return (
         <div className={s.userItem}>
             <div className={s.imgContainer}>
-                <img src={props.userImg} alt={props.userName + "'s avatar"}/>
+                <img src={props.photos.small != null ? props.photos.small : defaultAvatar}
+                     alt={props.name + "'s avatar"}/>
             </div>
             <div className={s.infoContainer}>
-                <span className={s.userName}>{props.userName}</span>
+                <span className={s.userName}>{props.name}</span>
                 <span>{props.status}</span>
-                {props.isFriend ?
+                {props.followed ?
                     <button onClick={props.removeFriend.bind(null, props.id)}
                             className={s.secondaryButton}>Remove friend</button> :
                     <button onClick={props.addFriend.bind(null, props.id)}

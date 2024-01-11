@@ -1,10 +1,9 @@
 import {connect} from 'react-redux';
-import Friends from './Friends';
+import Users from './Users';
 import {setUsersAC} from "../../redux/usersReducer";
 
 const mapStateToProps = (state, props) => {
     return {
-        friends: state.friendsData.friends,
         users: state.usersData.users
     };
 }
@@ -15,6 +14,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-const FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(Friends);
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
 
-export default FriendsContainer;
+export default UsersContainer;

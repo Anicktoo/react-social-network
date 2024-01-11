@@ -61,7 +61,7 @@ const usersReducer = (state = defaultState, action) => {
                     if (user.id !== action.id) return user;
                     return {
                         ...user,
-                        isFriend: true,
+                        followed: true,
                     }
                 })
             }
@@ -72,7 +72,7 @@ const usersReducer = (state = defaultState, action) => {
                     if (user.id !== action.id) return user;
                     return {
                         ...user,
-                        isFriend: false,
+                        followed: false,
                     }
                 })
             }

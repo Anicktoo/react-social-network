@@ -4,7 +4,7 @@ import Profile from './components/Profile/Profile';
 import Nav from './components/Nav/Nav';
 import './styles/App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import FriendsContainer from "./components/Friends/FriendsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = (props) => {
@@ -29,7 +29,7 @@ const App = (props) => {
                             />
                             <Route path="friends/*"
                                    element={
-                                       <FriendsContainer/>
+                                       <UsersContainer/>
                                    }
                             />
                         </Routes>
