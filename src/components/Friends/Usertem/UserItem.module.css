@@ -1,11 +1,11 @@
-.friendItem {
+.userItem {
     display: flex;
     gap: 15px;
     border-top: var(--block-border);
     padding: 10px 0;
 }
 
-.friendItem:first-child {
+.userItem:first-child {
     border-top: none;
 }
 
@@ -33,3 +33,17 @@
     font-weight: bold;
     color: var(--main-color);
 }
+
+.secondaryButton {
+    cursor: pointer;
+    display: inline;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    color: var(--main-color);
+}
+
+.secondaryButton:hover {
+    text-decoration: underline;
+}
+

@@ -3,10 +3,10 @@ import FriendItem from './FriendItem';
 
 const mapStateToProps = (state, props) => {
 
-    const friendInfo = state.friendsData.friends.find(el => el.id === props.id);
+    const userInfo = state.friendsData.friends.find(el => el.id === props.id);
 
     return {
-        ...friendInfo
+        ...userInfo
     };
 }
 

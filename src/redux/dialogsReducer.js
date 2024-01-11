@@ -41,7 +41,7 @@ const defaultState = {
             }
         },
         {
-            id: 3,
+            id: 4,
             userName: 'General Grievous',
             userImg: 'https://pm1.aminoapps.com/5820/03c3bb7f7be9a36f82f61d0d6952a0a2ef674ee8_00.jpg',
             messages: [

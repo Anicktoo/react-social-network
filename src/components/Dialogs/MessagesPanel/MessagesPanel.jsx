@@ -26,7 +26,7 @@ const MessagesPanel = (props) => {
         messagesEnd.current.scrollIntoView({block: "end"});
     }
 
-    //FIXME: sending whole messages info to each message is wierd
+    //FIXME: sending all messages info to each message is wierd
     const messages = props.messages.map((m) => {
             return <MessageContainer key={m.id} id={m.id} userName={props.userName} userImg={props.userImg}
                                      messages={props.messages}/>
