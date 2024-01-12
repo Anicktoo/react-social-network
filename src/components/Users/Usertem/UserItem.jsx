@@ -14,9 +14,9 @@ const UserItem = (props) => {
                 <span>{props.status}</span>
                 {props.followed ?
                     <button onClick={props.removeFriend.bind(null, props.id)}
-                            className={s.secondaryButton}>Remove friend</button> :
+                            className={s.secondaryButton}>Unfollow</button> :
                     <button onClick={props.addFriend.bind(null, props.id)}
-                            className={s.secondaryButton}>Add friend</button>
+                            className={s.secondaryButton}>Follow</button>
                 }
             </div>
         </div>

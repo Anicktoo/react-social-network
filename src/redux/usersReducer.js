@@ -79,7 +79,10 @@ const usersReducer = (state = defaultState, action) => {
         case actions.SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users],
+                users: [
+                    ...state.users,
+                    ...action.users.filter(el => el.photos.small !== null),
+                ],
             }
         default:
             return state;
