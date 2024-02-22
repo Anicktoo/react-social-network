@@ -11,11 +11,11 @@ const Dialogs = (props) => {
     const messageContainers = [];
     props.dialogs?.forEach((el) => {
         dialogItems.push(
-            <DialogItemContainer key={el.id}{...el} />
+            <DialogItemContainer key={el.id} dialogItemInfo={el}/>
         );
         messageContainers.push(
             <Route key={el.id} path={'/' + el.id} element={
-                <MessagesPanelContainer id={el.id}/>
+                <MessagesPanelContainer id={el.id} dialogItemInfo={el}/>
             }/>
         );
     });

@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state, props) => {
 
-    const dialogInfo = state.dialogsData.dialogs.find(el => el.id === props.id);
+    const dialogInfo = props.dialogItemInfo;
 
     return {
         id: dialogInfo.id,

@@ -37,16 +37,10 @@ const cName = classNameFunction(s);
 // export default Users;
 
 class Users extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.getUsers();
-    }
-
-    getUsers = () => {
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users?count=99')
             .then(response => this.props.setUsers(response.data.items));
-    };
+    }
 
     render() {
         return (
@@ -56,7 +50,7 @@ class Users extends React.Component {
                         <span>All Users</span>
                     </header>
                     <div className={s.usersList}>
-                        {this.props.users.map(el => <UserItemContainer key={el.id} id={el.id}/>)}
+                        {this.props.users.map(el => <UserItemContainer key={el.id} userInfo={el}/>)}
                     </div>
                 </div>
             </main>

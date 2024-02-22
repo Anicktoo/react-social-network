@@ -2,8 +2,8 @@
     display: flex;
     align-items: center;
     position: relative;
-    flex: 0 0 60px;
-    max-height: 60px;
+    flex: 0 0 var(--dialog-item-height);
+    max-height: var(--dialog-item-height);
     padding-left: var(--dialog-container-padding);
     gap: 10px;
 }
@@ -51,6 +51,7 @@
 .imgContainer {
     flex: 0 0;
     height: 100%;
+    width: calc(var(--dialog-item-height) - 7px * 2);
     padding: 7px 0;
 }
 

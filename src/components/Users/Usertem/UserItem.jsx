@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './UserItem.module.css';
-import defaultAvatar from '../../../img/defaultAvatar.png';
+import defaultAvatar from '../../../img/defaultUser.svg';
 
 const UserItem = (props) => {
     return (
