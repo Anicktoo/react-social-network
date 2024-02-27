@@ -42,54 +42,49 @@ const Users = (props) => {
     for (let i = startInd; i <= endInd; i++) {
         pages.push(i);
     }
-    return (
-        <main className={s.friends}>
-            <div className={cName(['friendsContainer', 'stdBlock'])}>
-                <header className={s.header}>
-                    <span>All Users</span>
-                    <div className={cName(['page-container'])}>
-                        {startGap ?
-                            <>
-                                <div className={cName(['page-item'])}
+
+    return (<main className={s.friends}>
+        <div className={cName(['friendsContainer', 'stdBlock'])}>
+            <header className={s.header}>
+                <span>All Users</span>
+                <div className={cName(['page-container'])}>
+                    {startGap ? <>
+                        <div className={cName(['page-item'])}
+                             onClick={() => {
+                                 props.pageChange(1)
+                             }}
+                        >
+                            1
+                        </div>
+                        <div className={cName(['page-item', 'blocked'])}>...</div>
+                    </> : ''}
+                    {pages.map(el => {
+                        const isCurrent = curPage === el ? 'current-page' : '';
+                        return (<div className={cName(['page-item', isCurrent])}
                                      onClick={() => {
-                                         props.pageChange(1)
+                                         props.pageChange(el)
                                      }}
-                                >
-                                    1
-                                </div>
-                                <div className={cName(['page-item', 'blocked'])}>...</div>
-                            </> : ''}
-                        {pages.map(el => {
-                                const isCurrent = curPage === el ? 'current-page' : '';
-                                return (
-                                    <div className={cName(['page-item', isCurrent])}
-                                         onClick={() => {
-                                             props.pageChange(el)
-                                         }}
-                                    >
-                                        {el}
-                                    </div>);
-                            }
-                        )}
-                        {endGap ?
-                            <>
-                                <div className={cName(['page-item', 'blocked'])}>...</div>
-                                <div className={cName(['page-item'])}
-                                     onClick={() => {
-                                         props.pageChange(pagesCount)
-                                     }}
-                                >
-                                    {pagesCount}
-                                </div>
-                            </> : ''}
-                    </div>
-                </header>
-                <div className={s.usersList}>
-                    {props.users.map(el => <UserItemContainer key={el.id} userInfo={el}/>)}
+                        >
+                            {el}
+                        </div>);
+                    })}
+                    {endGap ? <>
+                        <div className={cName(['page-item', 'blocked'])}>...</div>
+                        <div className={cName(['page-item'])}
+                             onClick={() => {
+                                 props.pageChange(pagesCount)
+                             }}
+                        >
+                            {pagesCount}
+                        </div>
+                    </> : ''}
                 </div>
+            </header>
+            <div className={s.usersList}>
+                {props.users.map(el => <UserItemContainer key={el.id} userInfo={el} isFetching={props.isFetching}/>)}
             </div>
-        </main>
-    );
+        </div>
+    </main>);
 };
 
 export default Users;

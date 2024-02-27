@@ -1,13 +1,15 @@
 import React from 'react';
 import s from './UserItem.module.css';
 import defaultAvatar from '../../../img/defaultUser.svg';
+import Loader from "../../common/Loader/Loader";
 
 const UserItem = (props) => {
     return (
         <div className={s.userItem}>
             <div className={s.imgContainer}>
-                <img src={props.photos.small != null ? props.photos.small : defaultAvatar}
-                     alt={props.name + "'s avatar"}/>
+                {props.isFetching ? <Loader/> :
+                    <img src={props.photos.small != null ? props.photos.small : defaultAvatar}
+                         alt={props.name + "'s avatar"}/>}
             </div>
             <div className={s.infoContainer}>
                 <span className={s.userName}>{props.name}</span>
