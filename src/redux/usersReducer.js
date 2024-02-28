@@ -52,13 +52,13 @@ const usersReducer = (state = defaultState, action) => {
     }
 }
 
-export const addFriendAC = (id) => ({type: actions.ADD_FRIEND, id: id});
-export const removeFriendAC = (id) => ({type: actions.REMOVE_FRIEND, id: id});
-export const setUsersAC = (users) => ({type: actions.SET_USERS, users: users});
-export const setCurrentPageAC = (currentPage) => ({type: actions.SET_CURRENT_PAGE, currentPage: currentPage});
-export const setTotalUsersCountAC = (totalUsersCount) => ({
+export const addFriend = (id) => ({type: actions.ADD_FRIEND, id: id});
+export const removeFriend = (id) => ({type: actions.REMOVE_FRIEND, id: id});
+export const setUsers = (users) => ({type: actions.SET_USERS, users: users});
+export const setCurrentPage = (currentPage) => ({type: actions.SET_CURRENT_PAGE, currentPage: currentPage});
+export const setTotalUsersCount = (totalUsersCount) => ({
     type: actions.SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount
 });
-export const setFetchingStateAC = (value) => ({type: actions.SET_FETCHING_STATE, value});
+export const setFetchingState = (value) => ({type: actions.SET_FETCHING_STATE, value});
 
 export default usersReducer;

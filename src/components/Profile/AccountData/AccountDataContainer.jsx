@@ -11,10 +11,6 @@ const mapStateToProps = (state, props) => {
     };
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-}
-
-const AccountDataContainer = connect(mapStateToProps, mapDispatchToProps)(AccountData);
+const AccountDataContainer = connect(mapStateToProps)(AccountData);
 
 export default AccountDataContainer;

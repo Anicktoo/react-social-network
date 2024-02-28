@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {setCurrentPageAC, setFetchingStateAC, setTotalUsersCountAC, setUsersAC} from "../../redux/usersReducer";
+import {setCurrentPage, setFetchingState, setTotalUsersCount, setUsers} from "../../redux/usersReducer";
 import React from "react";
 import axios from "axios";
 import Users from "./Users";
@@ -45,13 +45,9 @@ const mapStateToProps = (state, props) => {
     };
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setUsers: (users) => (dispatch(setUsersAC(users))),
-        setCurrentPage: (currentPage) => (dispatch(setCurrentPageAC(currentPage))),
-        setTotalUsersCount: (totalUsersCount) => dispatch(setTotalUsersCountAC(totalUsersCount)),
-        setFetchingState: (value) => dispatch(setFetchingStateAC(value)),
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setFetchingState,
+})(UsersContainer);

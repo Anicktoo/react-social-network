@@ -101,10 +101,10 @@ function nextItemId(items) {
     return maxId + 1
 }
 
-export const addPostActionCreator = () => ({
+export const addPost = () => ({
     type: actions.ADD_POST
 })
-export const changeNewPostTemplateTextActionCreator = (text) => ({
+export const changeTextInput = (text) => ({
     type: actions.CHANGE_NEW_POST_TEMPLATE_TEXT,
     text: text,
 })

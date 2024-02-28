@@ -1,5 +1,5 @@
 import MessagesPanel from "./MessagesPanel";
-import {changeNewMessageTemplateTextActionCreator, sendMessageActionCreator} from "../../../redux/dialogsReducer";
+import {changeNewMessageTemplateText, sendMessage} from "../../../redux/dialogsReducer";
 import {connect} from "react-redux";
 
 const mapStateToProps = (state, props) => {
@@ -16,18 +16,11 @@ const mapStateToProps = (state, props) => {
         myName: state.profileData.accountInfo.name,
     };
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        sendMessage: (id) => {
-            dispatch(sendMessageActionCreator(id));
-        },
-        changeNewMessageTemplateText: (id, value) => {
-            dispatch(changeNewMessageTemplateTextActionCreator(id, value));
-        },
-    }
-}
 
-const MessagesPanelContainer = connect(mapStateToProps, mapDispatchToProps)(MessagesPanel);
+const MessagesPanelContainer = connect(mapStateToProps, {
+    sendMessage,
+    changeNewMessageTemplateText
+})(MessagesPanel);
 
 export default MessagesPanelContainer;
 

@@ -12,11 +12,7 @@ const mapStateToProps = (state, props) => {
     };
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {};
-}
-
-const MessageContainer = connect(mapStateToProps, mapDispatchToProps)(Message);
+const MessageContainer = connect(mapStateToProps)(Message);
 
 export default MessageContainer;
 

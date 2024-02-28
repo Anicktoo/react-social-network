@@ -108,11 +108,11 @@ function nextItemId(items) {
     return maxId + 1;
 }
 
-export const sendMessageActionCreator = (id) => ({
+export const sendMessage = (id) => ({
     type: actions.SEND_MESSAGE,
     id: id
 })
-export const changeNewMessageTemplateTextActionCreator = (id, text) => ({
+export const changeNewMessageTemplateText = (id, text) => ({
     type: actions.CHANGE_NEW_MESSAGE_TEMPLATE_TEXT,
     id: id,
     text: text,
