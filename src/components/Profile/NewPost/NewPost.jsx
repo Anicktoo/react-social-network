@@ -20,7 +20,7 @@ const NewPost = (props) => {
     return (
         <article className={cName(['new-post', 'stdBlock'])}>
             <div className={s.imageContainer}>
-                <img src={props.avatarImgSrc} alt="profile avatar"/>
+                <img src={props.photos.small} alt="profile avatar"/>
             </div>
             <div className={cName('new-post-wrapper')}>
                 <TextareaAutosize

@@ -59,11 +59,6 @@
     gap: 8px;
 }
 
-.info-data a:hover {
-    text-decoration: underline;
-}
-
-
 .info-header {
     font-size: 18px;
     font-weight: bold;
@@ -72,5 +67,19 @@
 .info-data-additional {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
+}
+
+.info-contacts {
+    display: flex;
+    gap: 6px;
+}
+
+.info-contacts img {
+    width: 22px;
+    filter: brightness(0) saturate(100%) invert(18%) sepia(52%) saturate(5225%) hue-rotate(275deg) brightness(92%) contrast(98%);
+}
+
+.info-contacts a:hover img {
+    filter: brightness(0) saturate(100%) invert(46%) sepia(81%) saturate(7444%) hue-rotate(271deg) brightness(99%) contrast(97%);
 }

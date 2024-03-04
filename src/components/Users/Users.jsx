@@ -1,6 +1,6 @@
 import s from "./Users.module.css";
-import UserItemContainer from "./Usertem/UserItemContainer";
 import {classNameFunction} from "../../tools/classNameCompiler";
+import UserItem from "./Usertem/UserItem";
 
 const cName = classNameFunction(s);
 
@@ -81,7 +81,14 @@ const Users = (props) => {
                 </div>
             </header>
             <div className={s.usersList}>
-                {props.users.map(el => <UserItemContainer key={el.id} userInfo={el} isFetching={props.isFetching}/>)}
+                {props.users.map(el => <UserItem key={el.id}
+                                                 {...el}
+                                                 isFetching={props.isFetching}
+                                                 addFriend={props.addFriend}
+                                                 follow={props.follow}
+                                                 unfollow={props.unfollow}
+                    />
+                )}
             </div>
         </div>
     </main>);

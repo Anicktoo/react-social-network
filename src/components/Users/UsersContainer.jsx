@@ -1,5 +1,12 @@
 import {connect} from 'react-redux';
-import {setCurrentPage, setFetchingState, setTotalUsersCount, setUsers} from "../../redux/usersReducer";
+import {
+    follow,
+    unfollow,
+    setCurrentPage,
+    setFetchingState,
+    setTotalUsersCount,
+    setUsers
+} from "../../redux/usersReducer";
 import React from "react";
 import axios from "axios";
 import Users from "./Users";
@@ -31,7 +38,9 @@ class UsersContainer extends React.Component {
                       pageSize={this.props.pageSize}
                       users={this.props.users}
                       pageChange={this.pageChange.bind(this)}
-                      isFetching={this.props.isFetching}/>
+                      isFetching={this.props.isFetching}
+                      follow={this.props.follow}
+                      unfollow={this.props.unfollow}/>
     };
 }
 
@@ -50,4 +59,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     setFetchingState,
+    follow,
+    unfollow,
 })(UsersContainer);

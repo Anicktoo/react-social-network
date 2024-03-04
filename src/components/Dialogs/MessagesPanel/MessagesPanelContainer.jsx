@@ -12,8 +12,8 @@ const mapStateToProps = (state, props) => {
         messages: dialogInfo.messages,
         userName: dialogInfo.userName,
         userImg: dialogInfo.userImg,
-        myImage: state.profileData.accountInfo.avatarImgSrc,
-        myName: state.profileData.accountInfo.name,
+        myImage: state.profileData.accountInfo.photos.small,
+        myName: state.profileData.accountInfo.fullName,
     };
 }
 

@@ -2,22 +2,32 @@ import React from 'react';
 import s from './UserItem.module.css';
 import defaultAvatar from '../../../img/defaultUser.svg';
 import Loader from "../../common/Loader/Loader";
+import {NavLink} from "react-router-dom";
 
 const UserItem = (props) => {
+
+    console.log(props)
+    const linkPath = '/profile/' + props.id;
+
     return (
         <div className={s.userItem}>
             <div className={s.imgContainer}>
                 {props.isFetching ? <Loader/> :
-                    <img src={props.photos.small != null ? props.photos.small : defaultAvatar}
-                         alt={props.name + "'s avatar"}/>}
+                    <NavLink to={linkPath}>
+                        <img src={props.photos.small != null ? props.photos.small : defaultAvatar}
+                             alt={props.fullName + "'s avatar"}/>
+                    </NavLink>
+                }
             </div>
             <div className={s.infoContainer}>
-                <span className={s.userName}>{props.name}</span>
+                <NavLink to={linkPath}>
+                    <span className={s.userName}>{props.name}</span>
+                </NavLink>
                 <span>{props.status}</span>
                 {props.followed ?
-                    <button onClick={props.removeFriend.bind(null, props.id)}
+                    <button onClick={props.unfollow.bind(null, props.id)}
                             className={s.secondaryButton}>Unfollow</button> :
-                    <button onClick={props.addFriend.bind(null, props.id)}
+                    <button onClick={props.follow.bind(null, props.id)}
                             className={s.secondaryButton}>Follow</button>
                 }
             </div>

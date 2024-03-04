@@ -39,6 +39,10 @@
     color: var(--main-color);
 }
 
+.userName:hover {
+    text-decoration: underline;
+}
+
 .secondaryButton {
     cursor: pointer;
     display: inline;

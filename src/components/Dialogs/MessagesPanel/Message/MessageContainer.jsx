@@ -6,8 +6,8 @@ const mapStateToProps = (state, props) => {
     const yourInfo = state.profileData.accountInfo;
     return {
         id: messageInfo.id,
-        userImg: messageInfo.your ? yourInfo.avatarImgSrc : props.userImg,
-        userName: messageInfo.your ? yourInfo.name : props.userName,
+        userImg: messageInfo.your ? yourInfo.photos.small : props.userImg,
+        userName: messageInfo.your ? yourInfo.fullName : props.userName,
         message: messageInfo.text
     };
 }

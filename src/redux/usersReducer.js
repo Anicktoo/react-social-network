@@ -1,6 +1,6 @@
 export const actions = Object.freeze({
-    ADD_FRIEND: 'ADD_FRIEND',
-    REMOVE_FRIEND: 'REMOVE_FRIEND',
+    FOLLOW: 'FOLLOW',
+    UNFOLLOW: 'UNFOLLOW',
     SET_USERS: 'SET_USERS',
     SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
     SET_TOTAL_USERS_COUNT: 'SET_TOTAL_USERS_COUNT',
@@ -13,7 +13,7 @@ const defaultState = {
 
 const usersReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case actions.ADD_FRIEND:
+        case actions.FOLLOW:
             return {
                 ...state, users: state.users.map(user => {
                     if (user.id !== action.id) return user;
@@ -22,7 +22,7 @@ const usersReducer = (state = defaultState, action) => {
                     }
                 })
             }
-        case actions.REMOVE_FRIEND:
+        case actions.UNFOLLOW:
             return {
                 ...state, users: state.users.map(user => {
                     if (user.id !== action.id) return user;
@@ -52,8 +52,8 @@ const usersReducer = (state = defaultState, action) => {
     }
 }
 
-export const addFriend = (id) => ({type: actions.ADD_FRIEND, id: id});
-export const removeFriend = (id) => ({type: actions.REMOVE_FRIEND, id: id});
+export const follow = (id) => ({type: actions.FOLLOW, id: id});
+export const unfollow = (id) => ({type: actions.UNFOLLOW, id: id});
 export const setUsers = (users) => ({type: actions.SET_USERS, users: users});
 export const setCurrentPage = (currentPage) => ({type: actions.SET_CURRENT_PAGE, currentPage: currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({

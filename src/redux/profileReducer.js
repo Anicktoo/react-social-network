@@ -1,34 +1,27 @@
 export const actions = Object.freeze({
+    SET_USER_PROFILE: 'SET_USER_PROFILE',
     ADD_POST: 'ADD_POST',
     CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT'
 });
 
 const defaultState = {
     accountInfo: {
-        name: 'Nikita T.',
-        additionalData: [
-            {
-                fieldName: 'Date Of Birth',
-                value: '10 February'
-            },
-            {
-                fieldName: 'City',
-                value: 'Saint-Petersburg'
-            },
-            {
-                fieldName: 'Education',
-                value: 'ITMO University',
-                link: 'https://itmo.ru/'
-            },
-            {
-                fieldName: 'Web Site',
-                value: 'https://github.com/Anicktoo',
-                link: 'https://github.com/Anicktoo',
-            },
-
-        ],
-        avatarImgSrc: 'https://assets1.ignimgs.com/2019/05/30/revan-galaxy-of-heroes-tall-1536x864-1559249534297.jpg',
-        wallpaperImgSrc: 'https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-preview.jpg',
+        fullName: null,
+        aboutMe: null,
+        contacts: {
+            facebook: null,
+            website: null,
+            vk: null,
+            twitter: null,
+            instagram: null,
+            youtube: null,
+            github: null,
+            mainLink: null
+        },
+        photos: {
+            small: null,
+            large: null,
+        }
     },
     newPostTemplate: {
         text: '',
@@ -90,6 +83,12 @@ const profilesReducer = (state = defaultState, action) => {
                 ]
             }
         }
+        case actions.SET_USER_PROFILE: {
+            return {
+                ...state,
+                accountInfo: action.profile,
+            }
+        }
         default: {
             return state;
         }
@@ -106,7 +105,12 @@ export const addPost = () => ({
 })
 export const changeTextInput = (text) => ({
     type: actions.CHANGE_NEW_POST_TEMPLATE_TEXT,
-    text: text,
+    text,
+})
+
+export const setUserProfile = (profile) => ({
+    type: actions.SET_USER_PROFILE,
+    profile,
 })
 
 export default profilesReducer;
