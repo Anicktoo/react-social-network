@@ -6,7 +6,6 @@ const cName = classNameFunction(s);
 
 function importAll(r) {
     const entries = r.keys().map((item) => [item.split(/\.\/?/)[1], r(item)]);
-    console.log(entries)
     return Object.fromEntries(entries);
 }
 

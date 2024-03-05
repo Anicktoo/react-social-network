@@ -5,8 +5,6 @@ import Loader from "../../common/Loader/Loader";
 import {NavLink} from "react-router-dom";
 
 const UserItem = (props) => {
-
-    console.log(props)
     const linkPath = '/profile/' + props.id;
 
     return (

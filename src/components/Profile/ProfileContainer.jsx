@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Profile from "./Profile";
 import {addPost, changeTextInput, setUserProfile} from "../../redux/profileReducer";
+import {withRouter} from "../../tools/react-router-legacy"
 import axios from "axios";
 
 class ProfileContainer extends Component {
-
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${2}`)
+        const userId = this.props.router.params.userId ?? 2;
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 this.props.setUserProfile(response.data)
             })
@@ -33,6 +34,8 @@ function mapStateToProps(state) {
     };
 }
 
+const withURLDataContainerComponent = withRouter(ProfileContainer);
+
 export default connect(
     mapStateToProps,
     {
@@ -40,4 +43,4 @@ export default connect(
         changeTextInput,
         setUserProfile
     }
-)(ProfileContainer);
+)(withURLDataContainerComponent);

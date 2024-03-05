@@ -17,7 +17,7 @@ const App = () => {
                     <div className='content'>
                         <Routes>
                             <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
-                            <Route path="/profile/*"
+                            <Route path="/profile/:userId?"
                                    element={
                                        <ProfileContainer/>
                                    }
@@ -27,7 +27,7 @@ const App = () => {
                                        <DialogsContainer/>
                                    }
                             />
-                            <Route path="/friends/*"
+                            <Route path="/users/*"
                                    element={
                                        <UsersContainer/>
                                    }
