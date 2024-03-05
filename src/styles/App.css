@@ -12,6 +12,7 @@
     --secondary-color: #b431f5;
     --invisible-color: rgb(1 1 1 / 0%);
     --layout-width: 1000px;
+    --personal-layout-width: 200px;
     --gap-size: 15px;
     --block-padding: 20px;
     --block-border-radius: 15px;
@@ -78,3 +79,27 @@ body {
 .mainButton:hover {
     background-color: var(--secondary-color);
 }
+
+.secondaryButton {
+    cursor: pointer;
+    padding: 6px 20px;
+    width: fit-content;
+    color: var(--main-color);
+    font-weight: 700;
+    background-color: var(--light-grey-color);
+    border-radius: 5px;
+    border: none;
+}
+
+.secondaryButton:hover {
+    background-color: var(--default-grey-color);
+}
+
+/* .mainLink {
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.mainLink:hover {
+    text-decoration: underline;
+} */

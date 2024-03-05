@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {
     follow,
     unfollow,
@@ -34,23 +34,23 @@ class UsersContainer extends React.Component {
 
     render() {
         return <Users totalUsersCount={this.props.totalUsersCount}
-                      currentPage={this.props.currentPage}
-                      pageSize={this.props.pageSize}
-                      users={this.props.users}
-                      pageChange={this.pageChange.bind(this)}
-                      isFetching={this.props.isFetching}
-                      follow={this.props.follow}
-                      unfollow={this.props.unfollow}/>
+            currentPage={this.props.currentPage}
+            pageSize={this.props.pageSize}
+            users={this.props.users}
+            pageChange={this.pageChange.bind(this)}
+            isFetching={this.props.isFetching}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow} />
     };
 }
 
 const mapStateToProps = (state, props) => {
     return {
-        users: state.usersData.users,
-        pageSize: state.usersData.pageSize,
-        totalUsersCount: state.usersData.totalUsersCount,
-        currentPage: state.usersData.currentPage,
-        isFetching: state.usersData.isFetching,
+        users: state.users.users,
+        pageSize: state.users.pageSize,
+        totalUsersCount: state.users.totalUsersCount,
+        currentPage: state.users.currentPage,
+        isFetching: state.users.isFetching,
     };
 }
 

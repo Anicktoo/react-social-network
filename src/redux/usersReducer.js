@@ -8,7 +8,11 @@ export const actions = Object.freeze({
 });
 
 const defaultState = {
-    users: [], pageSize: 10, totalUsersCount: 0, currentPage: 1, isFetching: false,
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: false,
 }
 
 const usersReducer = (state = defaultState, action) => {
@@ -52,13 +56,13 @@ const usersReducer = (state = defaultState, action) => {
     }
 }
 
-export const follow = (id) => ({type: actions.FOLLOW, id: id});
-export const unfollow = (id) => ({type: actions.UNFOLLOW, id: id});
-export const setUsers = (users) => ({type: actions.SET_USERS, users: users});
-export const setCurrentPage = (currentPage) => ({type: actions.SET_CURRENT_PAGE, currentPage: currentPage});
+export const follow = (id) => ({ type: actions.FOLLOW, id: id });
+export const unfollow = (id) => ({ type: actions.UNFOLLOW, id: id });
+export const setUsers = (users) => ({ type: actions.SET_USERS, users: users });
+export const setCurrentPage = (currentPage) => ({ type: actions.SET_CURRENT_PAGE, currentPage: currentPage });
 export const setTotalUsersCount = (totalUsersCount) => ({
     type: actions.SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount
 });
-export const setFetchingState = (value) => ({type: actions.SET_FETCHING_STATE, value});
+export const setFetchingState = (value) => ({ type: actions.SET_FETCHING_STATE, value });
 
 export default usersReducer;

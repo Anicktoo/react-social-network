@@ -1,9 +1,9 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Message from './Message';
 
 const mapStateToProps = (state, props) => {
     const messageInfo = props.messages.find(el => el.id === props.id);
-    const yourInfo = state.profileData.accountInfo;
+    const yourInfo = state.profile.accountInfo;
     return {
         id: messageInfo.id,
         userImg: messageInfo.your ? yourInfo.photos.small : props.userImg,

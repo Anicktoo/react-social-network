@@ -1,6 +1,6 @@
 import MessagesPanel from "./MessagesPanel";
-import {changeNewMessageTemplateText, sendMessage} from "../../../redux/dialogsReducer";
-import {connect} from "react-redux";
+import { changeNewMessageTemplateText, sendMessage } from "../../../redux/dialogsReducer";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state, props) => {
 
@@ -12,8 +12,8 @@ const mapStateToProps = (state, props) => {
         messages: dialogInfo.messages,
         userName: dialogInfo.userName,
         userImg: dialogInfo.userImg,
-        myImage: state.profileData.accountInfo.photos.small,
-        myName: state.profileData.accountInfo.fullName,
+        myImage: state.profile.accountInfo.photos.small,
+        myName: state.profile.accountInfo.fullName,
     };
 }
 

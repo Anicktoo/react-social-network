@@ -46,5 +46,14 @@
     "css-module-class-lister": "^1.2.0",
     "stylelint": "^15.10.0",
     "stylelint-config-standard": "^34.0.0"
-  }
+  },
+  "compilerOptions": {
+    "module": "ES6",
+    "jsx": "preserve",
+    "checkJs": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
 }

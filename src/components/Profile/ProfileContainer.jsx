@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Profile from "./Profile";
-import {addPost, changeTextInput, setUserProfile} from "../../redux/profileReducer";
-import {withRouter} from "../../tools/react-router-legacy"
+import { addPost, changeTextInput, setUserProfile } from "../../redux/profileReducer";
+import { withRouter } from "../../tools/react-router-legacy"
 import axios from "axios";
 
 class ProfileContainer extends Component {
@@ -16,7 +16,7 @@ class ProfileContainer extends Component {
 
     render() {
         return (
-            <Profile {...this.props}/>
+            <Profile {...this.props} />
         );
     }
 }
@@ -24,13 +24,13 @@ class ProfileContainer extends Component {
 function mapStateToProps(state) {
     return {
         common: {
-            photos: state.profileData.accountInfo.photos,
+            photos: state.profile.accountInfo.photos,
         },
-        accountInfo: state.profileData.accountInfo,
+        accountInfo: state.profile.accountInfo,
         newPost: {
-            text: state.profileData.newPostTemplate.text,
+            text: state.profile.newPostTemplate.text,
         },
-        posts: state.profileData.posts
+        posts: state.profile.posts
     };
 }
 

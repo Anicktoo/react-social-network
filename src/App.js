@@ -1,36 +1,36 @@
 import React from "react";
-import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import './styles/App.css';
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer />
                 <div className='inner-wrapper'>
-                    <Nav/>
+                    <Nav />
                     <div className='content'>
                         <Routes>
-                            <Route path='/' element={<Navigate to='/profile' replace={true}/>}/>
+                            <Route path='/' element={<Navigate to='/profile' replace={true} />} />
                             <Route path="/profile/:userId?"
-                                   element={
-                                       <ProfileContainer/>
-                                   }
+                                element={
+                                    <ProfileContainer />
+                                }
                             />
                             <Route path="/dialogs/*"
-                                   element={
-                                       <DialogsContainer/>
-                                   }
+                                element={
+                                    <DialogsContainer />
+                                }
                             />
                             <Route path="/users/*"
-                                   element={
-                                       <UsersContainer/>
-                                   }
+                                element={
+                                    <UsersContainer />
+                                }
                             />
                         </Routes>
                     </div>

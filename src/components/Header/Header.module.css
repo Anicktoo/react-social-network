@@ -5,6 +5,7 @@
     left: 0;
     width: 100%;
     display: flex;
+    gap: 50px;
     background-color: var(--foreground-color);
     padding: 10px 0;
     border-bottom: 1px solid var(--default-grey-color);
@@ -16,8 +17,10 @@
     position: relative;
     right: calc((100% - 100vw) / 2);
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 0 auto;
-    width: var(--layout-width);
+    width: calc(var(--layout-width));
     height: 100%;
 }
 
@@ -25,4 +28,21 @@
     display: block;
     height: 100%;
     cursor: pointer;
+}
+
+.loginContainer {
+    /* display: flex; */
+}
+
+.loginBlock {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 600;
+}
+
+.loginImage {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
 }
