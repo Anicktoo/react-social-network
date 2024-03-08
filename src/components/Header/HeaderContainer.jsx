@@ -22,7 +22,6 @@ export class HeaderContainer extends Component {
         console.log(userId)
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
-                console.log(response.data)
                 this.props.setUserImage(response.data.photos.small);
             });
     }
