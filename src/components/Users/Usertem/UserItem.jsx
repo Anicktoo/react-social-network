@@ -3,7 +3,7 @@ import s from './UserItem.module.css';
 import defaultAvatar from '../../../img/defaultUser.svg';
 import Loader from "../../common/Loader/Loader";
 import { NavLink } from "react-router-dom";
-import axios from 'axios';
+import { followAPI } from '../../../api/api';
 
 const UserItem = (props) => {
     const linkPath = '/profile/' + props.id;
@@ -24,37 +24,24 @@ const UserItem = (props) => {
                 <span>{props.status}</span>
                 {props.followed ?
                     <button onClick={() => {
-                        axios.delete('https://social-network.samuraijs.com/api/1.0/follow/' + props.id, {
-                            withCredentials: true,
-                            headers: {
-                                'API-KEY': '8071910a-4ccb-4953-80de-82b2dd251ba0'
+                        followAPI.unfollow(props.id).then(data => {
+                            if (data.resultCode === 0) {
+                                props.unfollow(props.id);
                             }
                         })
-                            .then(response => {
-
-                                if (response.data.resultCode === 0) {
-                                    props.unfollow(props.id);
-                                }
-                            })
                     }}
                         className={s.secondaryButton}>Unfollow</button> :
                     <button onClick={() => {
-                        axios.post('https://social-network.samuraijs.com/api/1.0/follow/' + props.id, {}, {
-                            withCredentials: true,
-                            headers: {
-                                'API-KEY': '8071910a-4ccb-4953-80de-82b2dd251ba0'
+                        followAPI.follow(props.id).then(data => {
+                            if (data.resultCode === 0) {
+                                props.follow(props.id);
                             }
                         })
-                            .then(response => {
-                                if (response.data.resultCode === 0) {
-                                    props.follow(props.id);
-                                }
-                            })
                     }}
                         className={s.secondaryButton}>Follow</button>
                 }
             </div>
-        </div>
+        </div >
     );
 };
 

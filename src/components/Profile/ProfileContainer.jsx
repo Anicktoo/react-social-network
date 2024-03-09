@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import Profile from "./Profile";
 import { addPost, changeTextInput, setUserProfile } from "../../redux/profileReducer";
 import { withRouter } from "../../tools/react-router-legacy"
-import axios from "axios";
+import { profileAPI } from '../../api/api';
 
 class ProfileContainer extends Component {
     componentDidMount() {
         const userId = this.props.router.params.userId ?? 2;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
+        profileAPI.getProfile(userId).then(data => {
+            this.props.setUserProfile(data)
+        })
     }
 
     render() {
