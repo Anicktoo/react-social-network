@@ -24,7 +24,7 @@
     width: 110%;
     height: 110%;
     object-fit: cover;
-    image-rendering: optimizeQuality;
+    image-rendering: optimizequality;
 }
 
 .infoContainer {
@@ -43,16 +43,5 @@
     text-decoration: underline;
 }
 
-.secondaryButton {
-    cursor: pointer;
-    display: inline;
-    text-align: left;
-    padding: 0;
-    margin: 0;
-    color: var(--main-color);
-}
 
-.secondaryButton:hover {
-    text-decoration: underline;
-}
 

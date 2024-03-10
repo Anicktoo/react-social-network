@@ -23,22 +23,26 @@ const UserItem = (props) => {
                 </NavLink>
                 <span>{props.status}</span>
                 {props.followed ?
-                    <button onClick={() => {
+                    <button disabled={props.isFollowingInProgress} onClick={() => {
+                        props.setFollowingState(true, props.id);
                         followAPI.unfollow(props.id).then(data => {
                             if (data.resultCode === 0) {
                                 props.unfollow(props.id);
                             }
+                            props.setFollowingState(false, props.id);
                         })
                     }}
-                        className={s.secondaryButton}>Unfollow</button> :
-                    <button onClick={() => {
+                        className={"inlineButton"}>Unfollow</button> :
+                    <button disabled={props.isFollowingInProgress} onClick={() => {
+                        props.setFollowingState(true, props.id);
                         followAPI.follow(props.id).then(data => {
                             if (data.resultCode === 0) {
                                 props.follow(props.id);
                             }
+                            props.setFollowingState(false, props.id);
                         })
                     }}
-                        className={s.secondaryButton}>Follow</button>
+                        className={"inlineButton"}>Follow</button>
                 }
             </div>
         </div >

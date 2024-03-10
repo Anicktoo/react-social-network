@@ -5,6 +5,7 @@ import {
     setCurrentPage,
     setFetchingState,
     setTotalUsersCount,
+    setFollowingState,
     setUsers
 } from "../../redux/usersReducer";
 import React from "react";
@@ -38,7 +39,9 @@ class UsersContainer extends React.Component {
             pageChange={this.pageChange.bind(this)}
             isFetching={this.props.isFetching}
             follow={this.props.follow}
-            unfollow={this.props.unfollow} />
+            unfollow={this.props.unfollow}
+            setFollowingState={this.props.setFollowingState}
+        />
     };
 }
 
@@ -59,4 +62,5 @@ export default connect(mapStateToProps, {
     setFetchingState,
     follow,
     unfollow,
+    setFollowingState,
 })(UsersContainer);
