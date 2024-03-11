@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Profile from "./Profile";
 import { addPost, changeTextInput, getUserProfile } from "../../redux/profileReducer";
 import { withRouter } from "../../tools/react-router-legacy"
+import defaultUser from '../../img/defaultUser.svg';
 
 class ProfileContainer extends Component {
     componentDidMount() {
@@ -20,7 +21,11 @@ class ProfileContainer extends Component {
 function mapStateToProps(state) {
     return {
         common: {
-            photos: state.profile.accountInfo.photos,
+            photos: {
+                small: state.profile.accountInfo.photos?.small || defaultUser,
+                large: state.profile.accountInfo.photos?.large || defaultUser,
+                wallpaper: state.profile.accountInfo.photos?.wallpaper,
+            }
         },
         accountInfo: state.profile.accountInfo,
         newPost: {

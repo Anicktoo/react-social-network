@@ -1,6 +1,6 @@
 import React from "react";
 import s from './AccountData.module.css'
-import {classNameFunction} from "../../../tools/classNameCompiler";
+import { classNameFunction } from "../../../tools/classNameCompiler";
 
 const cName = classNameFunction(s);
 
@@ -12,17 +12,23 @@ function importAll(r) {
 const images = importAll(require.context('../../../img/socials', false, /\.(png|jpe?g|svg)$/));
 
 const AccountData = (props) => {
+    const wallpaper = props.photos.wallpaper ?
+        <img
+            src={props.photos.wallpaper}
+            alt="user's background wallpaper" />
+        :
+        <div className={cName(['wallpaper-default'])}></div>
+        ;
+
     return (
         <div className={cName(['account-data'])}>
             <div className={cName(['wallpaper'])}>
-                <img
-                    src={props.photos?.large}
-                    alt="user's background wallpaper"/>
+                {wallpaper}
             </div>
             <div className={cName(['info-container'])}>
                 <div className={cName(['avatar'])}>
-                    <img src={props.photos?.small}
-                         alt="user's avatar"></img>
+                    <img src={props.photos.large}
+                        alt="user's avatar"></img>
                 </div>
                 <div className={cName(['info'])}>
                     <span className={cName(['info-header', 'name'])}>
@@ -36,7 +42,7 @@ const AccountData = (props) => {
                                 .map(entry => {
                                     const imgPath = images[entry[0]];
                                     return <a href={entry[1]}>
-                                        <img src={imgPath} alt={entry[0]}/>
+                                        <img src={imgPath} alt={entry[0]} />
                                     </a>
                                 })
                             }

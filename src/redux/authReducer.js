@@ -38,7 +38,7 @@ export const setAuthUserData = (data) => ({ type: actions.SET_DATA, data });
 export const setUserImage = (image) => ({ type: actions.SET_IMAGE, image });
 
 export const getAuthData = () => (dispatch) => {
-    authAPI.getAuthData().then(data => {
+    authAPI.me().then(data => {
         if (data.resultCode === 0) {
             dispatch(setAuthUserData(data.data));
             dispatch(getUserImage(data.data.id));

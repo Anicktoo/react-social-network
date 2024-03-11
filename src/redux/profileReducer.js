@@ -1,7 +1,9 @@
-import { profileAPI } from "../api/api";
+import { profileAPI, wallpaperAPI } from "../api/api";
+import getRandomHexColor from "../tools/getRandomHexColor";
 
 export const actions = Object.freeze({
     SET_USER_PROFILE: 'SET_USER_PROFILE',
+    SET_USER_WALLPAPER: 'SET_USER_WALLPAPER',
     ADD_POST: 'ADD_POST',
     CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT'
 });
@@ -23,6 +25,7 @@ const defaultState = {
         photos: {
             small: null,
             large: null,
+            wallpaper: null,
         }
     },
     newPostTemplate: {
@@ -89,7 +92,25 @@ const profilesReducer = (state = defaultState, action) => {
         case actions.SET_USER_PROFILE: {
             return {
                 ...state,
-                accountInfo: action.profile,
+                accountInfo: {
+                    ...action.profile,
+                    photos: {
+                        ...action.profile.photos,
+                        wallpaper: state.accountInfo.photos.wallpaper
+                    }
+                }
+            }
+        }
+        case actions.SET_USER_WALLPAPER: {
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    photos: {
+                        ...state.accountInfo.photos,
+                        wallpaper: action.wallpaper
+                    }
+                }
             }
         }
         default: {
@@ -114,11 +135,19 @@ export const setUserProfile = (profile) => ({
     type: actions.SET_USER_PROFILE,
     profile,
 });
+export const setUserWallpaper = (wallpaper) => ({
+    type: actions.SET_USER_WALLPAPER,
+    wallpaper,
+});
 
 export const getUserProfile = (userId) => (dispatch) => {
     profileAPI.getProfile(userId).then(data => {
         dispatch(setUserProfile(data));
     });
-}
+    const hex = getRandomHexColor(userId);
+    wallpaperAPI.getWallpaper(hex).then(data => {
+        dispatch(setUserWallpaper(data))
+    });
+};
 
 export default profilesReducer;

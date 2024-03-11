@@ -18,7 +18,7 @@ const Header = (props) => {
                             {props.login}
                         </div>
                         :
-                        <NavLink to='/profile' >
+                        <NavLink to='/login' >
                             <div className="secondaryButton">Login</div>
                         </NavLink>
                     }
