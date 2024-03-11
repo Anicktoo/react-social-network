@@ -1,3 +1,5 @@
+import { followAPI, usersAPI } from "../api/api";
+
 export const actions = Object.freeze({
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
@@ -80,12 +82,42 @@ const usersReducer = (state = defaultState, action) => {
     }
 }
 
-export const follow = (id) => ({ type: actions.FOLLOW, id: id });
-export const unfollow = (id) => ({ type: actions.UNFOLLOW, id: id });
+export const followAccept = (id) => ({ type: actions.FOLLOW, id: id });
+export const unfollowAccept = (id) => ({ type: actions.UNFOLLOW, id: id });
 export const setUsers = (users) => ({ type: actions.SET_USERS, users: users });
 export const setCurrentPage = (currentPage) => ({ type: actions.SET_CURRENT_PAGE, currentPage: currentPage });
 export const setTotalUsersCount = (totalUsersCount) => ({ type: actions.SET_TOTAL_USERS_COUNT, totalUsersCount: totalUsersCount });
 export const setFetchingState = (value) => ({ type: actions.SET_FETCHING_STATE, value });
 export const setFollowingState = (value, userId) => ({ type: actions.SET_FOLLOWING_STATE, value, userId });
+
+export const getUsers = (pageSize, pageNumber) => (dispatch) => {
+    dispatch(setFetchingState(true));
+    dispatch(setCurrentPage(pageNumber));
+    usersAPI.getUsers(pageSize, pageNumber).then(data => {
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
+        dispatch(setFetchingState(false));
+    });
+};
+
+export const follow = (userId) => (dispatch) => {
+    dispatch(setFollowingState(true, userId));
+    followAPI.follow(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(followAccept(userId));
+        }
+        dispatch(setFollowingState(false, userId));
+    })
+}
+
+export const unfollow = (userId) => (dispatch) => {
+    dispatch(setFollowingState(true, userId));
+    followAPI.unfollow(userId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(unfollowAccept(userId));
+        }
+        dispatch(setFollowingState(false, userId));
+    })
+}
 
 export default usersReducer;

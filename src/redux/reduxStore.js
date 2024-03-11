@@ -11,7 +11,8 @@ const store = configureStore({
         profile: profilesReducer,
         users: usersReducer,
         auth: authReducer,
-    }
+    },
+    //configureStore API already adds the thunk middleware by default
 });
 
 export default store;

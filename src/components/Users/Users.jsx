@@ -57,7 +57,7 @@ const Users = (props) => {
     const startBarItem = () => <>
         <div className={cName(['page-item'])}
             onClick={() => {
-                props.pageChange(1)
+                props.onPageChange(1)
             }}>
             1
         </div>
@@ -68,7 +68,7 @@ const Users = (props) => {
         <div className={cName(['page-item', 'blocked'])}>...</div>
         <div className={cName(['page-item'])}
             onClick={() => {
-                props.pageChange(pagesCount)
+                props.onPageChange(pagesCount)
             }}>
             {pagesCount}
         </div>
@@ -78,7 +78,7 @@ const Users = (props) => {
         const isCurrent = props.currentPage === el ? 'current-page' : '';
         return (<div className={cName(['page-item', isCurrent])}
             onClick={() => {
-                props.pageChange(el)
+                props.onPageChange(el)
             }}
         >
             {el}
@@ -99,10 +99,8 @@ const Users = (props) => {
                 {props.users.map(el => <UserItem key={el.id}
                     {...el}
                     isFetching={props.isFetching}
-                    addFriend={props.addFriend}
                     follow={props.follow}
                     unfollow={props.unfollow}
-                    setFollowingState={props.setFollowingState}
                 />
                 )}
             </div>

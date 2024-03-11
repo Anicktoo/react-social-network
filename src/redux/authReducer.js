@@ -1,3 +1,5 @@
+import { authAPI, profileAPI } from "../api/api";
+
 export const actions = Object.freeze({
     SET_DATA: 'SET_DATA',
     SET_IMAGE: 'SET_IMAGE',
@@ -34,5 +36,20 @@ const authReducer = (state = defaultState, action) => {
 
 export const setAuthUserData = (data) => ({ type: actions.SET_DATA, data });
 export const setUserImage = (image) => ({ type: actions.SET_IMAGE, image });
+
+export const getAuthData = () => (dispatch) => {
+    authAPI.getAuthData().then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setAuthUserData(data.data));
+            dispatch(getUserImage(data.data.id));
+        }
+    });
+};
+
+const getUserImage = (userId) => (dispatch) => {
+    profileAPI.getProfile(userId).then(data => {
+        dispatch(setUserImage(data.photos.small));
+    });
+};
 
 export default authReducer;

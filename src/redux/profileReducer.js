@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 export const actions = Object.freeze({
     SET_USER_PROFILE: 'SET_USER_PROFILE',
     ADD_POST: 'ADD_POST',
@@ -50,7 +52,8 @@ const defaultState = {
             likes: 51,
         },
     ],
-}
+};
+
 const profilesReducer = (state = defaultState, action) => {
     switch (action.type) {
         case actions.CHANGE_NEW_POST_TEMPLATE_TEXT: {
@@ -93,7 +96,7 @@ const profilesReducer = (state = defaultState, action) => {
             return state;
         }
     }
-}
+};
 
 function nextItemId(items) {
     const maxId = items.reduce((maxId, item) => Math.max(item.id, maxId), -1)
@@ -102,15 +105,20 @@ function nextItemId(items) {
 
 export const addPost = () => ({
     type: actions.ADD_POST
-})
+});
 export const changeTextInput = (text) => ({
     type: actions.CHANGE_NEW_POST_TEMPLATE_TEXT,
     text,
-})
-
+});
 export const setUserProfile = (profile) => ({
     type: actions.SET_USER_PROFILE,
     profile,
-})
+});
+
+export const getUserProfile = (userId) => (dispatch) => {
+    profileAPI.getProfile(userId).then(data => {
+        dispatch(setUserProfile(data));
+    });
+}
 
 export default profilesReducer;

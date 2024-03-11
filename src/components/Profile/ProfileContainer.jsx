@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Profile from "./Profile";
-import { addPost, changeTextInput, setUserProfile } from "../../redux/profileReducer";
+import { addPost, changeTextInput, getUserProfile } from "../../redux/profileReducer";
 import { withRouter } from "../../tools/react-router-legacy"
-import { profileAPI } from '../../api/api';
 
 class ProfileContainer extends Component {
     componentDidMount() {
         const userId = this.props.router.params.userId ?? 2;
-        profileAPI.getProfile(userId).then(data => {
-            this.props.setUserProfile(data)
-        })
+        this.props.getUserProfile(userId);
     }
 
     render() {
@@ -40,6 +37,6 @@ export default connect(
     {
         addPost,
         changeTextInput,
-        setUserProfile
+        getUserProfile,
     }
 )(withURLDataContainerComponent);
