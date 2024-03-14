@@ -25,7 +25,8 @@ function mapStateToProps(state) {
                 small: state.profile.accountInfo.photos?.small || defaultUser,
                 large: state.profile.accountInfo.photos?.large || defaultUser,
                 wallpaper: state.profile.accountInfo.photos?.wallpaper,
-            }
+            },
+            isLoggedIn: state.auth.isLoggedIn,
         },
         accountInfo: state.profile.accountInfo,
         newPost: {

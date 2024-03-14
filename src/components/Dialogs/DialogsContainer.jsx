@@ -3,7 +3,8 @@ import Dialogs from './Dialogs';
 
 const mapStateToProps = (state, props) => {
     return {
-        dialogs: state.dialogs.dialogs
+        dialogs: state.dialogs.dialogs,
+        isLoggedIn: state.auth.isLoggedIn,
     };
 }
 

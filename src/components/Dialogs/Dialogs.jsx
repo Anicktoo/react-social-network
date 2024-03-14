@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import {Route, Routes} from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MessagesPanelContainer from "./MessagesPanel/MessagesPanelContainer";
 import DialogItemContainer from "./DialogItem/DialogItemContainer";
 
@@ -11,14 +11,18 @@ const Dialogs = (props) => {
     const messageContainers = [];
     props.dialogs?.forEach((el) => {
         dialogItems.push(
-            <DialogItemContainer key={el.id} dialogItemInfo={el}/>
+            <DialogItemContainer key={el.id} dialogItemInfo={el} />
         );
         messageContainers.push(
             <Route key={el.id} path={'/' + el.id} element={
-                <MessagesPanelContainer id={el.id} dialogItemInfo={el}/>
-            }/>
+                <MessagesPanelContainer id={el.id} dialogItemInfo={el} />
+            } />
         );
     });
+
+    if (!props.isLoggedIn) {
+        return <Navigate to={"/login"} />
+    }
 
     return (
         <main className={s.dialogs}>

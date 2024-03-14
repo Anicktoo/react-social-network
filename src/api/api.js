@@ -5,7 +5,6 @@ const axiosInstance = axios.create({
     withCredentials: true,
     headers: {
         'API-KEY': '8071910a-4ccb-4953-80de-82b2dd251ba0',
-        'Access-Control-Allow-Origin': '*',
     }
 });
 const axiosNoize = axios.create({
