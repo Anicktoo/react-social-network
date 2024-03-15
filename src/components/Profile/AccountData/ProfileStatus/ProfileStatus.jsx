@@ -10,12 +10,12 @@ class ProfileStatus extends React.Component {
         editMode: false
     }
 
-    openInput = function () {
+    openInput = () => {
         this.setState({
             editMode: true
         });
     }
-    closeInput = function () {
+    closeInput = () => {
         this.setState({
             editMode: false
         });
@@ -27,11 +27,11 @@ class ProfileStatus extends React.Component {
             <div className={cName('about-container')}>
                 {this.state.editMode ?
                     <>
-                        <input autoFocus={true} onBlur={this.closeInput.bind(this)} className={cName('about-input')} type="text" value={this.props.aboutMe} />
+                        <input autoFocus={true} onBlur={this.closeInput} className={cName('about-input')} type="text" value={this.props.aboutMe} />
                     </>
                     :
                     <>
-                        <span onClick={this.openInput.bind(this)} className={cName('about')}>{this.props.aboutMe}</span>
+                        <span onClick={this.openInput} className={cName('about')}>{this.props.aboutMe}</span>
                     </>
                 }
             </div>
