@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import { addPost, changeTextInput, getUserProfile } from "../../redux/profileReducer";
 import { withRouter } from "../../tools/react-router-legacy"
 import defaultUser from '../../img/defaultUser.svg';
+import withLoginRedirect from '../hoc/withLoginRedirect';
 
 class ProfileContainer extends Component {
     componentDidMount() {
@@ -26,7 +27,6 @@ function mapStateToProps(state) {
                 large: state.profile.accountInfo.photos?.large || defaultUser,
                 wallpaper: state.profile.accountInfo.photos?.wallpaper,
             },
-            isLoggedIn: state.auth.isLoggedIn,
         },
         accountInfo: state.profile.accountInfo,
         newPost: {
@@ -35,8 +35,8 @@ function mapStateToProps(state) {
         posts: state.profile.posts
     };
 }
-
-const withURLDataContainerComponent = withRouter(ProfileContainer);
+const LoginRedirect = withLoginRedirect(ProfileContainer);
+const withURLDataContainerComponent = withRouter(LoginRedirect);
 
 export default connect(
     mapStateToProps,

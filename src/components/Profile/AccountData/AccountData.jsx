@@ -41,7 +41,6 @@ const AccountData = (props) => {
                                 .filter(entry => entry[1])
                                 .map(entry => {
                                     const imgPath = images[entry[0]];
-                                    console.log(entry[1])
                                     return <a href={entry[1]}>
                                         <img src={imgPath} alt={entry[0]} />
                                     </a>

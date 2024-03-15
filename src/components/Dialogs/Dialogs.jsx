@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Dialogs.module.css'
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import MessagesPanelContainer from "./MessagesPanel/MessagesPanelContainer";
 import DialogItemContainer from "./DialogItem/DialogItemContainer";
 
@@ -19,10 +19,6 @@ const Dialogs = (props) => {
             } />
         );
     });
-
-    if (!props.isLoggedIn) {
-        return <Navigate to={"/login"} />
-    }
 
     return (
         <main className={s.dialogs}>
