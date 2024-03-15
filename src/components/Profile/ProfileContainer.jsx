@@ -5,6 +5,7 @@ import { addPost, changeTextInput, getUserProfile } from "../../redux/profileRed
 import { withRouter } from "../../tools/react-router-legacy"
 import defaultUser from '../../img/defaultUser.svg';
 import withLoginRedirect from '../hoc/withLoginRedirect';
+import { compose } from 'redux';
 
 class ProfileContainer extends Component {
     componentDidMount() {
@@ -35,14 +36,16 @@ function mapStateToProps(state) {
         posts: state.profile.posts
     };
 }
-const LoginRedirect = withLoginRedirect(ProfileContainer);
-const withURLDataContainerComponent = withRouter(LoginRedirect);
 
-export default connect(
-    mapStateToProps,
-    {
-        addPost,
-        changeTextInput,
-        getUserProfile,
-    }
-)(withURLDataContainerComponent);
+export default compose(
+    withLoginRedirect,
+    withRouter,
+    connect(
+        mapStateToProps,
+        {
+            addPost,
+            changeTextInput,
+            getUserProfile,
+        }
+    )
+)(ProfileContainer);

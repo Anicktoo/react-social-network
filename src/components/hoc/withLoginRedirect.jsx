@@ -12,14 +12,13 @@ const withLoginRedirect = (Component) => {
         return <Component {...props} />
     };
 
-
-    return LoginRedirect;
-};
-
-const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.auth.isLoggedIn,
+    const mapStateToProps = (state) => {
+        return {
+            isLoggedIn: state.auth.isLoggedIn,
+        };
     };
+
+    return connect(mapStateToProps)(LoginRedirect);
 };
 
-export default connect(mapStateToProps)(withLoginRedirect);
+export default withLoginRedirect;

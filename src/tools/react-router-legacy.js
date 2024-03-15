@@ -12,7 +12,7 @@ export function withRouter(Component) {
         return (
             <Component
                 {...props}
-                router={{location, navigate, params}}
+                router={{ location, navigate, params }}
             />
         );
     }

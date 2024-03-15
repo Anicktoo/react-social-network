@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Dialogs from './Dialogs';
 import withLoginRedirect from '../hoc/withLoginRedirect';
+import { compose } from 'redux';
 
 const mapStateToProps = (state, props) => {
     return {
@@ -8,8 +9,7 @@ const mapStateToProps = (state, props) => {
     };
 }
 
-const withRedirect = withLoginRedirect(Dialogs);
-
-const DialogsContainer = connect(mapStateToProps)(withRedirect);
-
-export default DialogsContainer;
+export default compose(
+    withLoginRedirect,
+    connect(mapStateToProps)
+)(Dialogs);
