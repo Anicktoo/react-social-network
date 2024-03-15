@@ -23,7 +23,7 @@ const App = () => {
                                     <ProfileContainer />
                                 }
                             />
-                            <Route path="/dialogs"
+                            <Route path="/dialogs/*"
                                 element={
                                     <DialogsContainer />
                                 }

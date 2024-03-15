@@ -1,6 +1,7 @@
 import React from "react";
 import s from './AccountData.module.css'
 import { classNameFunction } from "../../../tools/classNameCompiler";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const cName = classNameFunction(s);
 
@@ -35,7 +36,7 @@ const AccountData = (props) => {
                         {props.fullName}
                     </span>
                     <div className={cName(['info-data-additional'])}>
-                        <span className={cName(['info-about'])}>{props.aboutMe}</span>
+                        <ProfileStatus aboutMe={props.aboutMe} />
                         <div className={cName(['info-contacts'])}>
                             {Object.entries(props.contacts)
                                 .filter(entry => entry[1])
