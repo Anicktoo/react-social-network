@@ -36,7 +36,7 @@ const AccountData = (props) => {
                         {props.fullName}
                     </span>
                     <div className={cName(['info-data-additional'])}>
-                        <ProfileStatus aboutMe={props.aboutMe} />
+                        <ProfileStatus aboutMe={props.aboutMe} updateUserStatus={props.updateUserStatus} />
                         <div className={cName(['info-contacts'])}>
                             {Object.entries(props.contacts)
                                 .filter(entry => entry[1])

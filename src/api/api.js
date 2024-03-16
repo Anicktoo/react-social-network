@@ -29,7 +29,15 @@ export const profileAPI = {
     getProfile: async (userId) => {
         const response = await axiosInstance.get(`profile/${userId}`);
         return response.data;
-    }
+    },
+    getStatus: async (userId) => {
+        const response = await axiosInstance.get(`profile/status/${userId}`);
+        return response.data;
+    },
+    setStatus: async (status) => {
+        const response = await axiosInstance.put(`profile/status`, { status });
+        return response.data;
+    },
 };
 
 export const followAPI = {

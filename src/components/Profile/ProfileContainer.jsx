@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Profile from "./Profile";
-import { addPost, changeTextInput, getUserProfile } from "../../redux/profileReducer";
+import { addPost, changeTextInput, getUserProfile, getUserStatus, updateUserStatus } from "../../redux/profileReducer";
 import { withRouter } from "../../tools/react-router-legacy"
 import defaultUser from '../../img/defaultUser.svg';
 import withLoginRedirect from '../hoc/withLoginRedirect';
@@ -9,8 +9,9 @@ import { compose } from 'redux';
 
 class ProfileContainer extends Component {
     componentDidMount() {
-        const userId = this.props.router.params.userId ?? 2;
+        const userId = this.props.router.params.userId ?? 30900;
         this.props.getUserProfile(userId);
+        this.props.getUserStatus(userId);
     }
 
     render() {
@@ -46,6 +47,8 @@ export default compose(
             addPost,
             changeTextInput,
             getUserProfile,
+            getUserStatus,
+            updateUserStatus,
         }
     )
 )(ProfileContainer);

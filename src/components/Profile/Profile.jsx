@@ -10,7 +10,8 @@ const Profile = (props) => {
     return (
         <main className={cName(['profile'])}>
             <AccountData {...props.accountInfo}
-                {...props.common} />
+                {...props.common}
+                updateUserStatus={props.updateUserStatus} />
             <NewPost {...props.newPost}
                 {...props.common}
                 addPost={props.addPost}

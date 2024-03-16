@@ -9,7 +9,9 @@
     --dark-grey-color: #a2a2a2;
     --text-color: #464646;
     --main-color: #8e1fc0;
+    --main-color-filter: brightness(0) saturate(100%) invert(17%) sepia(80%) saturate(3000%) hue-rotate(273deg) brightness(103%) contrast(103%);
     --secondary-color: #b431f5;
+    --secondary-color-filter: brightness(0) saturate(100%) invert(23%) sepia(36%) saturate(7313%) hue-rotate(272deg) brightness(104%) contrast(92%);
     --invisible-color: rgb(1 1 1 / 0%);
     --layout-width: 1000px;
     --personal-layout-width: 200px;

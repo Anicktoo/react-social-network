@@ -2,10 +2,11 @@ import { profileAPI, wallpaperAPI } from "../api/api";
 import getRandomHexColor from "../tools/getRandomHexColor";
 
 export const actions = Object.freeze({
+    ADD_POST: 'ADD_POST',
+    SET_STATUS: 'SET_STATUS',
     SET_USER_PROFILE: 'SET_USER_PROFILE',
     SET_USER_WALLPAPER: 'SET_USER_WALLPAPER',
-    ADD_POST: 'ADD_POST',
-    CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT'
+    CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT',
 });
 
 const defaultState = {
@@ -87,7 +88,7 @@ const profilesReducer = (state = defaultState, action) => {
                         likes: 0,
                     }
                 ]
-            }
+            };
         }
         case actions.SET_USER_PROFILE: {
             return {
@@ -96,10 +97,11 @@ const profilesReducer = (state = defaultState, action) => {
                     ...action.profile,
                     photos: {
                         ...action.profile.photos,
-                        wallpaper: state.accountInfo.photos.wallpaper
-                    }
+                        wallpaper: state.accountInfo.photos.wallpaper,
+                    },
+                    aboutMe: state.accountInfo.aboutMe,
                 }
-            }
+            };
         }
         case actions.SET_USER_WALLPAPER: {
             return {
@@ -111,7 +113,16 @@ const profilesReducer = (state = defaultState, action) => {
                         wallpaper: action.wallpaper
                     }
                 }
-            }
+            };
+        }
+        case actions.SET_STATUS: {
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    aboutMe: action.status,
+                }
+            };
         }
         default: {
             return state;
@@ -120,8 +131,8 @@ const profilesReducer = (state = defaultState, action) => {
 };
 
 function nextItemId(items) {
-    const maxId = items.reduce((maxId, item) => Math.max(item.id, maxId), -1)
-    return maxId + 1
+    const maxId = items.reduce((maxId, item) => Math.max(item.id, maxId), -1);
+    return maxId + 1;
 }
 
 export const addPost = () => ({
@@ -134,6 +145,10 @@ export const changeTextInput = (text) => ({
 export const setUserProfile = (profile) => ({
     type: actions.SET_USER_PROFILE,
     profile,
+});
+export const setUserStatus = (status) => ({
+    type: actions.SET_STATUS,
+    status,
 });
 export const setUserWallpaper = (wallpaper) => ({
     type: actions.SET_USER_WALLPAPER,
@@ -149,5 +164,19 @@ export const getUserProfile = (userId) => (dispatch) => {
         dispatch(setUserWallpaper(data))
     });
 };
+
+export const getUserStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(data => {
+        dispatch(setUserStatus(data));
+    });
+};
+
+export const updateUserStatus = (status) => (dispatch) => {
+    profileAPI.setStatus(status).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setUserStatus(status));
+        }
+    })
+}
 
 export default profilesReducer;
