@@ -2,6 +2,7 @@ import React from "react";
 import s from './AccountData.module.css'
 import { classNameFunction } from "../../../tools/classNameCompiler";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import Preloader from "../../common/Preloader/Preloader";
 
 const cName = classNameFunction(s);
 
@@ -13,12 +14,15 @@ function importAll(r) {
 const images = importAll(require.context('../../../img/socials', false, /\.(png|jpe?g|svg)$/));
 
 const AccountData = (props) => {
-    const wallpaper = props.photos.wallpaper ?
-        <img
-            src={props.photos.wallpaper}
-            alt="user's background wallpaper" />
+    const wallpaper = props.isFetching ?
+        <Preloader />
         :
-        <div className={cName(['wallpaper-default'])}></div>
+        props.photos.wallpaper ?
+            <img
+                src={props.photos.wallpaper}
+                alt="user's background wallpaper" />
+            :
+            <div className={cName(['wallpaper-default'])}></div>
         ;
 
     return (
@@ -28,26 +32,39 @@ const AccountData = (props) => {
             </div>
             <div className={cName(['info-container'])}>
                 <div className={cName(['avatar'])}>
-                    <img src={props.photos.large}
-                        alt="user's avatar"></img>
+                    {props.isFetching ?
+                        <Preloader />
+                        :
+                        <img src={props.photos.large}
+                            alt="user's avatar"></img>}
                 </div>
                 <div className={cName(['info'])}>
-                    <span className={cName(['info-header', 'name'])}>
-                        {props.fullName}
-                    </span>
+                    {props.isFetching ?
+                        <Preloader content={'#'.repeat(20)} />
+                        :
+                        <span className={cName(['info-header', 'name'])}>
+                            {props.fullName}
+                        </span>
+                    }
                     <div className={cName(['info-data-additional'])}>
-                        <ProfileStatus aboutMe={props.aboutMe} updateUserStatus={props.updateUserStatus} />
-                        <div className={cName(['info-contacts'])}>
-                            {Object.entries(props.contacts)
-                                .filter(entry => entry[1])
-                                .map(entry => {
-                                    const imgPath = images[entry[0]];
-                                    return <a href={entry[1]}>
-                                        <img src={imgPath} alt={entry[0]} />
-                                    </a>
-                                })
-                            }
-                        </div>
+                        {props.isFetching ?
+                            <Preloader content={'#'.repeat(20)} />
+                            :
+                            <>
+                                <ProfileStatus aboutMe={props.aboutMe} updateUserStatus={props.updateUserStatus} />
+                                <div className={cName(['info-contacts'])}>
+                                    {Object.entries(props.contacts)
+                                        .filter(entry => entry[1])
+                                        .map(entry => {
+                                            const imgPath = images[entry[0]];
+                                            return <a href={entry[1]}>
+                                                <img src={imgPath} alt={entry[0]} />
+                                            </a>
+                                        })
+                                    }
+                                </div>
+                            </>
+                        }
                     </div>
                 </div>
             </div>

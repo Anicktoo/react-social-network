@@ -29,6 +29,7 @@ function mapStateToProps(state) {
                 large: state.profile.accountInfo.photos?.large || defaultUser,
                 wallpaper: state.profile.accountInfo.photos?.wallpaper,
             },
+            isFetching: state.profile.accountInfo.isFetching,
         },
         accountInfo: state.profile.accountInfo,
         newPost: {

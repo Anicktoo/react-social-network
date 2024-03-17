@@ -1,0 +1,32 @@
+.preloader {
+    position: relative;
+    display: block;
+    background-color: var(--default-grey-color);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    color: transparent;
+    user-select: none;
+}
+
+.preloader::after {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(100deg, rgba(255,255,255,0) 1%, rgba(255,255,255,0) 30%, rgba(255,255,255,1) 49%, rgba(255,255,255,1) 51%, rgba(255,255,255,0) 70%, rgba(225,225,225,0) 99%);
+    animation: gradient-move 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes gradient-move {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
