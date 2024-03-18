@@ -22,7 +22,17 @@ export const authAPI = {
     me: async () => {
         const resposne = await axiosInstance.get(`auth/me`);
         return resposne.data;
-    }
+    },
+    login: async (email, password, rememberMe, captcha) => {
+        const resposne = await axiosInstance.post(`auth/login`, {
+            email, password, rememberMe, captcha
+        });
+        return resposne.data;
+    },
+    getCaptcha: async () => {
+        const resposne = await axiosInstance.get(`security/get-captcha-url`);
+        return resposne.data;
+    },
 };
 
 export const profileAPI = {

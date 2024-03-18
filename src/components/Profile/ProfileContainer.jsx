@@ -9,7 +9,7 @@ import { compose } from 'redux';
 
 class ProfileContainer extends Component {
     componentDidMount() {
-        const userId = this.props.router.params.userId ?? 30900;
+        const userId = this.props.router.params.userId ?? this.props.userId;
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
     }
@@ -23,6 +23,7 @@ class ProfileContainer extends Component {
 
 function mapStateToProps(state) {
     return {
+        userId: state.auth.id,
         common: {
             photos: {
                 small: state.profile.accountInfo.photos?.small || defaultUser,

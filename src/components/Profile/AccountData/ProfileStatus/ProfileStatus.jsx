@@ -37,6 +37,12 @@ class ProfileStatus extends React.Component {
         });
     }
 
+    componentDidMount() {
+        //preloading images
+        const img = new Image();
+        img.src = confirmIcon;
+    }
+
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.aboutMe !== this.props.aboutMe) {
             this.setState({
