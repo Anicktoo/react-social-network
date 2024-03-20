@@ -6,7 +6,6 @@ import DialogItemContainer from "./DialogItem/DialogItemContainer";
 
 
 const Dialogs = (props) => {
-
     const dialogItems = [];
     const messageContainers = [];
     props.dialogs?.forEach((el) => {

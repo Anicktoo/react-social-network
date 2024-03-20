@@ -1,0 +1,47 @@
+.form-control {
+    position: relative;
+    width: 100%;
+}
+
+.error input {
+    border: 1px solid red;
+}
+
+.error textarea::placeholder {
+    color: red;
+}
+
+.error-message {
+    position: absolute;
+    left: calc(100% + 10px);
+    width: max-content;
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.error-message::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    background-color: red;
+    left: -4px;
+    top: 9px;
+}
+
+.text-area {
+    vertical-align: middle;
+    box-sizing: content-box;
+    resize: none;
+    width: 100%;
+    padding: 1px 0;
+    word-break: break-word;
+    border: none;
+}
+
+.text-area:focus-visible {
+    outline: none;
+}

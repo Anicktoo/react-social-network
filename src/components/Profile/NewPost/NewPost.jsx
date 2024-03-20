@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './NewPost.module.css';
-import { classNameFunction } from "../../../tools/classNameCompiler";
+import { classNameFunction } from "../../../utils/classNameCompiler";
 import NewPostFormContainer from './NewPostForm/NewPostFormContainer';
 
 const cName = classNameFunction(s);

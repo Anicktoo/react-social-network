@@ -1,7 +1,7 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import s from "./DialogItem.module.css"
-import {classNameFunction} from "../../../tools/classNameCompiler";
+import { classNameFunction } from "../../../utils/classNameCompiler";
 
 const cName = classNameFunction(s);
 
@@ -10,9 +10,9 @@ const DialogItem = (props) => {
 
     return (
         <NavLink to={path}
-                 className={(nd) => cName(['dialog'], nd)}>
+            className={(nd) => cName(['dialog'], nd)}>
             <div className={s.imgContainer}>
-                <img className={s.userImg} src={props.userImg} alt="user"/>
+                <img className={s.userImg} src={props.userImg} alt="user" />
             </div>
             <div className={s.dialogText}>
                 <div className={s.preview}>

@@ -1,5 +1,5 @@
 import { profileAPI, wallpaperAPI } from "../api/api";
-import getRandomHexColor from "../tools/getRandomHexColor";
+import getRandomHexColor from "../utils/getRandomHexColor";
 
 export const actions = Object.freeze({
     ADD_POST: 'ADD_POST',

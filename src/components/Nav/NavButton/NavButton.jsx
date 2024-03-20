@@ -1,7 +1,7 @@
 import React from "react";
 import s from './NavButton.module.css'
-import {NavLink} from "react-router-dom";
-import {classNameFunction} from "../../../tools/classNameCompiler";
+import { NavLink } from "react-router-dom";
+import { classNameFunction } from "../../../utils/classNameCompiler";
 
 const cName = classNameFunction(s);
 const NavButton = (props) => {

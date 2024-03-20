@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Profile.module.css';
-import { classNameFunction } from "../../tools/classNameCompiler";
+import { classNameFunction } from "../../utils/classNameCompiler";
 import AccountData from "./AccountData/AccountData";
 import NewPostContainer from "./NewPost/NewPostContainer";
 import Posts from "./Posts/Posts";

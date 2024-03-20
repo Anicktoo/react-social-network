@@ -1,5 +1,5 @@
 import s from "./Users.module.css";
-import { classNameFunction } from "../../tools/classNameCompiler";
+import { classNameFunction } from "../../utils/classNameCompiler";
 import UserItem from "./Usertem/UserItem";
 
 const cName = classNameFunction(s);

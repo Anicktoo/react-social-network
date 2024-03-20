@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Profile from "./Profile";
-import { addPost, changeTextInput, getUserProfile, getUserStatus, updateUserStatus } from "../../redux/profileReducer";
-import { withRouter } from "../../tools/react-router-legacy"
+import { getUserProfile, getUserStatus, updateUserStatus } from "../../redux/profileReducer";
+import { withRouter } from "../../utils/react-router-legacy"
 import defaultUser from '../../img/defaultUser.svg';
 import withLoginRedirect from '../hoc/withLoginRedirect';
 import { compose } from 'redux';

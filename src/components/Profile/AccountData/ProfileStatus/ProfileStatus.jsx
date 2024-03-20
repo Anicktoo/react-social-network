@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileStatus.module.css';
-import { classNameFunction } from '../../../../tools/classNameCompiler';
+import { classNameFunction } from '../../../../utils/classNameCompiler';
 import confirmIcon from '../../../../img/uiActions/confirm.svg';
 import Preloader from './../../../common/Preloader/Preloader';
 

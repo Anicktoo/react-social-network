@@ -1,26 +1,15 @@
 import s from './AddMessageForm.module.css';
 import sendIcon from '../../../../img/uiActions/send.svg';
-import TextareaAutosize from "react-textarea-autosize";
 import { Field } from 'redux-form';
-
-const textareaAutosize = (propsInner) => {
-    return <TextareaAutosize
-        value={propsInner.input.value}
-        className={s.textInput}
-        maxRows={12}
-        placeholder="Write your message..."
-        onChange={propsInner.input.onChange}
-        onBlur={propsInner.input.onBlur}
-        onFocus={propsInner.input.onFocus}
-    />
-}
+import { TextArea } from '../../../common/FormsControls/FormsControls';
+import { requiredField } from '../../../../utils/formValidators/validators';
 
 const AddMessageForm = (props) => {
     return (
         <form onKeyUp={(e) => { props.onKeyUp(e, props.handleSubmit) }} onSubmit={props.handleSubmit}>
             <div className={s.writingPanel}>
                 <div className={s.inputWrapper}>
-                    <Field name="newMessageBody" component={textareaAutosize} />
+                    <Field name="newMessageBody" component={TextArea} maxRows={12} placeholder="Write your message..." validate={[requiredField]} />
                 </div>
                 <button className={s.sendButtonContainer}>
                     <img src={sendIcon} alt="" />

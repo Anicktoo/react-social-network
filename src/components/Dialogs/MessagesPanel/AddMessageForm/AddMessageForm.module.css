@@ -2,6 +2,7 @@
 .writingPanel {
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     background-color: var(--light-grey-color);
     border-top: 1px solid var(--default-grey-color);
     padding: var(--writing-panel-padding);
@@ -20,28 +21,9 @@
     overflow: hidden;
 }
 
-.textInput {
-    resize: none;
-    width: 100%;
-    height: min-content;
-    word-break: break-word;
-    border: none;
-    padding: 0;
-}
-
-.textInput:focus-visible {
-    outline: none;
-}
-
-.textInput:focus-visible + .placeholder {
-    opacity: 0.6;
-}
-
 .sendButtonContainer {
     cursor: pointer;
     flex: 0 0 var(--input-warpper-height);
-    height: var(--input-warpper-height);
-    width: 100%;
     padding: 8px;
 }
 

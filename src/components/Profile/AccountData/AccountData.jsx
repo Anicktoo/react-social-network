@@ -1,6 +1,6 @@
 import React from "react";
 import s from './AccountData.module.css'
-import { classNameFunction } from "../../../tools/classNameCompiler";
+import { classNameFunction } from "../../../utils/classNameCompiler";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import Preloader from "../../common/Preloader/Preloader";
 
