@@ -1,26 +1,32 @@
 import MessagesPanel from "./MessagesPanel";
-import { changeNewMessageTemplateText, sendMessage } from "../../../redux/dialogsReducer";
 import { connect } from "react-redux";
+import { sendMessage } from "../../../redux/dialogsReducer";
+import { Component } from "react";
+import { compose } from "redux";
 
-const mapStateToProps = (state, props) => {
+class MessagesPanelContainer extends Component {
 
-    const dialogInfo = props.dialogItemInfo;
+    onSubmit = (formData) => {
+        this.props.sendMessage(this.props.id, formData.newMessageBody);
+    }
 
-    return {
-        id: dialogInfo.id,
-        messageText: dialogInfo.template.text,
-        messages: dialogInfo.messages,
-        userName: dialogInfo.userName,
-        userImg: dialogInfo.userImg,
-        myImage: state.profile.accountInfo.photos.small,
-        myName: state.profile.accountInfo.fullName,
-    };
+    render() {
+        return <MessagesPanel {...this.props} onSubmit={this.onSubmit} />
+    }
 }
 
-const MessagesPanelContainer = connect(mapStateToProps, {
-    sendMessage,
-    changeNewMessageTemplateText
-})(MessagesPanel);
+const mapStateToProps = (state, props) => {
+    return {
+        ...props.dialogItemInfo,
+        myImage: state.auth.image,
+        myName: state.auth.login,
+    };
+};
 
-export default MessagesPanelContainer;
+export default compose(
+    connect(mapStateToProps, {
+        sendMessage
+    })
+)(MessagesPanelContainer);
+
 

@@ -6,7 +6,6 @@ export const actions = Object.freeze({
     SET_STATUS: 'SET_STATUS',
     SET_USER_PROFILE: 'SET_USER_PROFILE',
     SET_USER_WALLPAPER: 'SET_USER_WALLPAPER',
-    CHANGE_NEW_POST_TEMPLATE_TEXT: 'CHANGE_NEW_POST_TEMPLATE_TEXT',
     SET_FETCHING_STATUS: 'SET_FETCHING_STATUS',
 });
 
@@ -30,9 +29,6 @@ const defaultState = {
             large: null,
             wallpaper: null,
         }
-    },
-    newPostTemplate: {
-        text: '',
     },
     posts: [
         {
@@ -62,34 +58,17 @@ const defaultState = {
 
 const profilesReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case actions.CHANGE_NEW_POST_TEMPLATE_TEXT: {
-            return {
-                ...state,
-                newPostTemplate: {
-                    ...state.newPostTemplate,
-                    text: action.text
-                }
-            };
-        }
         case actions.ADD_POST: {
-            const trimmedText = state.newPostTemplate.text.trim();
-            if (trimmedText === '') {
-                return state;
-            }
             return {
                 ...state,
-                newPostTemplate: {
-                    ...state.newPostTemplate,
-                    text: ''
-                },
                 posts: [
                     ...state.posts,
                     {
                         id: nextItemId(state.posts),
-                        text: trimmedText,
+                        text: action.postText,
                         likes: 0,
-                    }
-                ]
+                    },
+                ],
             };
         }
         case actions.SET_USER_PROFILE: {
@@ -102,7 +81,7 @@ const profilesReducer = (state = defaultState, action) => {
                         wallpaper: state.accountInfo.photos.wallpaper,
                     },
                     aboutMe: state.accountInfo.aboutMe,
-                }
+                },
             };
         }
         case actions.SET_USER_WALLPAPER: {
@@ -112,9 +91,9 @@ const profilesReducer = (state = defaultState, action) => {
                     ...state.accountInfo,
                     photos: {
                         ...state.accountInfo.photos,
-                        wallpaper: action.wallpaper
-                    }
-                }
+                        wallpaper: action.wallpaper,
+                    },
+                },
             };
         }
         case actions.SET_STATUS: {
@@ -123,7 +102,7 @@ const profilesReducer = (state = defaultState, action) => {
                 accountInfo: {
                     ...state.accountInfo,
                     aboutMe: action.status,
-                }
+                },
             };
         }
         case actions.SET_FETCHING_STATUS: {
@@ -132,7 +111,7 @@ const profilesReducer = (state = defaultState, action) => {
                 accountInfo: {
                     ...state.accountInfo,
                     isFetching: action.isFetching,
-                }
+                },
             }
         }
         default: {
@@ -146,12 +125,9 @@ function nextItemId(items) {
     return maxId + 1;
 }
 
-export const addPost = () => ({
-    type: actions.ADD_POST
-});
-export const changeTextInput = (text) => ({
-    type: actions.CHANGE_NEW_POST_TEMPLATE_TEXT,
-    text,
+export const savePost = (postText) => ({
+    type: actions.ADD_POST,
+    postText,
 });
 export const setUserProfile = (profile) => ({
     type: actions.SET_USER_PROFILE,
@@ -169,6 +145,13 @@ export const setFetchingStatus = (isFetching) => ({
     type: actions.SET_FETCHING_STATUS,
     isFetching
 });
+
+export const addPost = (postText) => (dispatch) => {
+    const trimmedText = postText.trim();
+    if (trimmedText === '')
+        return;
+    dispatch(savePost(trimmedText));
+};
 
 export const getUserProfile = (userId) => (dispatch) => {
     dispatch(setFetchingStatus(true));

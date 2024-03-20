@@ -7,7 +7,7 @@ const Message = (props) => {
             <div className={s.messageImgContainer}>
                 <img
                     src={props.userImg}
-                    alt="user"/>
+                    alt="user" />
             </div>
             <div className={s.textContainer}>
                 <div className={s.textHeader}>
@@ -15,7 +15,7 @@ const Message = (props) => {
                 </div>
                 <div className={s.textBlock}>
                     <p>
-                        {props.message}
+                        {props.text}
                     </p>
                 </div>
             </div>

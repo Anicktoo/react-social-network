@@ -10,7 +10,6 @@ class LoginContainer extends Component {
     }
 
     render() {
-        console.log(this.props.captcha)
         return <Login {...this.props} onSubmit={this.onSubmit} />
     }
 }

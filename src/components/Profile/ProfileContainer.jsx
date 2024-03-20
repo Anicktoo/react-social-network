@@ -33,9 +33,6 @@ function mapStateToProps(state) {
             isFetching: state.profile.accountInfo.isFetching,
         },
         accountInfo: state.profile.accountInfo,
-        newPost: {
-            text: state.profile.newPostTemplate.text,
-        },
         posts: state.profile.posts
     };
 }
@@ -46,8 +43,6 @@ export default compose(
     connect(
         mapStateToProps,
         {
-            addPost,
-            changeTextInput,
             getUserProfile,
             getUserStatus,
             updateUserStatus,

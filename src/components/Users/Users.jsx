@@ -85,8 +85,8 @@ const Users = (props) => {
         </div>);
     });
 
-    return (<main className={s.friends}>
-        <div className={cName(['friendsContainer', 'stdBlock'])}>
+    return (<main className={s.users}>
+        <div className={cName(['usersContainer', 'stdBlock'])}>
             <header className={s.header}>
                 <span>All Users</span>
                 <div className={cName(['page-container'])}>

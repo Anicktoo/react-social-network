@@ -60,12 +60,12 @@ class ProfileStatus extends React.Component {
                     :
                     this.state.editMode ?
                         <>
-                            <input autoFocus onBlur={this.closeInput} onInput={this.updateInputText} onKeyUp={(e) => e.key === 'Enter' && this.confirmInputText()} className={cName('about-input')} type="text" value={this.state.inputText} />
+                            <input autoFocus onBlur={this.closeInput} onInput={this.updateInputText} onKeyUp={(e) => e.key === 'Enter' && this.confirmInputText()} className={cName('about-input')} type="text" value={this.state.inputText || ''} />
                             <button onMouseDown={(e) => { e.preventDefault() }} onClick={this.confirmInputText} className={cName('confirm')}><img src={confirmIcon} alt="confirm" /></button>
                         </>
                         :
                         <>
-                            <span onClick={this.openInput} className={cName('about')}>{this.props.aboutMe}</span>
+                            <span onClick={this.openInput} className={cName('about')}>{this.props.aboutMe || 'Add your status'}</span>
                         </>
 
                 }

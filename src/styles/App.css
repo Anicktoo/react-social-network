@@ -23,6 +23,8 @@
     --inner-wrapper-height: calc(100vh - var(--header-height) - var(--gap-size));
     --content-height: calc(var(--inner-wrapper-height) - var(--gap-size));
     --dialog-item-height: 60px;
+    --input-padding: 8px 20px;
+    --input-radius: 5px;
 }
 
 * {
@@ -32,12 +34,39 @@
     line-height: var(--line-height);
     color: var(--text-color);
     box-sizing: border-box;
+    accent-color: var(--main-color);
 }
+
+:focus-visible {
+    outline: 2px solid var(--main-color);
+}
+
+::selection {
+    color: white;
+    background: var(--main-color);
+  }
 
 body {
     background-color: var(--background-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* input {
+} */
+
+input[type="checkbox"] {
+    margin-right: 0.5em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    background-color: var(--light-grey-color);
+    border: var(--block-border);
+    padding: var(--input-padding);
+    border-radius: var(--input-radius);
 }
 
 .app-wrapper {
@@ -55,10 +84,12 @@ body {
 }
 
 .content {
+    display: flex;
     flex: 0 0 80%;
     max-width: 80%;
     padding-bottom: var(--gap-size);
     height: max-content;
+    min-height: var(--content-height);
 }
 
 .stdBlock {
@@ -70,11 +101,11 @@ body {
 
 .mainButton {
     cursor: pointer;
-    padding: 6px 20px;
+    padding: var(--input-padding);
     width: fit-content;
     color: white;
     background-color: var(--main-color);
-    border-radius: 5px;
+    border-radius: var(--input-radius);
     border: none;
 }
 

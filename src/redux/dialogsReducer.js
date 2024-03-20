@@ -1,6 +1,5 @@
 export const actions = Object.freeze({
     SEND_MESSAGE: 'SEND_MESSAGE',
-    CHANGE_NEW_MESSAGE_TEMPLATE_TEXT: 'CHANGE_NEW_MESSAGE_TEMPLATE_TEXT'
 });
 
 const defaultState = {
@@ -21,9 +20,6 @@ const defaultState = {
                     your: false,
                 },
             ],
-            template: {
-                text: ''
-            }
         },
         {
             id: 2,
@@ -36,9 +32,6 @@ const defaultState = {
                     your: false
                 }
             ],
-            template: {
-                text: ''
-            }
         },
         {
             id: 4,
@@ -51,48 +44,24 @@ const defaultState = {
                     your: false
                 },
             ],
-            template: {
-                text: ''
-            }
         },
     ],
 }
 
 const dialogsReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case actions.CHANGE_NEW_MESSAGE_TEMPLATE_TEXT: {
-            return {
-                ...state,
-                dialogs: state.dialogs.map(dialog => {
-                    if (dialog.id !== action.id) return dialog;
-                    return {
-                        ...dialog,
-                        template: {
-                            ...dialog.template,
-                            text: action.text
-                        }
-                    }
-                }),
-            }
-        }
         case actions.SEND_MESSAGE: {
             return {
                 ...state,
                 dialogs: state.dialogs.map(dialog => {
                     if (dialog.id !== action.id) return dialog;
-                    const trimmedMessage = dialog.template.text.trim();
-                    if (trimmedMessage === '') return dialog;
                     return {
                         ...dialog,
                         messages: [...dialog.messages, {
                             id: nextItemId(dialog.messages),
-                            text: trimmedMessage,
+                            text: action.text,
                             your: true
                         }],
-                        template: {
-                            ...dialog.template,
-                            text: ''
-                        }
                     }
                 })
             };
@@ -108,14 +77,17 @@ function nextItemId(items) {
     return maxId + 1;
 }
 
-export const sendMessage = (id) => ({
+export const saveMessage = (id, text) => ({
     type: actions.SEND_MESSAGE,
-    id: id
-})
-export const changeNewMessageTemplateText = (id, text) => ({
-    type: actions.CHANGE_NEW_MESSAGE_TEMPLATE_TEXT,
-    id: id,
-    text: text,
-})
+    id,
+    text,
+});
+
+export const sendMessage = (id, newMessageBody) => (dispatch) => {
+    const trimmedMessage = newMessageBody.trim();
+    if (trimmedMessage === '')
+        return;
+    dispatch(saveMessage(id, trimmedMessage));
+};
 
 export default dialogsReducer;

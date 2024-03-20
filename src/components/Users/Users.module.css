@@ -1,4 +1,8 @@
-.friendsContainer {
+.users {
+    width: 100%;
+}
+
+.usersContainer {
     display: flex;
     flex-direction: column;
 }

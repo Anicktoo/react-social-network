@@ -1,0 +1,27 @@
+.new-post-wrapper {
+    position: relative;
+    flex: 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.text-area {
+    box-sizing: content-box;
+    resize: none;
+    width: 100%;
+    min-height: var(--line-height);
+    padding: 5px 0;
+    overflow: hidden;
+    word-break: break-word;
+    border: none;
+}
+
+.text-area:focus-visible {
+    outline: none;
+}
+
+.text-area:focus-visible + .placeholder {
+    opacity: 0.6;
+}

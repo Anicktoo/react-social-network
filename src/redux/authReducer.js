@@ -48,7 +48,6 @@ export const setCaptcha = (captcha) => ({ type: actions.SET_CAPTCHA, captcha });
 
 export const getAuthData = () => (dispatch) => {
     authAPI.me().then(data => {
-        console.log(data)
         if (data.resultCode === 0) {
             dispatch(setAuthUserData(data.data));
             dispatch(getUserImage(data.data.id));
