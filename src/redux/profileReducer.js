@@ -6,7 +6,6 @@ export const actions = Object.freeze({
     SET_STATUS: 'SET_STATUS',
     SET_USER_PROFILE: 'SET_USER_PROFILE',
     SET_USER_WALLPAPER: 'SET_USER_WALLPAPER',
-    SET_FETCHING_STATUS: 'SET_FETCHING_STATUS',
 });
 
 const defaultState = {
@@ -105,15 +104,6 @@ const profilesReducer = (state = defaultState, action) => {
                 },
             };
         }
-        case actions.SET_FETCHING_STATUS: {
-            return {
-                ...state,
-                accountInfo: {
-                    ...state.accountInfo,
-                    isFetching: action.isFetching,
-                },
-            }
-        }
         default: {
             return state;
         }
@@ -141,10 +131,6 @@ export const setUserWallpaper = (wallpaper) => ({
     type: actions.SET_USER_WALLPAPER,
     wallpaper,
 });
-export const setFetchingStatus = (isFetching) => ({
-    type: actions.SET_FETCHING_STATUS,
-    isFetching
-});
 
 export const addPost = (postText) => (dispatch) => {
     const trimmedText = postText.trim();
@@ -154,18 +140,12 @@ export const addPost = (postText) => (dispatch) => {
 };
 
 export const getUserProfile = (userId) => (dispatch) => {
-    dispatch(setFetchingStatus(true));
-
     const hex = getRandomHexColor(userId);
-    const profilePromise = profileAPI.getProfile(userId).then(data => {
+    profileAPI.getProfile(userId).then(data => {
         dispatch(setUserProfile(data));
     });
-    const wallpaperPromise = wallpaperAPI.getWallpaper(hex).then(data => {
+    wallpaperAPI.getWallpaper(hex).then(data => {
         dispatch(setUserWallpaper(data))
-    });
-
-    Promise.allSettled([profilePromise, wallpaperPromise]).then(results => {
-        dispatch(setFetchingStatus(false));
     });
 };
 

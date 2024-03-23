@@ -3,9 +3,9 @@ import { classNameFunction } from "../../../utils/classNameCompiler";
 
 const cName = classNameFunction(s);
 
-const Preloader = (props) => {
-    return <div className={cName(['preloader'])}>
-        {props.content}
+const Preloader = ({ content, styles, classes, ...props }) => {
+    return <div style={styles} className={cName(['preloader'].concat(classes))}>
+        {content}
     </div >
 }
 

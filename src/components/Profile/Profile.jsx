@@ -11,13 +11,16 @@ const Profile = (props) => {
         <main className={cName(['profile'])}>
             <AccountData {...props.accountInfo}
                 {...props.common}
-                updateUserStatus={props.updateUserStatus} />
+                updateUserStatus={props.updateUserStatus}
+                isFetching={props.isFetching} />
             <NewPostContainer {...props.newPost}
                 {...props.common}
                 addPost={props.addPost}
-                changeTextInput={props.changeTextInput} />
+                changeTextInput={props.changeTextInput}
+                isFetching={props.isFetching} />
             <Posts posts={props.posts}
-                {...props.common} />
+                {...props.common}
+                isFetching={props.isFetching} />
         </main>
     );
 }

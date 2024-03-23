@@ -21,7 +21,7 @@ const authReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isLoggedIn: true,
+                isLoggedIn: action.isLoggedIn,
             };
         }
         case actions.SET_IMAGE: {
@@ -42,14 +42,14 @@ const authReducer = (state = defaultState, action) => {
     }
 }
 
-export const setAuthUserData = (data) => ({ type: actions.SET_DATA, data });
+export const setAuthUserData = (id, email, login, isLoggedIn) => ({ type: actions.SET_DATA, data: { id, email, login }, isLoggedIn });
 export const setUserImage = (image) => ({ type: actions.SET_IMAGE, image });
 export const setCaptcha = (captcha) => ({ type: actions.SET_CAPTCHA, captcha });
 
 export const getAuthData = () => (dispatch) => {
     authAPI.me().then(data => {
         if (data.resultCode === 0) {
-            dispatch(setAuthUserData(data.data));
+            dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true));
             dispatch(getUserImage(data.data.id));
         }
     });
@@ -64,12 +64,21 @@ const getUserImage = (userId) => (dispatch) => {
 export const login = (email, password, rememberMe, captcha) => (dispatch) => {
     authAPI.login(email, password, rememberMe, captcha).then(data => {
         if (data.resultCode === 0) {
-            getAuthData();
+            dispatch(getAuthData());
         }
         else if (data.resultCode === 10) {
             authAPI.getCaptcha().then(data => {
                 dispatch(setCaptcha(data.url));
             });
+        }
+    });
+}
+
+export const logout = () => (dispatch) => {
+    authAPI.logout().then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setUserImage(null));
+            dispatch(setAuthUserData(null, null, null, false))
         }
     });
 }

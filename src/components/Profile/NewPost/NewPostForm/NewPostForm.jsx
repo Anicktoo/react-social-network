@@ -10,7 +10,7 @@ const NewPostForm = (props) => {
     return (
         <form onKeyUp={(e) => { props.onKeyUp(e, props.handleSubmit) }} onSubmit={props.handleSubmit} className={cName('new-post-wrapper')}>
             <Field name={"newPostText"} component={TextArea} validate={[requiredField]} placeholder="Write your post..." />
-            <button className={cName('mainButton')}>Send </button>
+            <button disabled={props.isFetching} className={cName('mainButton')}>Send </button>
         </form>
     );
 };

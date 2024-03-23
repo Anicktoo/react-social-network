@@ -25,6 +25,7 @@
     --dialog-item-height: 60px;
     --input-padding: 8px 20px;
     --input-radius: 5px;
+    --std-shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px;
 }
 
 * {
@@ -111,6 +112,11 @@ input[type="number"] {
 
 .mainButton:hover {
     background-color: var(--secondary-color);
+}
+
+.mainButton:disabled {
+    cursor: auto;
+    background-color: var(--dark-grey-color);
 }
 
 .secondaryButton {

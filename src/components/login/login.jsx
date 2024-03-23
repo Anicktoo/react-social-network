@@ -4,6 +4,7 @@ import s from './Login.module.css';
 import { classNameFunction } from '../../utils/classNameCompiler';
 import { Input } from '../common/FormsControls/FormsControls';
 import { requiredField } from '../../utils/formValidators/validators';
+import { Navigate } from 'react-router-dom';
 
 const cName = classNameFunction(s);
 
@@ -31,6 +32,13 @@ const LoginReduxForm = reduxForm({
 })(LoginForm);
 
 const Login = (props) => {
+
+    if (props.isLoggedIn) {
+        return (
+            <Navigate to={'/profile'} />
+        );
+    }
+
     return (
         <main className={cName(['login'])}>
             <div className={cName(['loginContainer', 'stdBlock'])}>

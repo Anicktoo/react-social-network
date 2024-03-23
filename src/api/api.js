@@ -29,6 +29,11 @@ export const authAPI = {
         });
         return resposne.data;
     },
+    logout: async () => {
+        const resposne = await axiosInstance.delete(`auth/login`);
+        return resposne.data;
+    },
+
     getCaptcha: async () => {
         const resposne = await axiosInstance.get(`security/get-captcha-url`);
         return resposne.data;

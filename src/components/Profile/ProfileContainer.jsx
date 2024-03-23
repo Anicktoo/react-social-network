@@ -8,15 +8,34 @@ import withLoginRedirect from '../hoc/withLoginRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends Component {
+
+    state = {
+        isFetching: false,
+    }
+
     componentDidMount() {
         const userId = this.props.router.params.userId ?? this.props.userId;
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
+        this.setState({
+            isFetching: true,
+        });
+    }
+
+    componentDidUpdate() {
+        if (this.state.isFetching &&
+            this.props.common.photos.small &&
+            this.props.common.photos.wallpaper &&
+            this.props.accountInfo.aboutMe) {
+            this.setState({
+                isFetching: false,
+            });
+        }
     }
 
     render() {
         return (
-            <Profile {...this.props} />
+            <Profile {...this.props} isFetching={this.state.isFetching} />
         );
     }
 }
@@ -30,7 +49,6 @@ function mapStateToProps(state) {
                 large: state.profile.accountInfo.photos?.large || defaultUser,
                 wallpaper: state.profile.accountInfo.photos?.wallpaper,
             },
-            isFetching: state.profile.accountInfo.isFetching,
         },
         accountInfo: state.profile.accountInfo,
         posts: state.profile.posts

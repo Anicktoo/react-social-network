@@ -35,14 +35,73 @@
 }
 
 .loginBlock {
+    position: relative;
+}
+
+.loginBlockInner {
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 7px;
     font-weight: 600;
+    border-radius: var(--input-radius);
+}
+
+.loginBlockInner:hover {
+    background-color: var(--light-grey-color);
+    outline: 6px solid var(--light-grey-color);
 }
 
 .loginImage {
     border-radius: 100%;
     width: 30px;
     height: 30px;
+}
+
+.downArrow {
+    margin-left: -5px;
+    margin-bottom: -3px;
+    flex: 0 0 1em;
+    height: 1em;
+    object-fit: fill;
+}
+
+.loginActionsContainer {
+    padding: 15px 0;
+    position: absolute;
+    top: 140%;
+    right: 0;
+    box-shadow: var(--std-shadow);
+}
+
+.loginActionItem {
+    padding: 5px 25px;
+}
+
+.loginActionItem:hover {
+    background-color: var(--light-grey-color);
+}
+
+.loginActionItem:hover,
+.loginActionItem:hover * {
+    cursor: pointer;
+}
+
+.loginActionItemInner {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.loginActionItemInner img {
+    width: 1em;
+    height: 1em;
+}
+
+.logoutBtn span {
+    color: red;
+}
+
+.logoutBtn img {
+    filter: brightness(0) saturate(100%) invert(27%) sepia(97%) saturate(7413%) hue-rotate(357deg) brightness(113%) contrast(117%);
 }

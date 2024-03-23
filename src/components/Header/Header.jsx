@@ -2,7 +2,9 @@ import React from 'react';
 import { ReactComponent as Logo } from '../../img/logo.svg'
 import s from './Header.module.css'
 import { NavLink } from "react-router-dom";
-import defUser from '../../img/defaultUser.svg'
+import defUser from '../../img/defaultUser.svg';
+import arrow from '../../img/uiActions/arrow.svg';
+import logout from '../../img/uiActions/logout.svg';
 
 const Header = (props) => {
     return (
@@ -14,8 +16,23 @@ const Header = (props) => {
                 <div className={s.loginContainer}>
                     {props.isLogged ?
                         <div className={s.loginBlock}>
-                            <img className={s.loginImage} src={props.image ?? defUser} alt="user avatar" />
-                            {props.login}
+                            <div className={s.loginBlockInner} onClick={props.handleButtonClick}>
+                                <img className={s.loginImage} src={props.image ?? defUser} alt="user avatar" />
+                                {props.login}
+                                <img className={s.downArrow} src={arrow} alt="" />
+                            </div>
+                            {props.isPopupVisible ?
+                                <div className={s.loginActionsContainer + ' ' + 'stdBlock'} ref={props.popupRef}>
+                                    <div className={s.loginActionItem}>
+                                        <button onClick={props.logout} className={s.loginActionItemInner + ' ' + s.logoutBtn}>
+                                            <span>Logout</span>
+                                            <img src={logout} alt="" />
+                                        </button>
+                                    </div>
+                                </div>
+                                :
+                                ''
+                            }
                         </div>
                         :
                         <NavLink to='/login' >

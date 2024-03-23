@@ -14,7 +14,7 @@ class NewPostFormContainer extends Component {
 
     render() {
         return (
-            <NewPostForm {...this.props} onKeyUp={this.onKeyUp} />
+            <NewPostForm {...this.props} onKeyUp={this.onKeyUp} isFetching={this.props.isFetching} />
         );
     }
 }
