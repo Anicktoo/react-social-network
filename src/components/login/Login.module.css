@@ -16,7 +16,7 @@
 }
 
 .loginContainer {
-    width: max-content;
+    width: min-content;
     flex: 1 0;
 }
 

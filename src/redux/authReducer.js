@@ -1,4 +1,5 @@
 import { authAPI, profileAPI } from "../api/api";
+import { stopSubmit } from 'redux-form';
 
 export const actions = Object.freeze({
     SET_DATA: 'SET_DATA',
@@ -66,10 +67,18 @@ export const login = (email, password, rememberMe, captcha) => (dispatch) => {
         if (data.resultCode === 0) {
             dispatch(getAuthData());
         }
-        else if (data.resultCode === 10) {
-            authAPI.getCaptcha().then(data => {
-                dispatch(setCaptcha(data.url));
-            });
+        else {
+            const errorMessage = data.messages.length > 0 ? data.messages[0] : 'Some error';
+
+            if (data.resultCode === 10) {
+                authAPI.getCaptcha().then(data => {
+                    dispatch(setCaptcha(data.url))
+                    setTimeout(() => { dispatch(stopSubmit('login', { _error: errorMessage })) }, 0)
+                });
+            }
+            else {
+                dispatch(stopSubmit('login', { _error: errorMessage }));
+            }
         }
     });
 }
