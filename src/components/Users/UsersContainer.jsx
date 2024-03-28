@@ -7,7 +7,7 @@ import {
 import React from "react";
 import Users from "./Users";
 import { compose } from 'redux';
-import { getCurrentPageSelector, getIsFetchingSelector, getPageSizeSelector, getTotalUsersCountSelector, getUsersSelector } from '../../redux/usersSelector';
+import { getCurrentPageSelector, getFollowedUsersSelector, getIsFetchingSelector, getPageSizeSelector, getTotalUsersCountSelector, getUsersSelector } from '../../redux/usersSelector';
 
 class UsersContainer extends React.Component {
     componentDidMount() {

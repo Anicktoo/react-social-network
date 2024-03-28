@@ -29,7 +29,7 @@ const defaultState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-}
+};
 
 const usersReducer = (state = defaultState, action) => {
     switch (action.type) {
@@ -80,7 +80,7 @@ const usersReducer = (state = defaultState, action) => {
         default:
             return state;
     }
-}
+};
 
 export const followAccept = (id) => ({ type: actions.FOLLOW, id: id });
 export const unfollowAccept = (id) => ({ type: actions.UNFOLLOW, id: id });
@@ -107,8 +107,8 @@ export const follow = (userId) => (dispatch) => {
             dispatch(followAccept(userId));
         }
         dispatch(setFollowingState(false, userId));
-    })
-}
+    });
+};
 
 export const unfollow = (userId) => (dispatch) => {
     dispatch(setFollowingState(true, userId));
@@ -117,7 +117,7 @@ export const unfollow = (userId) => (dispatch) => {
             dispatch(unfollowAccept(userId));
         }
         dispatch(setFollowingState(false, userId));
-    })
-}
+    });
+};
 
 export default usersReducer;
