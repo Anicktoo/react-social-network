@@ -9,7 +9,6 @@ const Posts = (props) => {
         <Post key={post.id} {...post} avatarImgSrc={props.photos.small} />
     )
     const emptyItems = () => Array(2).join(',').split(',').map(el => <Preloader classes={['stdBlock']} styles={{ minHeight: '200px' }} />)
-    console.log(emptyItems())
     return (
         <div className={s.posts}>
             {

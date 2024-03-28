@@ -10,13 +10,12 @@ const cName = classNameFunction(s);
 
 
 const LoginForm = (props) => {
-    console.log(props.error, props.captcha, props.state)
     return (
         <form className={cName('form')} onSubmit={props.handleSubmit} >
             <div><Field placeholder={"Email"} type={"email"} component={Input} name={"email"} validate={[requiredField]} /></div>
             <div><Field placeholder={"Password"} type={"password"} component={Input} name={"password"} validate={[requiredField]} /></div>
             <div>
-                <Field id={'rememberMe'} type={"checkbox"} component={Input} name={"rememberMe"} labelText={"Remember me"} />
+                <Field id={'rememberMe'} type={"checkbox"} component={Input} name={"rememberMe"} labelext={"Remember me"} />
             </div>
             {props.captcha &&
                 <div className={cName('captchaBlock')}>

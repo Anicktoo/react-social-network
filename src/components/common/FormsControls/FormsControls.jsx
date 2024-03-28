@@ -11,7 +11,7 @@ const withFormControls = (Component) => ({ input, meta, hasError, ...props }) =>
                 {...input}
                 {...props}
             />
-            {props.labelText && <label htmlFor={props.id}>{props.labelText}</label>}
+            {props.labelext && <label htmlFor={props.id}>{props.labelext}</label>}
             {hasError && <span className={cname('error-message')}>{meta.error}</span>}
         </div>
     );

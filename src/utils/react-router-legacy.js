@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
     useLocation,
     useNavigate,
@@ -9,6 +10,9 @@ export function withRouter(Component) {
         let location = useLocation();
         let navigate = useNavigate();
         let params = useParams();
+
+
+
         return (
             <Component
                 {...props}
@@ -19,3 +23,4 @@ export function withRouter(Component) {
 
     return ComponentWithRouterProp;
 }
+

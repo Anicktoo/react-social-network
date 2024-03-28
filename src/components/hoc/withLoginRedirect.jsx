@@ -3,18 +3,19 @@ import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 const withLoginRedirect = (Component) => {
-
     const LoginRedirect = (props) => {
-        if (!props.isLoggedIn) {
-            return <Navigate to={"/login"} />
+
+        if (!props.isLoggedIn && !props.userId) {
+            return <Navigate to='/login' />;
         }
 
         return <Component {...props} />
     };
 
-    const mapStateToProps = (state) => {
+    const mapStateToProps = (state, props) => {
         return {
             isLoggedIn: state.auth.isLoggedIn,
+            userId: props.router?.params.userId,
         };
     };
 

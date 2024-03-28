@@ -4,8 +4,8 @@ import Profile from "./Profile";
 import { getUserProfile, getUserStatus, updateUserStatus } from "../../redux/profileReducer";
 import { withRouter } from "../../utils/react-router-legacy"
 import defaultUser from '../../img/defaultUser.svg';
-import withLoginRedirect from '../hoc/withLoginRedirect';
 import { compose } from 'redux';
+import withLoginRedirect from '../hoc/withLoginRedirect';
 
 class ProfileContainer extends Component {
 
@@ -13,8 +13,11 @@ class ProfileContainer extends Component {
         isFetching: false,
     }
 
+
+
     componentDidMount() {
         const userId = this.props.router.params.userId ?? this.props.userId;
+
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
         this.setState({
@@ -56,8 +59,8 @@ function mapStateToProps(state) {
 }
 
 export default compose(
-    withLoginRedirect,
     withRouter,
+    withLoginRedirect,
     connect(
         mapStateToProps,
         {
@@ -65,5 +68,5 @@ export default compose(
             getUserStatus,
             updateUserStatus,
         }
-    )
+    ),
 )(ProfileContainer);

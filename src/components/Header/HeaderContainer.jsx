@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Header from './Header'
-import { getAuthData } from '../../redux/authReducer'
 import { logout } from './../../redux/authReducer';
 
 export class HeaderContainer extends Component {
@@ -13,7 +12,6 @@ export class HeaderContainer extends Component {
     popupRef = React.createRef();
 
     componentDidMount() {
-        this.props.getAuthData();
         document.addEventListener('mousedown', this.handleClickOutside);
     }
 
@@ -51,7 +49,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    getAuthData,
     logout,
 }
 

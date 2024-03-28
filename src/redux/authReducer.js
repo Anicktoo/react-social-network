@@ -48,7 +48,7 @@ export const setUserImage = (image) => ({ type: actions.SET_IMAGE, image });
 export const setCaptcha = (captcha) => ({ type: actions.SET_CAPTCHA, captcha });
 
 export const getAuthData = () => (dispatch) => {
-    authAPI.me().then(data => {
+    return authAPI.me().then(data => {
         if (data.resultCode === 0) {
             dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true));
             dispatch(getUserImage(data.data.id));
