@@ -1,8 +1,9 @@
 import React from "react";
 import s from './AccountData.module.css'
 import { classNameFunction } from "../../../utils/classNameCompiler";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
+// import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatusHooks from "./ProfileStatus/ProfileStatusHooks";
 
 const cName = classNameFunction(s);
 
@@ -51,7 +52,7 @@ const AccountData = (props) => {
                             <Preloader content={'#'.repeat(20)} />
                             :
                             <>
-                                <ProfileStatus aboutMe={props.aboutMe} updateUserStatus={props.updateUserStatus} />
+                                <ProfileStatusHooks aboutMe={props.aboutMe} updateUserStatus={props.updateUserStatus} />
                                 <div className={cName(['info-contacts'])}>
                                     {Object.entries(props.contacts)
                                         .filter(entry => entry[1])

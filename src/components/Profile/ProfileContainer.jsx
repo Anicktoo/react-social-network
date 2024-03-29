@@ -14,7 +14,6 @@ class ProfileContainer extends Component {
     }
 
     componentDidMount() {
-        console.log(1)
         const userId = this.props.router.params.userId ?? this.props.userId;
 
         this.props.getUserProfile(userId);
@@ -25,8 +24,6 @@ class ProfileContainer extends Component {
     }
 
     componentDidUpdate() {
-        console.log(2)
-        console.log(this.props.accountInfo.aboutMe)
         if (this.state.isFetching &&
             this.props.common.photos.small &&
             this.props.common.photos.wallpaper &&
@@ -38,7 +35,6 @@ class ProfileContainer extends Component {
     }
 
     render() {
-        console.log(this.state.isFetching)
         return (
             <Profile {...this.props} isFetching={this.state.isFetching} />
         );
