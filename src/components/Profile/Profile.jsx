@@ -14,12 +14,12 @@ const Profile = (props) => {
                 updateUserStatus={props.updateUserStatus}
                 isFetching={props.isFetching} />
             <NewPostContainer {...props.newPost}
-                {...props.common}
+                photo={props.common.photos.small}
                 addPost={props.addPost}
                 changeTextInput={props.changeTextInput}
                 isFetching={props.isFetching} />
             <Posts posts={props.posts}
-                {...props.common}
+                photo={props.common.photos.small}
                 isFetching={props.isFetching} />
         </main>
     );

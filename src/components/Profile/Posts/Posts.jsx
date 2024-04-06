@@ -3,10 +3,14 @@ import s from './Posts.module.css'
 import Post from "./Post/Post";
 import Preloader from '../../common/Preloader/Preloader';
 
-const Posts = (props) => {
+const Posts = React.memo((props) => {
+
+    console.log('RENDER');
+    console.log(props);
+
 
     const postItems = () => props.posts?.map(post =>
-        <Post key={post.id} {...post} avatarImgSrc={props.photos.small} />
+        <Post key={post.id} {...post} avatarImgSrc={props.photo} />
     )
     const emptyItems = () => Array(2).join(',').split(',').map(el => <Preloader classes={['stdBlock']} styles={{ minHeight: '200px' }} />)
     return (
@@ -19,6 +23,6 @@ const Posts = (props) => {
             }
         </div>
     );
-};
+});
 
 export default Posts;

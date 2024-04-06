@@ -13,7 +13,7 @@ const NewPost = (props) => {
                 {props.isFetching ?
                     <Preloader styles={{ minHeight: '50px' }} />
                     :
-                    <img src={props.photos.small} alt="profile avatar" />
+                    <img src={props.photo} alt="profile avatar" />
                 }
             </div>
             <NewPostFormContainer isFetching={props.isFetching} onSubmit={props.onSubmit} />
