@@ -58,5 +58,10 @@
   "exclude": [
     "node_modules",
     "**/node_modules/*"
-  ]
+  ],
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-leaflet|@react-leaflet|d3-*|axios))"
+    ]
+  }
 }

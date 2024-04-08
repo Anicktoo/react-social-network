@@ -1,12 +1,11 @@
 import { profileAPI, wallpaperAPI } from "../api/api";
 import getRandomHexColor from "../utils/getRandomHexColor";
 
-export const actions = Object.freeze({
-    ADD_POST: 'ADD_POST',
-    SET_STATUS: 'SET_STATUS',
-    SET_USER_PROFILE: 'SET_USER_PROFILE',
-    SET_USER_WALLPAPER: 'SET_USER_WALLPAPER',
-});
+const ADD_POST = 'social_network/profile/ADD_POST';
+const SET_STATUS = 'social_network/profile/SET_STATUS';
+const SET_USER_PROFILE = 'social_network/profile/SET_USER_PROFILE';
+const SET_USER_WALLPAPER = 'social_network/profile/SET_USER_WALLPAPER';
+const DELETE_POST = 'social_network/profile/DELETE_POST';
 
 const defaultState = {
     accountInfo: {
@@ -57,7 +56,7 @@ const defaultState = {
 
 const profilesReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case actions.ADD_POST: {
+        case ADD_POST: {
             return {
                 ...state,
                 posts: [
@@ -70,7 +69,13 @@ const profilesReducer = (state = defaultState, action) => {
                 ],
             };
         }
-        case actions.SET_USER_PROFILE: {
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: state.posts.filter(el => el.id !== action.id),
+            };
+        }
+        case SET_USER_PROFILE: {
             return {
                 ...state,
                 accountInfo: {
@@ -83,7 +88,7 @@ const profilesReducer = (state = defaultState, action) => {
                 },
             };
         }
-        case actions.SET_USER_WALLPAPER: {
+        case SET_USER_WALLPAPER: {
             return {
                 ...state,
                 accountInfo: {
@@ -95,7 +100,7 @@ const profilesReducer = (state = defaultState, action) => {
                 },
             };
         }
-        case actions.SET_STATUS: {
+        case SET_STATUS: {
             return {
                 ...state,
                 accountInfo: {
@@ -116,19 +121,23 @@ function nextItemId(items) {
 }
 
 export const savePost = (postText) => ({
-    type: actions.ADD_POST,
+    type: ADD_POST,
     postText,
 });
+export const deletePost = (id) => ({
+    type: DELETE_POST,
+    id,
+});
 export const setUserProfile = (profile) => ({
-    type: actions.SET_USER_PROFILE,
+    type: SET_USER_PROFILE,
     profile,
 });
 export const setUserStatus = (status) => ({
-    type: actions.SET_STATUS,
+    type: SET_STATUS,
     status,
 });
 export const setUserWallpaper = (wallpaper) => ({
-    type: actions.SET_USER_WALLPAPER,
+    type: SET_USER_WALLPAPER,
     wallpaper,
 });
 
