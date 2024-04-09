@@ -1,6 +1,6 @@
 import TextareaAutosize from 'react-textarea-autosize';
-import s from './FormsControls.module.css';
 import { classNameFunction } from '../../../utils/classNameCompiler';
+import s from './FormsControls.module.css';
 
 const cname = classNameFunction(s);
 
@@ -19,16 +19,16 @@ const withFormControls = (Component) => ({ input, meta, hasError, ...props }) =>
 
 const InnerTextArea = withFormControls(TextareaAutosize);
 
-export const TextArea = (props) => {
+export const TextArea = ({ maxRows, meta, ...props }) => {
     return <InnerTextArea {...props}
         className={cname('text-area')}
-        maxRows={props.maxRows}
-        hasError={props.meta.submitFailed} />
+        maxRows={maxRows}
+        hasError={meta.submitFailed} />
 };
 
 const InnerInput = withFormControls("input");
 
-export const Input = (props) => {
+export const Input = ({ meta, ...props }) => {
     return <InnerInput {...props}
-        hasError={props.meta.touched && props.meta.error} />
+        hasError={meta.touched && meta.error} />
 };

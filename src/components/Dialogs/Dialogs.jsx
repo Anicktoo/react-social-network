@@ -1,14 +1,14 @@
 import React from 'react';
-import s from './Dialogs.module.css'
 import { Route, Routes } from "react-router-dom";
-import MessagesPanelContainer from "./MessagesPanel/MessagesPanelContainer";
 import DialogItemContainer from "./DialogItem/DialogItemContainer";
+import s from './Dialogs.module.css';
+import MessagesPanelContainer from "./MessagesPanel/MessagesPanelContainer";
 
 
-const Dialogs = (props) => {
+const Dialogs = ({ dialogs }) => {
     const dialogItems = [];
     const messageContainers = [];
-    props.dialogs?.forEach((el) => {
+    dialogs?.forEach((el) => {
         dialogItems.push(
             <DialogItemContainer key={el.id} dialogItemInfo={el} />
         );

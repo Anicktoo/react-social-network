@@ -1,18 +1,18 @@
 import React from 'react';
-import s from './Post.module.css';
 import { classNameFunction } from "../../../../utils/classNameCompiler";
+import s from './Post.module.css';
 
 const cName = classNameFunction(s);
 
-const Post = (props) => {
+const Post = ({ avatarImgSrc, text, likes }) => {
     return (
         <article className={cName(['post', 'stdBlock'])}>
             <div className={s.imageContainer}>
-                <img src={props.avatarImgSrc} alt="profile avatar" />
+                <img src={avatarImgSrc} alt="profile avatar" />
             </div>
             <div className={s.content}>
-                <p className={s.text}>{props.text}</p>
-                <p className={s.likes}>likes: {props.likes}</p>
+                <p className={s.text}>{text}</p>
+                <p className={s.likes}>likes: {likes}</p>
             </div>
         </article>
     );

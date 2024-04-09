@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
-import NewPostForm from './NewPostForm';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
+import NewPostForm from './NewPostForm';
 
 class NewPostFormContainer extends Component {
 

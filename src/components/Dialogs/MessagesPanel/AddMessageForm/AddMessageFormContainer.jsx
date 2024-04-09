@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import AddMessageForm from './AddMessageForm';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
+import AddMessageForm from './AddMessageForm';
 
 class AddMessageFormContainer extends Component {
-
     onKeyUp = (e, handleSubmit) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             handleSubmit(e);

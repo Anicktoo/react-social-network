@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Profile from "./Profile";
-import { getUserProfile, getUserStatus, updateUserStatus } from "../../redux/profileReducer";
-import { withRouter } from "../../utils/react-router-legacy"
-import defaultUser from '../../img/defaultUser.svg';
 import { compose } from 'redux';
+import defaultUser from '../../img/defaultUser.svg';
+import { getUserProfile, getUserStatus, updateUserStatus } from "../../redux/profileReducer";
+import { withRouter } from "../../utils/react-router-legacy";
 import withLoginRedirect from '../hoc/withLoginRedirect';
+import Profile from "./Profile";
 
 class ProfileContainer extends Component {
 

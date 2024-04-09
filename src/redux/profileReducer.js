@@ -148,28 +148,25 @@ export const addPost = (postText) => (dispatch) => {
     dispatch(savePost(trimmedText));
 };
 
-export const getUserProfile = (userId) => (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
     const hex = getRandomHexColor(userId);
-    profileAPI.getProfile(userId).then(data => {
-        dispatch(setUserProfile(data));
-    });
-    wallpaperAPI.getWallpaper(hex).then(data => {
-        dispatch(setUserWallpaper(data))
-    });
+    const data = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(data));
+    const dataWallpaper = await wallpaperAPI.getWallpaper(hex);
+    dispatch(setUserWallpaper(dataWallpaper));
 };
 
-export const getUserStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId).then(data => {
-        dispatch(setUserStatus(data));
-    });
+export const getUserStatus = (userId) => async (dispatch) => {
+    const data = await profileAPI.getStatus(userId);
+    dispatch(setUserStatus(data));
+
 };
 
-export const updateUserStatus = (status) => (dispatch) => {
-    profileAPI.setStatus(status).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setUserStatus(status));
-        }
-    })
-}
+export const updateUserStatus = (status) => async (dispatch) => {
+    const data = await profileAPI.setStatus(status);
+    if (data.resultCode === 0) {
+        dispatch(setUserStatus(status));
+    }
+};
 
 export default profilesReducer;

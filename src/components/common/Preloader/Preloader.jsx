@@ -1,5 +1,5 @@
-import s from './Preloader.module.css';
 import { classNameFunction } from "../../../utils/classNameCompiler";
+import s from './Preloader.module.css';
 
 const cName = classNameFunction(s);
 

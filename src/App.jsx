@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import Nav from './components/Nav/Nav';
-import './styles/App.css';
+import { connect } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import UsersContainer from "./components/Users/UsersContainer";
+import { compose } from "redux";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { initialize } from './redux/appReducer';
+import Nav from './components/Nav/Nav';
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 import InitLoader from "./components/common/initLoader/InitLoader";
+import { initialize } from './redux/appReducer';
+import './styles/App.css';
 
 class App extends Component {
 

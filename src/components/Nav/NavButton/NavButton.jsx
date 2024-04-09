@@ -1,16 +1,16 @@
 import React from "react";
-import s from './NavButton.module.css'
 import { NavLink } from "react-router-dom";
 import { classNameFunction } from "../../../utils/classNameCompiler";
+import s from './NavButton.module.css';
 
 const cName = classNameFunction(s);
-const NavButton = (props) => {
+const NavButton = ({ to, divided, text }) => {
     return (
         <NavLink
-            to={props.to}
-            className={(nd) => cName(['item', props.divided ? 'item_divided' : ''], nd)}
+            to={to}
+            className={(nd) => cName(['item', divided ? 'item_divided' : ''], nd)}
         >
-            <span className={cName(['link'])}>{props.text}</span>
+            <span className={cName(['link'])}>{text}</span>
         </NavLink>
     );
 }

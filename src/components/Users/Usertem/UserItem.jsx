@@ -1,47 +1,47 @@
 import React from 'react';
-import s from './UserItem.module.css';
-import defaultAvatar from '../../../img/defaultUser.svg';
 import { NavLink } from "react-router-dom";
+import defaultAvatar from '../../../img/defaultUser.svg';
 import Preloader from '../../common/Preloader/Preloader';
+import s from './UserItem.module.css';
 
-const UserItem = (props) => {
-    const linkPath = '/profile/' + props.id;
+const UserItem = ({ id, isFetching, photos, fullName, followed, status, name, isFollowingInProgress, follow, unfollow }) => {
+    const linkPath = '/profile/' + id;
     return (
         <div className={s.userItem}>
             <div className={s.imgContainer}>
-                {props.isFetching ? <Preloader /> :
+                {isFetching ? <Preloader /> :
                     <NavLink to={linkPath}>
-                        <img src={props.photos.small != null ? props.photos.small : defaultAvatar}
-                            alt={props.fullName + "'s avatar"} />
+                        <img src={photos.small != null ? photos.small : defaultAvatar}
+                            alt={fullName + "'s avatar"} />
                     </NavLink>
                 }
             </div>
             <div className={s.infoContainer}>
-                {props.isFetching ?
+                {isFetching ?
                     <>
-                        <Preloader classes={s.userName} content={'#'.repeat(20)} />
+                        <Preloader content={'#'.repeat(20)} />
                         <Preloader content={'#'.repeat(10)} />
-                        <Preloader classes={s.inlineButton} content={'follow'} />
+                        <Preloader content={'follow'} />
                     </>
                     :
 
                     <>
                         <NavLink to={linkPath}>
-                            <span className={s.userName}>{props.name}</span>
+                            <span className={s.userName}>{name}</span>
                         </NavLink>
-                        <span>{props.status}</span>
+                        <span>{status}</span>
 
-                        {props.followed ?
+                        {followed ?
                             <button
-                                disabled={props.isFollowingInProgress}
-                                onClick={() => { props.unfollow(props.id) }}
+                                disabled={isFollowingInProgress}
+                                onClick={() => { unfollow(id) }}
                                 className={"inlineButton"}>
                                 Unfollow
                             </button>
                             :
                             <button
-                                disabled={props.isFollowingInProgress}
-                                onClick={() => { props.follow(props.id) }}
+                                disabled={isFollowingInProgress}
+                                onClick={() => { follow(id) }}
                                 className={"inlineButton"}>
                                 Follow
                             </button>

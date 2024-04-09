@@ -1,13 +1,13 @@
+import React from "react";
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import {
     follow,
-    unfollow,
     getUsers,
+    unfollow,
 } from "../../redux/usersReducer";
-import React from "react";
-import Users from "./Users";
-import { compose } from 'redux';
 import { getCurrentPageSelector, getIsFetchingSelector, getPageSizeSelector, getTotalUsersCountSelector, getUsersSelector } from '../../redux/usersSelector';
+import Users from "./Users";
 
 class UsersContainer extends React.Component {
     componentDidMount() {

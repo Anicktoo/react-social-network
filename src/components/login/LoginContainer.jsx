@@ -1,8 +1,8 @@
-import Login from './Login';
-import { connect } from 'react-redux';
-import { login } from './../../redux/authReducer';
-import { compose } from 'redux';
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { login } from './../../redux/authReducer';
+import Login from './Login';
 
 class LoginContainer extends Component {
     onSubmit = (formData) => {

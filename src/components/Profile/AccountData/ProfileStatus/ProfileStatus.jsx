@@ -1,8 +1,8 @@
 import React from 'react';
-import s from './ProfileStatus.module.css';
-import { classNameFunction } from '../../../../utils/classNameCompiler';
 import confirmIcon from '../../../../img/uiActions/confirm.svg';
+import { classNameFunction } from '../../../../utils/classNameCompiler';
 import Preloader from './../../../common/Preloader/Preloader';
+import s from './ProfileStatus.module.css';
 
 const cName = classNameFunction(s);
 
@@ -43,7 +43,7 @@ class ProfileStatus extends React.Component {
         img.src = confirmIcon;
     }
 
-    componentDidUpdate = (prevProps, prevState) => {
+    componentDidUpdate = (prevProps) => {
         if (prevProps.aboutMe !== this.props.aboutMe) {
             this.setState({
                 inputText: this.props.aboutMe,

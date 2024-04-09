@@ -1,37 +1,37 @@
-import s from "./MessagesPanel.module.css";
 import React from "react";
-import MessageContainer from "./Message/MessageContainer";
 import AddMessageFormContainer from "./AddMessageForm/AddMessageFormContainer";
+import MessageContainer from "./Message/MessageContainer";
+import s from "./MessagesPanel.module.css";
 
 
 
-const MessagesPanel = (props) => {
+const MessagesPanel = ({ messages, myName, myImage, userName, userImg, id, onSubmit }) => {
     const messagesEnd = React.createRef();
 
     const scrollToBottom = () => {
         messagesEnd.current.scrollIntoView({ block: "end" });
     }
 
-    const messages = props.messages.map((m) => {
-        const userName = m.your ? props.myName : props.userName;
-        const userPicture = m.your ? props.myImage : props.userImg;
+    const messageItems = messages.map((m) => {
+        const realName = m.your ? myName : userName;
+        const realImg = m.your ? myImage : userImg;
 
-        return <MessageContainer key={m.id} {...m} userName={userName} userImg={userPicture}
-            messages={props.messages} />
+        return <MessageContainer key={m.id} {...m} userName={realName} userImg={realImg}
+            messages={messages} />
     });
 
     //FIXME: fix onload later
     return (
         <div onLoad={scrollToBottom} className={s.messageContainer}>
             <header className={s.messageHeader}>
-                <span className={s.messageHeaderText}>{props.userName}</span>
-                <img className={s.userImg} src={props.userImg} alt="user" />
+                <span className={s.messageHeaderText}>{userName}</span>
+                <img className={s.userImg} src={userImg} alt="user" />
             </header>
             <div className={s.messageItems}>
-                {messages}
+                {messageItems}
                 <div ref={messagesEnd} className={s.messagesEnd}></div>
             </div>
-            <AddMessageFormContainer key={props.id} onSubmit={props.onSubmit} />
+            <AddMessageFormContainer key={id} onSubmit={onSubmit} />
         </div>
     );
 }

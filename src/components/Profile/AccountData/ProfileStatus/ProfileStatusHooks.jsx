@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import s from './ProfileStatus.module.css';
-import { classNameFunction } from '../../../../utils/classNameCompiler';
 import confirmIcon from '../../../../img/uiActions/confirm.svg';
+import { classNameFunction } from '../../../../utils/classNameCompiler';
 import Preloader from '../../../common/Preloader/Preloader';
+import s from './ProfileStatus.module.css';
 
 const cName = classNameFunction(s);
 
-const ProfileStatusHooks = (props) => {
+const ProfileStatusHooks = ({ aboutMe, updateUserStatus }) => {
 
     const [editMode, setEditMode] = useState(false);
-    const [inputText, setInputText] = useState(props.aboutMe);
+    const [inputText, setInputText] = useState(aboutMe);
     const [isFetching, setIsFetching] = useState(false);
 
     useEffect(() => {
@@ -19,22 +19,22 @@ const ProfileStatusHooks = (props) => {
     }, []);
 
     useEffect(() => {
-        setInputText(props.aboutMe);
+        setInputText(aboutMe);
         setIsFetching(false);
-    }, [props.aboutMe]);
+    }, [aboutMe]);
 
     const openInput = () => {
         setEditMode(true);
     }
     const closeInput = () => {
         setEditMode(false);
-        setInputText(props.aboutMe);
+        setInputText(aboutMe);
     }
     const updateInputText = (e) => {
         setInputText(e.target.value);
     }
     const confirmInputText = () => {
-        props.updateUserStatus(inputText);
+        updateUserStatus(inputText);
         setEditMode(false);
         setIsFetching(true);
     }
@@ -52,7 +52,7 @@ const ProfileStatusHooks = (props) => {
                     </>
                     :
                     <>
-                        <span onClick={openInput} className={cName('about')}>{props.aboutMe || 'Add your status'}</span>
+                        <span onClick={openInput} className={cName('about')}>{aboutMe || 'Add your status'}</span>
                     </>
 
             }

@@ -1,8 +1,8 @@
-import MessagesPanel from "./MessagesPanel";
-import { connect } from "react-redux";
-import { sendMessage } from "../../../redux/dialogsReducer";
 import { Component } from "react";
+import { connect } from "react-redux";
 import { compose } from "redux";
+import { sendMessage } from "../../../redux/dialogsReducer";
+import MessagesPanel from "./MessagesPanel";
 
 class MessagesPanelContainer extends Component {
 

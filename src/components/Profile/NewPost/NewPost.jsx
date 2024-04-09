@@ -1,22 +1,22 @@
 import React from 'react';
-import s from './NewPost.module.css';
 import { classNameFunction } from "../../../utils/classNameCompiler";
-import NewPostFormContainer from './NewPostForm/NewPostFormContainer';
 import Preloader from './../../common/Preloader/Preloader';
+import s from './NewPost.module.css';
+import NewPostFormContainer from './NewPostForm/NewPostFormContainer';
 
 const cName = classNameFunction(s);
 
-const NewPost = (props) => {
+const NewPost = ({ isFetching, photo, onSubmit }) => {
     return (
         <article className={cName(['new-post', 'stdBlock'])}>
             <div className={s.imageContainer}>
-                {props.isFetching ?
+                {isFetching ?
                     <Preloader styles={{ minHeight: '50px' }} />
                     :
-                    <img src={props.photo} alt="profile avatar" />
+                    <img src={photo} alt="profile avatar" />
                 }
             </div>
-            <NewPostFormContainer isFetching={props.isFetching} onSubmit={props.onSubmit} />
+            <NewPostFormContainer isFetching={isFetching} onSubmit={onSubmit} />
         </article>
     );
 }

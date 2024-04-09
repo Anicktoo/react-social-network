@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import Dialogs from './Dialogs';
-import withLoginRedirect from '../hoc/withLoginRedirect';
 import { compose } from 'redux';
+import withLoginRedirect from '../hoc/withLoginRedirect';
+import Dialogs from './Dialogs';
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogs.dialogs,
     };

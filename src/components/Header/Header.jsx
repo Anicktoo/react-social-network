@@ -1,12 +1,12 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../../img/logo.svg'
-import s from './Header.module.css'
 import { NavLink } from "react-router-dom";
 import defUser from '../../img/defaultUser.svg';
+import { ReactComponent as Logo } from '../../img/logo.svg';
 import arrow from '../../img/uiActions/arrow.svg';
-import logout from '../../img/uiActions/logout.svg';
+import logoutImg from '../../img/uiActions/logout.svg';
+import s from './Header.module.css';
 
-const Header = (props) => {
+const Header = ({ isLogged, handleButtonClick, image, login, logout, isPopupVisible, popupRef }) => {
     return (
         <header className={s.header}>
             <div className={s.container}>
@@ -14,19 +14,19 @@ const Header = (props) => {
                     <Logo className={s.logo} />
                 </NavLink>
                 <div className={s.loginContainer}>
-                    {props.isLogged ?
+                    {isLogged ?
                         <div className={s.loginBlock}>
-                            <div className={s.loginBlockInner} onClick={props.handleButtonClick}>
-                                <img className={s.loginImage} src={props.image ?? defUser} alt="user avatar" />
-                                {props.login}
+                            <div className={s.loginBlockInner} onClick={handleButtonClick}>
+                                <img className={s.loginImage} src={image ?? defUser} alt="user avatar" />
+                                {login}
                                 <img className={s.downArrow} src={arrow} alt="" />
                             </div>
-                            {props.isPopupVisible ?
-                                <div className={s.loginActionsContainer + ' ' + 'stdBlock'} ref={props.popupRef}>
+                            {isPopupVisible ?
+                                <div className={s.loginActionsContainer + ' stdBlock'} ref={popupRef}>
                                     <div className={s.loginActionItem}>
-                                        <button onClick={props.logout} className={s.loginActionItemInner + ' ' + s.logoutBtn}>
+                                        <button onClick={logout} className={s.loginActionItemInner + ' ' + s.logoutBtn}>
                                             <span>Logout</span>
-                                            <img src={logout} alt="" />
+                                            <img src={logoutImg} alt="" />
                                         </button>
                                     </div>
                                 </div>

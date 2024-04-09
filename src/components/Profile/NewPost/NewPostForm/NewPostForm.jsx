@@ -1,16 +1,16 @@
-import s from './NewPostForm.module.css';
-import { classNameFunction } from "../../../../utils/classNameCompiler";
 import { Field } from 'redux-form';
-import { requiredField } from './../../../../utils/formValidators/validators';
+import { classNameFunction } from "../../../../utils/classNameCompiler";
 import { TextArea } from '../../../common/FormsControls/FormsControls';
+import { requiredField } from './../../../../utils/formValidators/validators';
+import s from './NewPostForm.module.css';
 
 const cName = classNameFunction(s);
 
-const NewPostForm = (props) => {
+const NewPostForm = ({ onKeyUp, handleSubmit, isFetching }) => {
     return (
-        <form onKeyUp={(e) => { props.onKeyUp(e, props.handleSubmit) }} onSubmit={props.handleSubmit} className={cName('new-post-wrapper')}>
+        <form onKeyUp={(e) => { onKeyUp(e, handleSubmit) }} onSubmit={handleSubmit} className={cName('new-post-wrapper')}>
             <Field name={"newPostText"} component={TextArea} validate={[requiredField]} placeholder="Write your post..." />
-            <button disabled={props.isFetching} className={cName('mainButton')}>Send </button>
+            <button disabled={isFetching} className={cName('mainButton')}>Send </button>
         </form>
     );
 };

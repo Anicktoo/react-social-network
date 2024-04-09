@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import NewPost from './NewPost';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { addPost } from '../../../redux/profileReducer';
+import NewPost from './NewPost';
 
 class NewPostContainer extends Component {
 

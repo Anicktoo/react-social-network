@@ -1,30 +1,30 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import s from './Login.module.css';
-import { classNameFunction } from '../../utils/classNameCompiler';
-import { Input } from '../common/FormsControls/FormsControls';
-import { requiredField } from '../../utils/formValidators/validators';
 import { Navigate } from 'react-router-dom';
-import formControlStyle from '../common/FormsControls/FormsControls.module.css'
+import { Field, reduxForm } from 'redux-form';
+import { classNameFunction } from '../../utils/classNameCompiler';
+import { requiredField } from '../../utils/formValidators/validators';
+import { Input } from '../common/FormsControls/FormsControls';
+import formControlStyle from '../common/FormsControls/FormsControls.module.css';
+import s from './Login.module.css';
 const cName = classNameFunction(s);
 
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, captcha, error }) => {
     return (
-        <form className={cName('form')} onSubmit={props.handleSubmit} >
+        <form className={cName('form')} onSubmit={handleSubmit} >
             <div><Field placeholder={"Email"} type={"email"} component={Input} name={"email"} validate={[requiredField]} /></div>
             <div><Field placeholder={"Password"} type={"password"} component={Input} name={"password"} validate={[requiredField]} /></div>
             <div>
                 <Field id={'rememberMe'} type={"checkbox"} component={Input} name={"rememberMe"} labelext={"Remember me"} />
             </div>
-            {props.captcha &&
+            {captcha &&
                 <div className={cName('captchaBlock')}>
-                    <img src={props.captcha} alt="" />
+                    <img src={captcha} alt="" />
                     <Field type={"text"} component={Input} name={"captcha"} placeholder={"Please enter the captcha"} validate={[requiredField]} />
                 </div>}
-            {props.error &&
+            {error &&
                 <div className={cName('error-main') + ' ' + formControlStyle['sum-error-container']}>
-                    {props.error}
+                    {error}
                 </div>
             }
             <div> <button className='mainButton'>Login</button></div>
@@ -36,9 +36,9 @@ const LoginReduxForm = reduxForm({
     form: 'login',
 })(LoginForm);
 
-const Login = (props) => {
+const Login = ({ isLoggedIn, onSubmit, captcha, state }) => {
 
-    if (props.isLoggedIn) {
+    if (isLoggedIn) {
         return (
             <Navigate to={'/profile'} />
         );
@@ -48,7 +48,7 @@ const Login = (props) => {
         <main className={cName(['login'])}>
             <div className={cName(['loginContainer', 'stdBlock'])}>
                 <h1>Login</h1>
-                <LoginReduxForm onSubmit={props.onSubmit} captcha={props.captcha} state={props.state} />
+                <LoginReduxForm onSubmit={onSubmit} captcha={captcha} state={state} />
             </div>
         </main>
     );

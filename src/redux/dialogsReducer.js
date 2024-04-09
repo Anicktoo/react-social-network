@@ -1,6 +1,4 @@
-export const actions = Object.freeze({
-    SEND_MESSAGE: 'SEND_MESSAGE',
-});
+const SEND_MESSAGE = 'social_network/dialogs/SEND_MESSAGE';
 
 const defaultState = {
     dialogs: [
@@ -46,11 +44,11 @@ const defaultState = {
             ],
         },
     ],
-}
+};
 
 const dialogsReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case actions.SEND_MESSAGE: {
+        case SEND_MESSAGE: {
             return {
                 ...state,
                 dialogs: state.dialogs.map(dialog => {
@@ -70,7 +68,7 @@ const dialogsReducer = (state = defaultState, action) => {
             return state;
         }
     }
-}
+};
 
 function nextItemId(items) {
     const maxId = items.reduce((maxId, item) => Math.max(item.id, maxId), -1);
@@ -78,7 +76,7 @@ function nextItemId(items) {
 }
 
 export const saveMessage = (id, text) => ({
-    type: actions.SEND_MESSAGE,
+    type: SEND_MESSAGE,
     id,
     text,
 });

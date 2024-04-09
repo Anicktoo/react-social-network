@@ -1,26 +1,26 @@
 import React from 'react';
-import s from './Profile.module.css';
 import { classNameFunction } from "../../utils/classNameCompiler";
 import AccountData from "./AccountData/AccountData";
 import NewPostContainer from "./NewPost/NewPostContainer";
 import Posts from "./Posts/Posts";
+import s from './Profile.module.css';
 
 const cName = classNameFunction(s);
-const Profile = (props) => {
+const Profile = ({ accountInfo, common, updateUserStatus, isFetching, newPost, addPost, changeTextInput, posts }) => {
     return (
         <main className={cName(['profile'])}>
-            <AccountData {...props.accountInfo}
-                {...props.common}
-                updateUserStatus={props.updateUserStatus}
-                isFetching={props.isFetching} />
-            <NewPostContainer {...props.newPost}
-                photo={props.common.photos.small}
-                addPost={props.addPost}
-                changeTextInput={props.changeTextInput}
-                isFetching={props.isFetching} />
-            <Posts posts={props.posts}
-                photo={props.common.photos.small}
-                isFetching={props.isFetching} />
+            <AccountData {...accountInfo}
+                {...common}
+                updateUserStatus={updateUserStatus}
+                isFetching={isFetching} />
+            <NewPostContainer {...newPost}
+                photo={common.photos.small}
+                addPost={addPost}
+                changeTextInput={changeTextInput}
+                isFetching={isFetching} />
+            <Posts posts={posts}
+                photo={common.photos.small}
+                isFetching={isFetching} />
         </main>
     );
 }

@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import DialogItem from './DialogItem';
 
 const mapStateToProps = (state, props) => {

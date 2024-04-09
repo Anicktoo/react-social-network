@@ -1,7 +1,6 @@
-import s from './InitLoader.module.css'
+import s from './InitLoader.module.css';
 
-
-const InitLoader = (props) => {
+const InitLoader = () => {
     return (
         <div className={s.loaderContainer}>
             <span className={s.loader}></span>
