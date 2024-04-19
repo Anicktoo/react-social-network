@@ -9,6 +9,7 @@ import Nav from './components/Nav/Nav';
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import InitLoader from "./components/common/initLoader/InitLoader";
+import withStoreProvider from "./components/hoc/withStoreProvider";
 import { initialize } from './redux/appReducer';
 import './styles/App.css';
 
@@ -63,6 +64,7 @@ class App extends Component {
 }
 
 export default compose(
+    withStoreProvider,
     connect(state => ({
         isInitialized: state.app.isInitialized
     }), { initialize }),

@@ -11,7 +11,19 @@ function importAll(r) {
     return Object.fromEntries(entries);
 }
 
-const images = importAll(require.context('../../../img/socials', false, /\.(png|jpe?g|svg)$/));
+let images;
+try {
+    images = importAll(require.context('../../../img/socials', false, /\.(png|jpe?g|svg)$/));
+}
+catch (e) {
+    //for jest
+    if (e instanceof TypeError) {
+        images = [];
+    }
+    else {
+        throw e;
+    }
+}
 
 const AccountData = ({ isFetching, photos, fullName, aboutMe, updateUserStatus, contacts }) => {
     const wallpaper = isFetching ?

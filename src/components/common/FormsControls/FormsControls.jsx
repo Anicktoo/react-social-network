@@ -12,7 +12,7 @@ const withFormControls = (Component) => ({ input, meta, hasError, ...props }) =>
                 {...props}
             />
             {props.labelext && <label htmlFor={props.id}>{props.labelext}</label>}
-            {hasError && <span className={cname('error-message')}>{meta.error}</span>}
+            {hasError && <span className={cname('error-message')}>{meta?.error}</span>}
         </div>
     );
 }
@@ -23,12 +23,13 @@ export const TextArea = ({ maxRows, meta, ...props }) => {
     return <InnerTextArea {...props}
         className={cname('text-area')}
         maxRows={maxRows}
+        meta={meta}
         hasError={meta.submitFailed} />
 };
 
 const InnerInput = withFormControls("input");
 
 export const Input = ({ meta, ...props }) => {
-    return <InnerInput {...props}
+    return <InnerInput {...props} meta={meta}
         hasError={meta.touched && meta.error} />
 };
