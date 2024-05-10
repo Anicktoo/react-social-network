@@ -1,6 +1,6 @@
 import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { compose } from "redux";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Nav from './components/Nav/Nav';
@@ -27,7 +27,7 @@ class App extends Component {
             );
         }
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <div className='app-wrapper'>
                     <HeaderContainer />
                     <div className='inner-wrapper'>
@@ -61,7 +61,7 @@ class App extends Component {
                         </div>
                     </div>
                 </div>
-            </BrowserRouter >
+            </HashRouter >
         );
     }
 }
