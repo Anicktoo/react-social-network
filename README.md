@@ -2,7 +2,7 @@ Social network web application
 
 Test account data:
 
-Email: free@samuraijs.com
+Email: anicktoooo@gmail.com
 
 Password: free
 
