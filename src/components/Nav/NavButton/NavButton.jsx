@@ -8,7 +8,7 @@ const NavButton = ({ to, divided, text }) => {
     return (
         <NavLink
             to={to}
-            className={(nd) => cName(['item', divided ? 'item_divided' : ''], nd)}
+            className={cName(['item', divided ? 'item_divided' : ''])}
         >
             <span className={cName(['link'])}>{text}</span>
         </NavLink>

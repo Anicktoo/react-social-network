@@ -6,21 +6,24 @@ import Posts from "./Posts/Posts";
 import s from './Profile.module.css';
 
 const cName = classNameFunction(s);
-const Profile = ({ accountInfo, common, updateUserStatus, isFetching, newPost, addPost, changeTextInput, posts }) => {
+const Profile = ({ accountInfo, common, updateUserStatus, newPost, addPost, changeTextInput, posts, isOwner, savePhoto }) => {
     return (
         <main className={cName(['profile'])}>
             <AccountData {...accountInfo}
                 {...common}
                 updateUserStatus={updateUserStatus}
-                isFetching={isFetching} />
-            <NewPostContainer {...newPost}
+                isFetching={accountInfo.isFetching}
+                isOwner={isOwner}
+                savePhoto={savePhoto} />
+            {isOwner && <NewPostContainer {...newPost}
                 photo={common.photos.small}
                 addPost={addPost}
                 changeTextInput={changeTextInput}
-                isFetching={isFetching} />
+                isFetching={accountInfo.isFetching} />}
             <Posts posts={posts}
                 photo={common.photos.small}
-                isFetching={isFetching} />
+                isFetching={accountInfo.isFetching}
+                isOwner={isOwner} />
         </main>
     );
 }

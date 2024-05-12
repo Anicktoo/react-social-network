@@ -6,6 +6,9 @@ const SET_STATUS = 'social_network/profile/SET_STATUS';
 const SET_USER_PROFILE = 'social_network/profile/SET_USER_PROFILE';
 const SET_USER_WALLPAPER = 'social_network/profile/SET_USER_WALLPAPER';
 const DELETE_POST = 'social_network/profile/DELETE_POST';
+const SET_FETCHING_STATUS = 'social_network/profile/SET_FETCHING_STATUS';
+const SET_USER_PHOTO = 'social_network/profile/SET_USER_PHOTO';
+
 
 const defaultState = {
     accountInfo: {
@@ -79,6 +82,7 @@ const profilesReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 accountInfo: {
+                    ...state.accountInfo,
                     ...action.profile,
                     photos: {
                         ...action.profile.photos,
@@ -108,6 +112,28 @@ const profilesReducer = (state = defaultState, action) => {
                     aboutMe: action.status,
                 },
             };
+        }
+        case SET_FETCHING_STATUS: {
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    isFetching: action.isFetching,
+                },
+            };
+        }
+        case SET_USER_PHOTO: {
+            return {
+                ...state,
+                accountInfo: {
+                    ...state.accountInfo,
+                    photos: {
+                        small: action.small,
+                        large: action.large,
+                        wallpaper: state.accountInfo.photos.wallpaper,
+                    },
+                }
+            }
         }
         default: {
             return state;
@@ -140,7 +166,15 @@ export const setUserWallpaper = (wallpaper) => ({
     type: SET_USER_WALLPAPER,
     wallpaper,
 });
-
+export const setFetchingStatus = (isFetching) => ({
+    type: SET_FETCHING_STATUS,
+    isFetching,
+});
+export const setUserPhoto = ({ small, large }) => ({
+    type: SET_USER_PHOTO,
+    small,
+    large,
+});
 export const addPost = (postText) => (dispatch) => {
     const trimmedText = postText.trim();
     if (trimmedText === '')
@@ -149,11 +183,13 @@ export const addPost = (postText) => (dispatch) => {
 };
 
 export const getUserProfile = (userId) => async (dispatch) => {
+    dispatch(setFetchingStatus(true));
     const hex = getRandomHexColor(userId);
     const data = await profileAPI.getProfile(userId);
     dispatch(setUserProfile(data));
     const dataWallpaper = await wallpaperAPI.getWallpaper(hex);
     dispatch(setUserWallpaper(dataWallpaper));
+    dispatch(setFetchingStatus(false));
 };
 
 export const getUserStatus = (userId) => async (dispatch) => {
@@ -166,6 +202,14 @@ export const updateUserStatus = (status) => async (dispatch) => {
     const data = await profileAPI.setStatus(status);
     if (data.resultCode === 0) {
         dispatch(setUserStatus(status));
+    }
+};
+
+export const savePhoto = (photo) => async (dispatch) => {
+    const data = await profileAPI.setPhoto(photo);
+    console.log(data);
+    if (data.resultCode === 0) {
+        dispatch(setUserPhoto(data.data.photos));
     }
 };
 

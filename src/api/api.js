@@ -53,6 +53,14 @@ export const profileAPI = {
         const response = await axiosInstance.put(`profile/status`, { status });
         return response.data;
     },
+    setPhoto: async (photo) => {
+        const response = await axiosInstance.put(`profile/photo`, { photo }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        return response.data;
+    },
 };
 
 export const followAPI = {

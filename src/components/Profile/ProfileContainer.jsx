@@ -1,44 +1,25 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import defaultUser from '../../img/defaultUser.svg';
-import { getUserProfile, getUserStatus, updateUserStatus } from "../../redux/profileReducer";
+import { getUserProfile, getUserStatus, savePhoto, updateUserStatus } from "../../redux/profileReducer";
 import { withRouter } from "../../utils/react-router-legacy";
 import withLoginRedirect from '../hoc/withLoginRedirect';
 import Profile from "./Profile";
 
-class ProfileContainer extends Component {
+const ProfileContainer = (props) => {
+    const { userId: myId, router: { params: { userId } } } = props;
+    const currentId = userId ?? myId;
+    const isOwner = !userId;
 
-    state = {
-        isFetching: false,
-    }
+    useEffect(() => {
+        props.getUserProfile(currentId);
+        props.getUserStatus(currentId);
+    }, [currentId]);
 
-    componentDidMount() {
-        const userId = this.props.router.params.userId ?? this.props.userId;
-
-        this.props.getUserProfile(userId);
-        this.props.getUserStatus(userId);
-        this.setState({
-            isFetching: true,
-        });
-    }
-
-    componentDidUpdate() {
-        if (this.state.isFetching &&
-            this.props.common.photos.small &&
-            this.props.common.photos.wallpaper &&
-            this.props.accountInfo.aboutMe !== null) {
-            this.setState({
-                isFetching: false,
-            });
-        }
-    }
-
-    render() {
-        return (
-            <Profile {...this.props} isFetching={this.state.isFetching} />
-        );
-    }
+    return (
+        <Profile {...props} isOwner={isOwner} />
+    );
 }
 
 function mapStateToProps(state) {
@@ -65,6 +46,7 @@ export default compose(
             getUserProfile,
             getUserStatus,
             updateUserStatus,
+            savePhoto,
         }
     ),
 )(ProfileContainer);

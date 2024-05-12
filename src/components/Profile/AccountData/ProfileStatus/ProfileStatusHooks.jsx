@@ -6,7 +6,7 @@ import s from './ProfileStatus.module.css';
 
 const cName = classNameFunction(s);
 
-const ProfileStatusHooks = ({ aboutMe, updateUserStatus }) => {
+const ProfileStatusHooks = ({ aboutMe, updateUserStatus, isOwner }) => {
 
     const [editMode, setEditMode] = useState(false);
     const [inputText, setInputText] = useState(aboutMe);
@@ -24,7 +24,8 @@ const ProfileStatusHooks = ({ aboutMe, updateUserStatus }) => {
     }, [aboutMe]);
 
     const openInput = () => {
-        setEditMode(true);
+        if (isOwner)
+            setEditMode(true);
     }
     const closeInput = () => {
         setEditMode(false);
@@ -52,9 +53,12 @@ const ProfileStatusHooks = ({ aboutMe, updateUserStatus }) => {
                     </>
                     :
                     <>
-                        <span onClick={openInput} className={cName('about')}>{aboutMe || 'Add your status'}</span>
+                        {
+                            isOwner ?
+                                <span onClick={openInput} className={cName(['about', 'about_owner'])}>{aboutMe || 'Add your status'}</span> :
+                                <span onClick={openInput} className={cName('about')}>{aboutMe || ''}</span>
+                        }
                     </>
-
             }
         </div>
     );

@@ -8,6 +8,10 @@
     height: min-content;
 }
 
+.about_owner {
+    cursor: pointer;
+}
+
 .about-input {
     min-width: max-content;
     position: relative;

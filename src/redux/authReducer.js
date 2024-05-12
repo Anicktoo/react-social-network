@@ -1,5 +1,5 @@
-import { authAPI, profileAPI } from "../api/api";
 import { stopSubmit } from 'redux-form';
+import { authAPI, profileAPI } from "../api/api";
 
 const SET_DATA = 'social_network/auth/SET_DATA';
 const SET_IMAGE = 'social_network/auth/SET_IMAGE';
